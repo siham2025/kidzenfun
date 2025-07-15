@@ -1,0 +1,104 @@
+{# =============================================
+   PAGE : FILTRER LES ACTIVITÉS
+   Fichier : templates/activity/filter.html.twig
+   ============================================= #}
+
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+    {{ encore_entry_link_tags('filter') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('filter') }}
+{% endblock %}
+
+{% block body %}
+
+  {# ========================
+     SECTION : BANNIÈRE HERO
+     ======================== #}
+  <section class="hero-banner">
+    <img src="{{ asset('images/activities-banner.png') }}" alt="Enfants faisant des activités" class="hero-image">
+    <div class="overlay"></div> {# Superposition sombre sur l’image #}
+    <div class="hero-text">
+      <h2>Explorer les Activités</h2>
+      <p>
+        Personnalisez votre recherche et découvrez des activités ludiques et éducatives adaptées à l’âge,
+        aux centres d’intérêt et aux besoins de vos enfants.
+      </p>
+    </div>
+  </section>
+
+  <div class="container-filter">
+
+    {# ========================
+       BARRE DE FILTRES (formulaire)
+       ======================== #}
+    <form method="get" class="filters">
+      <select name="ageGroup">
+        <option value="">Tous les âges</option>
+        <option value="0-2 ans">0-2 ans</option>
+        <option value="3-5 ans">3-5 ans</option>
+        <option value="6-8 ans">6-8 ans</option>
+        <option value="9-12 ans">9-12 ans</option>
+      </select>
+
+      <select name="theme">
+        <option value="">Tous les thèmes</option>
+        {% for theme in allThemes %}
+          <option value="{{ theme.name }}">{{ theme.name }}</option>
+        {% endfor %}
+      </select>
+
+      <select name="type">
+        <option value="">Tous les types</option>
+        {% for type in allTypes %}
+          <option value="{{ type.name }}">{{ type.name }}</option>
+        {% endfor %}
+      </select>
+
+      <button type="submit">Filtrer</button>
+    </form>
+
+    {# ========================
+       MESSAGE NOMBRE DE RÉSULTATS
+       ======================== #}
+    <h3 class="result-count">{{ activities|length }} Activités trouvées</h3>
+
+    {# ========================
+       AFFICHAGE DES ACTIVITÉS
+       ======================== #}
+    <div class="activity-grid">
+      {% for activity in activities %}
+        <div class="activity-card">
+
+          {# Image de l'activité (si disponible) #}
+          {% if activity.image %}
+            <img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
+          {% endif %}
+
+          <h4>{{ activity.title }}</h4>
+          <p><strong>Âge :</strong> {{ activity.ageGroup }}</p>
+
+          <p><strong>Thème :</strong>
+            {% for theme in activity.themes %}
+              {{ theme.name }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </p>
+
+          <p><strong>Type :</strong>
+            {% for type in activity.activityTypes %}
+              {{ type.name }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </p>
+
+          <a href="{{ path('activity_detail', { id: activity.id }) }}" class="btn">Découvrir</a>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+{% endblock %}

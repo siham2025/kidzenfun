@@ -1,0 +1,131 @@
+{# ======================================
+   PAGE D'ACCUEIL - home.html.twig
+   Étend le template de base
+   ====================================== #}
+
+{% extends 'base.html.twig' %}
+
+{# --- IMPORTMAP spécifique à cette page (si besoin) --- #}
+{# {% block importmap %}
+	{{ importmap('home') }}
+{% endblock %} #}
+
+{# --- TITRE DE L'ONGLET --- #}{% block title %}
+Accueil - Kidzen&Fun
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('home') }}
+{% endblock %}
+
+{# --- CONTENU PRINCIPAL DE LA PAGE --- #}
+
+	{% block body %}
+
+	{# =========================
+				     SECTION : BANNIÈRE HERO
+				     ========================= #}
+		<section class="hero"> <div class="hero-content">
+			<p class="hero-tagline">
+				Découvrez un monde d’activités pour apprendre et
+												                s’amuser avec les enfants
+			</p>
+			<p class="hero-subtext">
+				Bienvenue sur Kidzen&fun, votre ressource incontournable pour des activités ludiques et éducatives.
+												                Explorez notre vaste répertoire et trouvez l'inspiration pour divertir vos enfants.
+			</p>
+			<a href="/activities" class="btn-primary">Trouver une activité</a>
+		</div>
+	</section>
+
+	{# ===========================
+				     SECTION : THÈMES 
+				     =========================== #}
+	<section class="themes">
+		<div class="container">
+			<h2>Les principaux thèmes</h2>
+			<p>Explorez par centres d’intérêt</p>
+
+			<div
+				class="theme-grid">
+
+				{# Liens directs vers le filtre par thème #}
+				<a href="{{ path('app_activity', { theme: 'Motricité' }) }}" class="theme-card">
+					<img src="{{ asset('images/themes/moticite.png') }}" alt="Motricité">
+					<span>MOTRICITÉ</span>
+				</a>
+
+				<a href="{{ path('app_activity', { theme: 'Nature' }) }}" class="theme-card">
+					<img src="{{ asset('images/themes/nature.png') }}" alt="Nature">
+					<span>NATURE</span>
+				</a>
+
+				<a href="{{ path('app_activity', { theme: 'Creatif' }) }}" class="theme-card">
+					<img src="{{ asset('images/themes/creatif.png') }}" alt="Créatif">
+					<span>CRÉATIF</span>
+				</a>
+
+				<a href="{{ path('app_activity', { theme: 'Cognitif' }) }}" class="theme-card">
+					<img src="{{ asset('images/themes/cognitif.png') }}" alt="Cognitif">
+					<span>COGNITIF</span>
+				</a>
+
+				<a href="{{ path('app_activity', { theme: 'Scientifique' }) }}" class="theme-card">
+					<img src="{{ asset('images/themes/scientifique.png') }}" alt="Scientifique">
+					<span>SCIENTIFIQUE</span>
+				</a>
+
+				<a href="{{ path('app_activity', { theme: 'Expression' }) }}" class="theme-card">
+					<img src="{{ asset('images/themes/expression.png') }}" alt="Expression">
+					<span>EXPRESSION</span>
+				</a>
+
+			</div>
+		</div>
+	</section>
+
+	{# ===============================
+				     SECTION : ACTIVITÉ DU JOUR
+				     =============================== #}
+	<section class="activity-of-day">
+		<div class="activity-container">
+			{% for item in activityOfTheDay %}
+				<div class="activity-text">
+					<h3>Découvrez notre activité du jour</h3>
+					<h4>{{ item.title }}</h4>
+					{# si key =objectif alors #}
+					{% for lineKey in item.description|keys %}
+						{% if lineKey == "objectif" %}
+							<p>{{ item.description[lineKey]}}</p>
+						{% endif %}
+					{% endfor %}
+					<a href="{{ path('activity_detail', { id: item.id }) }}" class="btn-secondary">
+						Découvrir
+					</a>
+				</div>
+				<div class="activity-image">
+					<img src="{{ asset('images/activities/' ~ item.image) }}" alt="{{ item.title }}">
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	{# =============================
+				     SECTION : SLOGON FINAL
+				     ============================= #}
+	<section class="slogon">
+		<div class="slogon-container">
+			<img src="{{ asset('images/slogon.jpg') }}" alt="slogon">
+			<div class="slogon-text">
+				<h3>Des activités amusantes pour chaque enfant, à portée de clic !</h3>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

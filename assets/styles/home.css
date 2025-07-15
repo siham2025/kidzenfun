@@ -1,0 +1,220 @@
+/* =======================================
+   SECTION : HERO (Bannière d'accueil)
+   ======================================= */
+
+.main-content {
+  margin-top: calc(20px + 60px); /* padding + hauteur du header */
+}
+.hero {
+  background: url('./../../public/images/hero.png') no-repeat center center;
+  background-size: cover;
+  height: 300px;
+  padding: 120px 20px;
+  color: white;
+  position: relative;
+  margin-top: 100px;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 600px;
+  z-index: 1;
+  text-align:justify;
+   margin-left: 30px;
+}
+
+/* Texte principal */
+.hero-tagline {
+  font-size: 36px;
+  line-height: 1.4;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Texte secondaire */
+.hero-subtext {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 16px 0 24px;
+  color: #f0f0f0;
+}
+
+/* Bouton principal */
+.btn-primary {
+   margin-top: 24px;
+  background-color: white;
+  box-shadow: 0 0 12px 4px rgba(124, 77, 255, 0.4);
+  color: black;
+  padding: 12px 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block; 
+}
+/* =======================================
+   SECTION : THEMES (6 cartes)
+   ======================================= */
+.themes {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.themes .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cartes par ligne */
+  gap: 80px;
+  margin-top: 30px;
+}
+
+.theme-card {
+  background: #f7f3ff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease;
+  display: block;
+  text-decoration: none;
+}
+
+.theme-card:hover {
+  transform: translateY(-4px); /* Animation au survol */
+}
+
+.theme-card img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover; /* Pour bien remplir le cadre */
+}
+
+.theme-card span {
+  display: block;
+  padding: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* =======================================
+   SECTION : ACTIVITÉ DU JOUR
+   ======================================= */
+.activity-of-day {
+  background-color: white;
+  padding: 60px 20px;
+}
+
+.activity-container {
+  background-color: #f4efff;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.activity-text {
+  flex: 1;
+  background-color: #f4efff;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-text h3 {
+  font-size: 27px;
+  font-weight: 700px;
+  margin-left: 30px;
+}
+
+.activity-text h4 {
+  font-size: 20px;
+  font-weight: 600;
+ margin-left: 30px;
+  margin-bottom: 0px;
+}
+
+.activity-text p {
+  font-size: 16px;
+  color: #444;
+  margin-left: 30px;
+}
+
+.activity-text a {
+  align-self: flex-start;
+  background-color: #7c4dff;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(124, 77, 255, 0.3);
+}
+
+.btn-secondary {
+  align-self: start;
+  padding: 8px 16px;
+  background-color: #7c4dff;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 18px;
+  /* font-weight: 500; */
+  box-shadow: 0 0 8px rgba(124, 77, 255, 0.4);
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  display: inline-block; 
+  
+}
+
+.activity-image {
+  flex: 1;
+}
+
+.activity-image img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-top-left-radius: 150px;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  max-height: 260px; 
+  margin-left: 150px;
+ }
+/* =======================================
+   SECTION : SLOGON FINAL
+   ======================================= */
+.slogon {
+  padding: 60px 20px;
+  background: whitesmoke;
+}
+
+.slogon-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+.slogon-container img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+}
+
+.slogon-text h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #222;
+}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil - Kidzen&fun
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('profile') }}
+{% endblock %}
+
+{% block body %}
+	<section class="profile-banner">
+		<div class="container-profile">
+			<h2>Bienvenue,
+				{{ app.user.firstname|default('Nom de l’utilisateur') }}</h2>
+			<p>Découvrez vos activités favorites et gérez votre profil ici.</p>
+			<div class="profile-buttons">
+				<a href="#" class="btn btn-secondary">Modifier</a>
+				<a href="#" class="btn btn-outline">Déconnexion</a>
+				{# <a href="{{ path('app_logout') }}" class="btn btn-outline">Déconnexion</a> #}
+			</div>
+		</div>
+	</section>
+
+	<section class="profile-actions">
+		<div
+			class="container">{# <a href="{{ path('app_home') }}" class="btn btn-primary">Chercher une activité</a> #}
+		</div>
+	</section>
+
+	<section class="favorites">
+		<div class="container-profile">
+			<h3>Mes activités favorites</h3>
+			<div class="favorites-grid">
+				{% for activity in favorites %}
+					<div class="activity-card">
+						<img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
+						<h4>{{ activity.title }}</h4>
+						<p>Âge :
+							{{ activity.ageGroup }}</p>
+						<p>Thème :
+							{{ activity.themes[0].name }}</p>
+						<a href="{{ path('activity_detail', { id: activity.id }) }}" class="btn btn-sm">Découvrir</a>
+						{# icone de suppression de l'activité #}
+						<form class="delete-favorite-form" method="post" action="{{ path('remove_favorite', { id: activity.id }) }}" onsubmit="return confirm('Supprimer cette activité de vos favoris ?');">
+							<button type="submit" class="tooltip-btn">
+								<i class="fas fa-trash"></i>
+								<span class="tooltip-text">Supprimer</span>
+							</button>
+						</form>
+					</div>
+
+				{% else %}
+					<p>Aucune activité en favori pour le moment.</p>
+				{% endfor %}
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,149 @@
+/* ==========================================
+   HEADER PRINCIPAL : Apparence & position
+   ========================================== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgb(235, 230, 230);
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 20px; /* ← ajoute du padding interne */
+  height: 50px; /* ← optionnel si tu veux forcer la hauteur */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* un peu d’ombre légère */
+
+}
+
+.site-header .container-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* important pour que le logo reste à gauche */
+  gap: 32px;
+  padding: 16px 10px; /* ← ajoute plus de padding à gauche et droite */
+}
+
+
+/* ==========================================
+   LOGO (gauche) - maintenant c’est un <h1>
+   ========================================== */
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #5f2eea;
+  margin: 0;
+  margin-right: 12px;
+}
+
+.logo h1 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  color: inherit;
+}
+
+/* ==========================================
+   BARRE DE RECHERCHE (centre)
+   ========================================== */
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #b6aaff;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  height: 40px;
+  width: 240px; 
+ margin-right: 100px; /*espace entre la barre et la nav */
+  margin-left: 110px; /* ← ajuste ici la distance par rapport au logo */
+
+  
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+.search-bar button {
+  border: none;
+  background: none;
+  padding: 0 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-bar button svg {
+  width: 18px;
+  height: 18px;
+  stroke: #5f2eea;
+}
+/* ==========================================
+   MENU DE NAVIGATION (liens centraux)
+   ========================================== */
+.main-nav {
+  display: flex;
+ gap: 50px; /* un peu moins d’écart */
+
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: black;
+  font-size: px;
+  font-weight: 500;
+}
+
+.main-nav a:hover {
+  color: #5f2eea;
+}
+
+/* ==========================================
+   BOUTONS DE COMPTE (droite)
+   ========================================== */
+.account-buttons {
+  display: flex;
+  gap: 14px;
+  margin-left: auto;
+
+}
+
+/* Bouton Connexion (violet plein) */
+.btn-login {
+  background-color: #7c4dff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Bouton Inscription (violet contour) */
+.btn-register {
+  background-color: white;
+  color: #7c4dff;
+  border: 1px solid #7c4dff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-register:hover {
+  background-color: #f4f0ff;
+}

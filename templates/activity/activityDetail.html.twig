@@ -1,0 +1,124 @@
+{# =============================================
+   PAGE : DÉTAIL D'UNE ACTIVITÉ
+   Fichier : templates/activity/detail.html.twig
+   ============================================= #}
+
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{# {{ parent() }} garde les scripts de base du layout (ex : app.js), sinon certaines fonctionnalités peuvent ne plus marcher. #}
+    {{ parent() }}  
+    {{ encore_entry_link_tags('activityDetail') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('activityDetail') }}
+{% endblock %}
+
+{% block title %}
+	{{ activity.title }}
+	- Kidzen&Fun
+{% endblock %}
+
+{% block body %}
+
+	{# =============================
+							     EN-TÊTE DE L'ACTIVITÉ
+							     ============================= #}
+	<section class="activity-header">
+		<div class="activity-container">
+
+			<div class="activity-image">
+				{% if activity.image %}
+					<img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
+				{% endif %}
+			</div>
+
+			<div class="activity-info">
+				<h2 class="activity-title">{{ activity.title }}</h2>
+
+				{% if activity.themes|length > 0 %}
+					<p class="activity-theme">
+						<strong>Thème :</strong>
+						{{ activity.themes[0].name }}</p>
+				{% endif %}
+
+				{% if activity.activityTypes|length > 0 %}
+					<p class="activity-type">
+						<strong>Type :</strong>
+						{{ activity.activityTypes[0].name }}</p>
+				{% endif %}
+
+				<p class="activity-age">
+					<strong>Âge :</strong>
+					{{ activity.ageGroup }}</p>
+
+				<div class="activity-actions">
+					<button class="favorite-toggle" data-id="{{ activity.id }}">
+						<i class="fas fa-heart {% if app.user and activity in app.user.favorites %}favorited{% endif %}"></i> 
+						{# classe conditionnelle:  pré-remplir le bouton si l’activité est déjà un favori de l’utilisateur. #}
+					</button>
+					<i class="fas fa-share-alt"></i>
+					<i class="fas fa-print"></i>
+					<i class="fas fa-download"></i>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+
+	{# =============================
+					     DÉTAILS DE L'ACTIVITÉ
+					     ============================= #}
+	<section class="activity-details">
+		<div class="details-container">
+
+			<div class="materials">
+				<h3>Matériel nécessaire :</h3>
+				<ul>
+					{% for material in activity.materials %}
+						<li>{{ material }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+			<div class="steps">
+				<h3>Étapes de réalisation :</h3>
+				<ol>
+					{% for item in activity.description %}
+						{% if item is iterable %}
+							{% for step in item %}
+								<li>{{ step }}</li>
+							{% endfor %}
+						{% else %}
+							<li>{{ item }}</li>
+						{% endif %}
+					{% endfor %}
+				</ol>
+			</div>
+
+		</div>
+	</section>
+
+	{# =============================
+					     ACTIVITÉS SIMILAIRES (CARROUSEL)
+					     ============================= #}
+	<section class="related-activities">
+		<h3>Activités similaires :</h3>
+
+		<div class="carousel">
+			{% for related in relatedActivities %}
+				{% if related.id != activity.id %}
+					<div class="carousel-item">
+						<a href="{{ path('activity_detail', { id: related.id }) }}">
+							<img src="{{ asset('images/activities/' ~ related.image) }}" alt="{{ related.title }}">
+							<h4>{{ related.title }}</h4>
+						</a>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</section>
+{% endblock %}

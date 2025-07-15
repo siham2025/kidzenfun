@@ -1,0 +1,40 @@
+{# =============================
+   PARTIAL : HEADER DU SITE
+   Fichier : partials/header.html.twig
+   ============================= #}
+
+
+<header class="site-header">
+  <div class="container-header">
+
+    <!-- LOGO en h1 -->
+    <h1 class="logo">Kidzen&fun</h1>
+
+
+        <!-- BARRE DE RECHERCHE -->
+<form class="search-bar" action="/recherche" method="get">
+  <input type="text" placeholder="Recherche">
+  <button type="submit" aria-label="Rechercher">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+  </button>
+</form>
+
+    <!-- NAVIGATION PRINCIPALE -->
+    <nav class="main-nav">
+      <a href="/">Accueil</a>
+      <a href="/activities">Activités</a>
+      <a href="/profile">Mon profil</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <!-- BOUTONS CONNEXION / INSCRIPTION -->
+    <div class="account-buttons">
+      <a href="/login" class="btn-login">Connexion</a>
+      <a href="/register" class="btn-register">Inscription</a>
+    </div>
+
+  </div>
+</header>
