@@ -8,7 +8,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgb(235, 230, 230);
+  background: rgb(255, 255, 255);
   border-bottom: 1px solid #eaeaea;
   padding: 20px 20px; /* ← ajoute du padding interne */
   height: 50px; /* ← optionnel si tu veux forcer la hauteur */
@@ -147,3 +147,4 @@
 .btn-register:hover {
   background-color: #f4f0ff;
 }
+

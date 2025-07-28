@@ -23,7 +23,7 @@ class ProfileController extends AbstractController
         // Assure-toi que ton entité User possède getFavorites() ou similaire
         $favorites = method_exists($user, 'getFavorites') ? $user->getFavorites() : [];
 
-        return $this->render('profile.html.twig', [
+        return $this->render('user/profile.html.twig', [
             'favorites' => $favorites,
         ]);
     }

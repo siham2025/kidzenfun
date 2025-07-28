@@ -1,0 +1,327 @@
+/* ===============================
+   🧱 Layout général admin
+=============================== */
+.admin-wrapper {
+  display: flex;  /* Permet d'afficher la sidebar et le contenu principal côte à côte */
+  min-height: 100vh; /* Pour que la hauteur prenne tout l'écran */
+  background-color: #f5f5fa;
+}
+
+/* ===============================
+   📍 Sidebar
+=============================== */
+.sidebar {
+  width: 220px; /* ou 240px selon ta maquette */
+  background-color: #6c45e0;
+  color: white;
+  padding: 1rem 0;
+  flex-shrink: 0; /* important pour éviter que la sidebar rétrécisse */
+}
+.sidebar h2 {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   🧾 Contenu principal
+=============================== */
+.admin-main-content {
+  flex: 1; /* Prend tout l'espace restant */
+  padding: 2rem;
+  background-color: #f9f9fb;
+  min-height: 100vh;
+  overflow-x: auto;
+}
+
+/* ===============================
+   🎯 Header : titre + bouton
+=============================== */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* ===============================
+   🔍 Barre de recherche + bouton
+=============================== */
+.admin-actions-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 0 0.5rem;
+  height: 40px;
+  width: 250px;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.search-bar button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.search-bar svg {
+  width: 18px;
+  height: 18px;
+  stroke: #6c45e0;
+}
+
+/* ===============================
+   📊 Tableau des activités
+=============================== */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+/* ✅ Image miniature */
+.admin-table img {
+  width: 50px;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* ✅ Case à cocher */
+.admin-table input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #6c45e0;
+}
+
+/* ===============================
+   🔘 Boutons
+=============================== */
+.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background-color: #6c45e0;
+  color: white;
+}
+
+.btn-outline-primary {
+  border: 1px solid #6c45e0;
+  color: #6c45e0;
+  background-color: white;
+}
+
+.btn-outline-primary:hover {
+  background-color: #f3ecff;
+}
+
+.btn-outline-danger {
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  background-color: white;
+}
+
+.btn-outline-danger:hover {
+  background-color: #fdecea;
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 5px 10px;
+}
+
+
+
+
+/* ==========================================
+   🧱 Mise en page du contenu "Gérer les activités"
+========================================== */
+/* .admin-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f7f7f7;
+} */
+
+/* ==========================================
+   🧾 HEADER (Titre + bouton "Ajouter")
+========================================== */
+/* .admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+} */
+
+/* ==========================================
+   BARRE DE RECHERCHE (centre)
+   ========================================== */
+/* .search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #b6aaff;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  height: 40px;
+  width: 240px; 
+
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+.search-bar button {
+  border: none;
+  background: none;
+  padding: 0 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-bar button svg {
+  width: 18px;
+  height: 18px;
+  stroke: #5f2eea;
+} */
+/* ==========================================
+   📊 Tableau des activités
+========================================== */
+/* .admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.admin-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+✅ Image des activités */
+/* .admin-table img {
+  width: 50px;
+  height: auto;
+  border-radius: 4px;
+} */
+
+/* ✅ Case à cocher */
+/* .admin-table input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #6c45e0;
+} */
+
+/* ==========================================
+   🔘 Boutons
+========================================== */
+/* .btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #6c45e0;
+  color: white;
+}
+
+.btn-outline-primary {
+  border: 1px solid #6c45e0;
+  color: #6c45e0;
+  background-color: white;
+}
+
+.btn-outline-primary:hover {
+  background-color: #f3ecff;
+}
+
+.btn-outline-danger {
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  background-color: white;
+}
+
+.btn-outline-danger:hover {
+  background-color: #fdecea;
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 5px 10px;
+} */

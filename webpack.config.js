@@ -21,13 +21,10 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js') // ici qu'on seppare par page 
-    .addEntry('home', './assets/home.js') 
-    .addEntry('profile', './assets/profile.js') 
-    .addEntry('filter', './assets/filter.js') 
-    .addEntry('login', './assets/login.js') 
-    // .addEntry('header', './assets/header.js')
-    .addEntry('activityDetail', './assets/activityDetail.js')
+    
+    .addEntry('app', './assets/js/app.js') 
+    .addEntry('activityDetail', './assets/js/activityDetail.js') 
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -88,8 +85,10 @@ Encore
             '**/public/build/**'
         ];
     })
+    .copyFiles({
+    from: './assets/images',
+    to: 'images/[path][name].[ext]',
+})
     ;
-
-;
 
 module.exports = Encore.getWebpackConfig();

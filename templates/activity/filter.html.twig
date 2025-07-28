@@ -7,12 +7,12 @@
 
 {% block stylesheets %}
 {{ parent() }}
-    {{ encore_entry_link_tags('filter') }}
+    {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('filter') }}
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}
 
 {% block body %}

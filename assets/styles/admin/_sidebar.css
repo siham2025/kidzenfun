@@ -1,0 +1,91 @@
+.admin-sidebar {
+  width: 240px;
+  background-color: #7A3FFF;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  min-height: 100vh;
+}
+
+.sidebar-header .logo {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.sidebar-nav li {
+  margin-bottom: 1rem;
+}
+
+.sidebar-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  display: block;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.sidebar-nav li.active a {
+  background-color: #8666df;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.sidebar-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+
+
+/* ==========================================
+   📚 SIDEBAR - Menu de navigation latéral
+========================================== */
+/* .sidebar {
+  width: 220px;
+  background-color: #6c45e0;
+  padding: 2rem 1rem;
+  color: white;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 1rem;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.sidebar nav ul li.active a,
+.sidebar nav ul li a:hover {
+  background-color: #5434c2;
+} */

@@ -3,10 +3,13 @@
    ======================================= */
 
 .main-content {
-  margin-top: calc(20px + 60px); /* padding + hauteur du header */
+  margin-top: calc(20px + 60px);
+  /* padding + hauteur du header */
 }
+
 .hero {
-  background: url('./../../public/images/hero.png') no-repeat center center;
+  background-image: url('./../../../public/images/hero.png');
+  /* no-repeat center center */
   background-size: cover;
   height: 300px;
   padding: 120px 20px;
@@ -26,8 +29,8 @@
   position: relative;
   max-width: 600px;
   z-index: 1;
-  text-align:justify;
-   margin-left: 30px;
+  text-align: justify;
+  margin-left: 30px;
 }
 
 /* Texte principal */
@@ -48,7 +51,7 @@
 
 /* Bouton principal */
 .btn-primary {
-   margin-top: 24px;
+  margin-top: 24px;
   background-color: white;
   box-shadow: 0 0 12px 4px rgba(124, 77, 255, 0.4);
   color: black;
@@ -56,8 +59,9 @@
   border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
-  display: inline-block; 
+  display: inline-block;
 }
+
 /* =======================================
    SECTION : THEMES (6 cartes)
    ======================================= */
@@ -73,7 +77,8 @@
 
 .theme-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cartes par ligne */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 cartes par ligne */
   gap: 80px;
   margin-top: 30px;
 }
@@ -89,13 +94,15 @@
 }
 
 .theme-card:hover {
-  transform: translateY(-4px); /* Animation au survol */
+  transform: translateY(-4px);
+  /* Animation au survol */
 }
 
 .theme-card img {
   width: 100%;
   height: 270px;
-  object-fit: cover; /* Pour bien remplir le cadre */
+  object-fit: cover;
+  /* Pour bien remplir le cadre */
 }
 
 .theme-card span {
@@ -137,7 +144,7 @@
 .activity-text h4 {
   font-size: 20px;
   font-weight: 600;
- margin-left: 30px;
+  margin-left: 30px;
   margin-bottom: 0px;
 }
 
@@ -171,8 +178,8 @@
   margin-top: 20px;
   margin-bottom: 10px;
   margin-left: 30px;
-  display: inline-block; 
-  
+  display: inline-block;
+
 }
 
 .activity-image {
@@ -187,9 +194,10 @@
   border-bottom-left-radius: 0;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-  max-height: 260px; 
+  max-height: 260px;
   margin-left: 150px;
- }
+}
+
 /* =======================================
    SECTION : SLOGON FINAL
    ======================================= */

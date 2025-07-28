@@ -1,0 +1,62 @@
+.registration-section {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+    background: #fdfdfd;
+    margin-top: 200px;
+}
+
+.container h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.container p {
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-block,
+.form-check {
+    margin-top: 2rem;
+}
+
+.form-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.btn-submit {
+    padding: 0.8rem 2rem;
+    background-color: #7647ec;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #333;
+    text-decoration: none;
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="password"],
+.registration-form select,
+.registration-form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

@@ -1,0 +1,104 @@
+/* ======================================
+   🔐 Connexion - login.css
+====================================== */
+.login-section {
+  padding: 4rem 1rem;
+  background-color: #f9f9ff;
+}
+
+.login-container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 10rem;
+}
+
+.breadcrumb {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.login-title {
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  color: #2c2c2c;
+}
+
+.login-intro {
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  margin-top: -1rem;
+}
+
+.login-links {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.login-links a {
+  color: #6c45e0;
+  text-decoration: none;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Bouton cohérent avec contact.css */
+.btn-primary {
+  background-color: #6c45e0;
+  color: white;
+  border: none;
+  padding: 0.9rem 1.7rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #5434c2;
+}
+
+.flash-error {
+  background-color: #ffe6e6;
+  color: #b30000;
+  border: 1px solid #ffb3b3;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  text-align: center;
+}

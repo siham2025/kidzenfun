@@ -1,10 +1,6 @@
 // Affiche un message dans la console pour confirmer que le JS est bien chargé
 console.log("JS chargé !");
 
-// Importe les fichiers CSS spécifiques à cette page
-import './styles/activityDetail.css'
-import './styles/header.css'
-
 // Attend que toute la page soit chargée avant d'exécuter le code
 document.addEventListener('DOMContentLoaded', () => {
     console.log("JS chargé !");

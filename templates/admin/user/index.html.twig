@@ -1,0 +1,63 @@
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+	<div class="admin-container">
+		<div
+		
+			class="admin-layout">
+			{#  SIDEBAR à gauche #}
+			{% include 'admin/partials/_sidebar.html.twig' %}
+
+			<div class="admin-content">
+				<h1>Gérer les utilisateurs</h1>
+
+				<div class="d-flex justify-between mb-3">
+					<input type="text" placeholder="🔍 Rechercher un utilisateur" class="form-control" style="width: 300px;">
+					<a href="{{ path('admin_user_new') }}" class="btn btn-primary">+ Ajouter un utilisateur</a>
+				</div>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Rôle</th>
+							<th>Status</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+							<tr>
+								<td>{{ user.firstName }}
+									{{ user.lastName }}</td>
+								<td>{{ user.email }}</td>
+								<td>{{ user.roles[0] == 'ROLE_ADMIN' ? 'Admin' : 'Utilisateur' }}</td>
+								<td>
+									{% if user.isVerified %}
+										<span class="badge bg-success">Actif</span>
+									{% else %}
+										<span class="badge bg-secondary">Inactif</span>
+									{% endif %}
+								</td>
+								<td>
+									<a href="{{ path('admin_user_edit', { id: user.id }) }}" class="btn btn-sm btn-outline-primary">Modifier</a>
+									<form method="post" action="{{ path('admin_user_delete', {id: user.id}) }}" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete_user_' ~ user.id) }}">
+										<button class="btn btn-sm btn-outline-danger">Supprimer</button>
+									</form>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">Aucun utilisateur trouvé.</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}

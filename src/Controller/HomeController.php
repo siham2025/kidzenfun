@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 // si je veux sécuriser toutes les routes qui sont dans le contrôleur je doit mettre IS Granted avant la class (ici) et la supprimer à l'intérieur de la class
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'home')]
     // #[IsGranted('ROLE_USER')]   // pour sécuriser la route dans ce cas c'est la home '/'
     public function index(ThemeRepository $themeRepo, ActivityRepository $activityRepo): Response
     {

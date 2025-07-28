@@ -168,4 +168,22 @@ private Collection $favoritedBy;
 {
     return $this->favoritedBy;
 }
+
+
+// ========= GESTION ACITIVITE DU JOUR =========
+#[ORM\Column(type: 'boolean')]
+private bool $isDailyActivity = false;
+
+public function isDailyActivity(): bool
+{
+    return $this->isDailyActivity;
 }
+
+public function setIsDailyActivity(bool $isDailyActivity): self
+{
+    $this->isDailyActivity = $isDailyActivity;
+    return $this;
+}
+}
+
+

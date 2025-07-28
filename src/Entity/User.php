@@ -20,8 +20,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $firstName = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $lastName = null;
+
     #[ORM\Column(length: 180)]
     private ?string $email = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $phone = null;
 
     /**
      * @var list<string> The user roles
@@ -39,6 +48,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToMany(targetEntity: Activity::class)]
     private Collection $favorites;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVerified = false;
+
 
     public function __construct()
     {
@@ -80,6 +93,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): static
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): static
+    {
+        $this->lastName = $lastName;
+        return $this;
+    }
     public function getEmail(): ?string
     {
         return $this->email;
@@ -136,6 +170,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->password = $password;
 
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
         return $this;
     }
 

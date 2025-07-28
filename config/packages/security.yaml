@@ -19,13 +19,21 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-                enable_csrf: true
+                enable_csrf: true  # active la protection CSRF
+                csrf_token_id: authenticate # correspond à {{ csrf_token('authenticate') }}
                 default_target_path: home # route vers laquelle l'utilisateur est redirigé après connexion ou déconnexion
                 # always_use_default_target_path: true # force la redirection vers cette route, même si une page était initialement demandée
             logout:
                 path: app_logout
                 # where to redirect after logout
                 target: app_login
+
+                #pour le fonctionnalité se sevenir de moi dans le formulaire de connexion
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800           # Durée en secondes (ici 1 semaine)
+                path: /
+                always_remember_me: false # ou true si je veux que ce soit activé même sans cocher    
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

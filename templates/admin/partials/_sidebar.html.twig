@@ -1,0 +1,25 @@
+<aside class="admin-sidebar">
+  <div class="sidebar-header">
+    <a href="{{ path('home') }}" class="logo">
+      <span class="logo-icon">🌻</span> Admin
+    </a>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul>
+      <li class="{{ app.request.attributes.get('_route') starts with 'admin_dashboard' ? 'active' : '' }}">
+        <a href="{{ path('admin_dashboard') }}">🏠 Tableau de bord</a>
+      </li>
+      <li class="{{ app.request.attributes.get('_route') starts with 'admin_users' ? 'active' : '' }}">
+        <a href="{{ path('admin_users') }}">👥 Gérer les utilisateurs</a>
+      </li>
+      <li class="{{ app.request.attributes.get('_route') starts with 'admin_activities' ? 'active' : '' }}">
+        <a href="{{ path('admin_activities') }}">🎨 Gérer les activités</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a href="#">🚪 Déconnexion</a>
+  </div>
+</aside>

@@ -1,0 +1,51 @@
+
+{# Titre de l'onglet du navigateur #}
+{% block title %}Modifier l'utilisateur{% endblock %}
+
+{# Inclusion des feuilles de style spécifiques à l'admin #}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+    <div class="admin-container">
+        <div class="admin-layout">
+            {# Barre latérale (navigation admin) #}
+		<aside class="sidebar">
+				<nav>
+					<ul>
+						<li>
+							<a href="{{ path('admin_dashboard') }}">🏠 Tableau de bord</a>
+						</li>
+						<li class="active">
+							<a href="{{ path('admin_users') }}">👥 Gérer les utilisateurs</a>
+						</li>
+						<li>
+							<a href="{{ path('admin_activities') }}">🎨 Gérer les activités</a>
+						</li>
+						<li>
+							<a href="#">🚪 Déconnexion</a>
+						</li>
+					</ul>
+				</nav>
+			</aside>
+
+            <div class="admin-content">
+                {# Titre dynamique avec le nom de l’utilisateur #}
+                <h1>Modifier l'utilisateur : {{ user.firstName }} {{ user.lastName }}</h1>
+
+                {# Début du formulaire Symfony #}
+                {{ form_start(form) }}
+
+                    {# Affiche tous les champs automatiquement #}
+                    {{ form_widget(form) }}
+
+                    {# Bouton de soumission #}
+                    <button type="submit" class="btn btn-primary mt-2">Enregistrer</button>
+
+                {# Fin du formulaire #}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

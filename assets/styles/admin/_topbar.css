@@ -1,0 +1,43 @@
+/* ==========================================
+   🔝 TOPBAR - Barre supérieure avec logo et bouton
+========================================== */
+.admin-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-topbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-topbar .logo img {
+  height: 40px;
+}
+
+.admin-topbar .brand-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.btn-view-site {
+  background-color: #6c3ef4;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-view-site:hover {
+  background-color: #532dd3;
+}
+

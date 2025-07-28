@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 use App\Entity\Activity;
-use App\Repository\ActivityRepository;
 use App\Repository\ThemeRepository;
+use App\Form\Admin\ActivityFormType;
+use App\Repository\ActivityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ActivityTypeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -89,6 +91,10 @@ public function detail(Activity $activity, ActivityRepository $activityRepo): Re
         'relatedActivities' => $relatedActivities,
     ]);
 }
+
+
+
+
 }
 
 
