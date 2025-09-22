@@ -5,9 +5,9 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 		<link
-		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"/>
 		{# ---- TITRE DE LA PAGE ---- #}
 		<title>
 			{% block title %}Kidzen&Fun
@@ -25,8 +25,8 @@
 		{% endblock %}
 		{# ---- IMPORT DES SCRIPTS VIA IMPORTMAP ---- #}
 		{# {% block importmap %}
-				      {{ importmap('app') }}
-				    {% endblock %} #}
+						      {{ importmap('app') }}
+						    {% endblock %} #}
 	</head>
 
 	<body>
@@ -35,5 +35,8 @@
 
 		{# ---- CONTENU PRINCIPAL DE CHAQUE PAGE ---- #}
 		{% block body %}{% endblock %}
+
+        {# ---- PIED DE PAGE DU SITE (partagé sur toutes les pages) ---- #}
+		{% include 'partials/footer.html.twig'%}
 	</body>
 </html>

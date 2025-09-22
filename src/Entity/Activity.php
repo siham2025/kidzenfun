@@ -47,8 +47,8 @@ class Activity
     private Collection $themes;
 
     // ========== UTILISATEURS QUI ONT MIS EN FAVORI ==========
-#[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorites')]
-private Collection $favoritedBy;
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorites')]
+    private Collection $favoritedBy;
 
     // ========== CONSTRUCTEUR ==========
     public function __construct()
@@ -163,27 +163,25 @@ private Collection $favoritedBy;
         return $this;
     }
 
-// ========= GESTION DES FAVORIES =========
+    // ========= GESTION DES FAVORIES =========
     public function getFavoritedBy(): Collection
-{
-    return $this->favoritedBy;
+    {
+        return $this->favoritedBy;
+    }
+
+
+    // ========= GESTION ACITIVITE DU JOUR =========
+    #[ORM\Column(type: 'boolean')]
+    private bool $isDailyActivity = false;
+
+    public function isDailyActivity(): bool
+    {
+        return $this->isDailyActivity;
+    }
+
+    public function setIsDailyActivity(bool $isDailyActivity): self
+    {
+        $this->isDailyActivity = $isDailyActivity;
+        return $this;
+    }
 }
-
-
-// ========= GESTION ACITIVITE DU JOUR =========
-#[ORM\Column(type: 'boolean')]
-private bool $isDailyActivity = false;
-
-public function isDailyActivity(): bool
-{
-    return $this->isDailyActivity;
-}
-
-public function setIsDailyActivity(bool $isDailyActivity): self
-{
-    $this->isDailyActivity = $isDailyActivity;
-    return $this;
-}
-}
-
-

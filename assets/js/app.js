@@ -15,6 +15,8 @@ import './../styles/app/home.css';
 
 //Partials
 import './../styles/partials/header.css';
+import './../styles/partials/footer.css';
+
 //Activity
 import './../styles/app/filter.css';
 import './../styles/app/activityDetail.css';
@@ -25,10 +27,12 @@ import './../styles/user/profile.css';
 import './../styles/user/registration.css';
 import './../styles/user/contact.css';
 
+//legal
+import './../styles/legal/charte.css';
+
 //Admin
 import './../styles/admin/_admin.css';
 import './../styles/admin/_sidebar.css';
-import './../styles/admin/_topbar.css';
 import './../styles/admin/adminDashboard.css';
 import './../styles/admin/adminActivities.css';
 import './../styles/admin/adminActivityForm.css';

@@ -2,20 +2,12 @@
    SECTION : HERO (Bannière d'accueil)
    ======================================= */
 
-.main-content {
-  margin-top: calc(20px + 60px);
-  /* padding + hauteur du header */
-}
-
 .hero {
-  background-image: url('./../../../public/images/hero.png');
-  /* no-repeat center center */
   background-size: cover;
   height: 300px;
   padding: 120px 20px;
   color: white;
   position: relative;
-  margin-top: 100px;
 }
 
 .hero::after {
@@ -29,11 +21,11 @@
   position: relative;
   max-width: 600px;
   z-index: 1;
-  text-align: justify;
+  text-align: left;   /* avant c’était justify, pas top pour un titre */
   margin-left: 30px;
 }
 
-/* Texte principal */
+/* Titre principal (H2 dans Hero) */
 .hero-tagline {
   font-size: 36px;
   line-height: 1.4;
@@ -43,7 +35,7 @@
 
 /* Texte secondaire */
 .hero-subtext {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   margin: 16px 0 24px;
   color: #f0f0f0;
@@ -71,16 +63,15 @@
 }
 
 .themes .container {
-  max-width: 1000px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
 .theme-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  /* 3 cartes par ligne */
-  gap: 80px;
-  margin-top: 30px;
+  grid-template-columns: repeat(3, 1fr); /* 3 cartes par ligne */
+  gap: 80px;   /* réduit pour être plus proche de la maquette */
+
 }
 
 .theme-card {
@@ -95,14 +86,12 @@
 
 .theme-card:hover {
   transform: translateY(-4px);
-  /* Animation au survol */
 }
 
 .theme-card img {
   width: 100%;
-  height: 270px;
+  height: 400px; /* un peu réduit (avant 270px) */
   object-fit: cover;
-  /* Pour bien remplir le cadre */
 }
 
 .theme-card span {
@@ -120,109 +109,98 @@
   padding: 60px 20px;
 }
 
-.activity-container {
+.activity-of-day-container {
   background-color: #f4efff;
-  max-width: 1000px;
+  max-width: 1300px;
   margin: 0 auto;
   display: flex;
+  align-items: center; /* centre texte & image verticalement */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
 }
 
 .activity-text {
   flex: 1;
-  background-color: #f4efff;
-  display: flex;
-  flex-direction: column;
+  padding: 20px 30px; /* marges internes plus homogènes */
+}
+
+.activity-text h2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .activity-text h3 {
-  font-size: 27px;
-  font-weight: 700px;
-  margin-left: 30px;
-}
-
-.activity-text h4 {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 600;
-  margin-left: 30px;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
 }
 
 .activity-text p {
-  font-size: 16px;
+  font-size: 20px;
   color: #444;
-  margin-left: 30px;
-}
-
-.activity-text a {
-  align-self: flex-start;
-  background-color: #7c4dff;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
-  box-shadow: 0 4px 8px rgba(124, 77, 255, 0.3);
+  margin-bottom: 15px;
 }
 
 .btn-secondary {
   align-self: start;
-  padding: 8px 16px;
+  padding: 14px 30px;
   background-color: #7c4dff;
   color: white;
   border-radius: 6px;
   text-decoration: none;
   font-size: 18px;
-  /* font-weight: 500; */
   box-shadow: 0 0 8px rgba(124, 77, 255, 0.4);
-  margin-top: 20px;
-  margin-bottom: 10px;
-  margin-left: 30px;
+  margin-top: 15px;
   display: inline-block;
-
 }
 
-.activity-image {
+.activity-of-day-image {
   flex: 1;
-}
-
-.activity-image img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-top-left-radius: 150px;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  max-height: 260px;
-  margin-left: 150px;
-}
-
-/* =======================================
-   SECTION : SLOGON FINAL
-   ======================================= */
-.slogon {
-  padding: 60px 20px;
-  background: whitesmoke;
-}
-
-.slogon-container {
-  max-width: 1000px;
-  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
+  justify-content:flex-end;
   align-items: center;
-  gap: 40px;
 }
 
-.slogon-container img {
-  width: 100%;
-  max-width: 400px;
+.activity-of-day-image img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
   border-radius: 12px;
 }
 
-.slogon-text h3 {
-  font-size: 22px;
-  font-weight: 600;
-  color: #222;
+/* =======================================
+   SECTION : SLOGAN FINAL
+   ======================================= */
+.slogon {
+  background-size: cover;       /* l’image couvre toute la zone */
+  background-position: center;  /* centrée */
+  background-repeat: no-repeat; /* pas de répétition */
+
+  min-height: 350px;            /* hauteur minimale adaptable */
+  padding: 100px 20px;          /* espace interne */
+  margin: 100px auto;           /* espace extérieur */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.slogon-text {
+  max-width: 800px; /* limite la largeur du bloc pour que le texte ne soit pas trop étalé */
+}
+
+.slogon-text h2 {
+  font-size: 42px;       /* un peu moins grand pour l’équilibre */
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;   /* espace avec le paragraphe */
+}
+
+.slogon-text p {
+  font-size: 22px;       /* taille lisible */
+  line-height: 1.6;      /* meilleure lisibilité */
+  color: #f0f0f0;        /* blanc un peu adouci */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  margin: 0 auto;        /* centré */
 }

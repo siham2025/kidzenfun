@@ -1,15 +1,12 @@
 {% block stylesheets %}
 	{{ encore_entry_link_tags('app') }}
 {% endblock %}
-
+{% extends 'base.html.twig' %}
 {% block body %}
-	<div class="admin-wrapper">
-		<div
-			class="sidebar">
-			{#  SIDEBAR #}
-			{% include 'admin/partials/_sidebar.html.twig' %}
-
-		</div>
+	<div
+		class="admin-wrapper">
+		{#  SIDEBAR #}
+		{% include 'admin/partials/_sidebar.html.twig' %}
 
 		<div class="admin-main-content">
 

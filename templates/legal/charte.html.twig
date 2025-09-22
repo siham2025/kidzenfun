@@ -1,0 +1,68 @@
+{# =============================
+   PAGE : CHARTE UTILISATEUR
+   ============================= #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Charte d’utilisation - Kidzen&Fun{% endblock %}
+
+{% block body %}
+  <section class="charte container">
+    <h2 class="charte__title">Conditions générales d'utilisation</h2>
+    <p class="charte__date"><em>Mise à jour : {{ "now"|date("d/m/Y") }}</em></p>
+
+    <h3>1. Objet</h3>
+    <p>
+      Cette charte définit les règles d’utilisation du site <strong>Kidzen&Fun</strong>,
+      qui propose des activités éducatives et ludiques pour enfants.
+    </p>
+
+    <h3>2. Public visé & responsabilité parentale</h3>
+    <ul>
+      <li>Le site s’adresse aux adultes : parents, enseignants, éducateurs.</li>
+      <li>Toute activité doit être adaptée à l’âge et aux capacités de l’enfant.</li>
+      <li>La surveillance d’un adulte est indispensable.</li>
+    </ul>
+
+    <h3>3. Sécurité & matériel</h3>
+    <ul>
+      <li>Respecter les consignes de sécurité lors des activités.</li>
+      <li>Utiliser du matériel adapté et vérifier son bon état.</li>
+    </ul>
+
+    <h3>4. Respect & bienveillance</h3>
+    <ul>
+      <li>Encourager les enfants dans un cadre positif.</li>
+      <li>Aucune activité ne doit mettre en danger la santé, la dignité ou l’intégrité d’un enfant.</li>
+    </ul>
+
+    <h3>5. Données personnelles</h3>
+    <p>
+      Les informations recueillies respectent la confidentialité et la protection des données,
+      conformément à la législation en vigueur.
+    </p>
+
+    <h3>6. Propriété intellectuelle</h3>
+    <p>
+      Les contenus du site (textes, images, activités) sont protégés par le droit d’auteur.
+      Toute reproduction, diffusion ou utilisation non autorisée est interdite.
+    </p>
+
+    <h3>7. Responsabilités</h3>
+    <p>
+      Kidzen&Fun ne peut être tenu responsable d’un usage inapproprié des activités proposées.
+      Les adultes doivent vérifier l’adéquation des activités avec l’âge et les capacités de l’enfant.
+    </p>
+
+    <h3>8. Évolutions du site</h3>
+    <p>
+      Kidzen&Fun se réserve le droit de modifier ou supprimer certaines activités.
+      La charte peut être mise à jour ; les utilisateurs sont invités à la consulter régulièrement.
+    </p>
+
+    <h3>9. Contact</h3>
+    <p>
+      Pour toute question ou remarque, vous pouvez nous contacter via le
+      <a href="{{ path('contact') }}">formulaire de contact</a>.
+    </p>
+  </section>
+{% endblock %}

@@ -6,7 +6,7 @@
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
 
-
+{# {% extends 'base.html.twig' %} #}
 {% block body %}
 <div class="admin-wrapper">
 
@@ -15,8 +15,6 @@
 
     <!-- ⚪ Main (droite) -->
     <div class="admin-main">
-
-        {% include 'admin/partials/_topbar.html.twig' %}
 
         <div class="admin-content">
             <h1>Tableau de bord</h1>

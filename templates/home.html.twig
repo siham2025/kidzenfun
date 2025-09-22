@@ -5,127 +5,122 @@
 
 {% extends 'base.html.twig' %}
 
-{# --- IMPORTMAP spécifique à cette page (si besoin) --- #}
-{# {% block importmap %}
-	{{ importmap('home') }}
-{% endblock %} #}
+{# --- TITRE DE L'ONGLET --- #}
+{% block title %}Accueil - Kidzen&Fun{% endblock %}
 
-{# --- TITRE DE L'ONGLET --- #}{% block title %}
-Accueil - Kidzen&Fun
-{% endblock %}
-
+{# --- CSS/JS de l’entry "app" --- #}
 {% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('app') }}
+  {{ parent() }}
+  {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('app') }}
+  {{ parent() }}
+  {{ encore_entry_script_tags('app') }}
 {% endblock %}
 
-{# --- CONTENU PRINCIPAL DE LA PAGE --- #}
+{# --- CONTENU PRINCIPAL --- #}
+{% block body %}
 
-	{% block body %}
+  {# =========================
+     SECTION : BANNIÈRE HERO
+     - H1 est déjà dans le header (logo) → ici on met un H2
+     - image de fond via asset() (chemin sûr)
+     ========================= #}
+  <section class="hero" style="background-image: url('{{ asset('images/hero.png') }}');">
+    <div class="hero-content">
+      <h2 class="hero-tagline">
+        Découvrez un monde d’activités pour apprendre et s’amuser avec les enfants
+      </h2>
+      <p class="hero-subtext">
+        Bienvenue sur Kidzen&fun,
+        explorez notre vaste répertoire et trouvez l'inspiration pour divertir vos enfants.
+      </p>
+      <a href="/activities" class="btn-primary" aria-label="Trouver une activité">Trouver une activité</a>
+    </div>
+  </section>
 
-	{# =========================
-				     SECTION : BANNIÈRE HERO
-				     ========================= #}
-		<section class="hero"> <div class="hero-content">
-			<p class="hero-tagline">
-				Découvrez un monde d’activités pour apprendre et
-												                s’amuser avec les enfants
-			</p>
-			<p class="hero-subtext">
-				Bienvenue sur Kidzen&fun, votre ressource incontournable pour des activités ludiques et éducatives.
-												                Explorez notre vaste répertoire et trouvez l'inspiration pour divertir vos enfants.
-			</p>
-			<a href="/activities" class="btn-primary">Trouver une activité</a>
-		</div>
-	</section>
+  {# ===========================
+     SECTION : THÈMES
+     =========================== #}
+  <section class="themes">
+    <div class="container">
+      <h2>Les principaux thèmes</h2>
+      <p>Explorez par centres d’intérêt</p>
 
-	{# ===========================
-				     SECTION : THÈMES 
-				     =========================== #}
-	<section class="themes">
-		<div class="container">
-			<h2>Les principaux thèmes</h2>
-			<p>Explorez par centres d’intérêt</p>
+      <div class="theme-grid">
+        {# Liens directs vers le filtre par thème #}
+        <a href="{{ path('app_activity', { theme: 'Motricité' }) }}" class="theme-card">
+          <img src="{{ asset('images/themes/moticite.png') }}" alt="Motricité">
+          <span>MOTRICITÉ</span>
+        </a>
 
-			<div
-				class="theme-grid">
+        <a href="{{ path('app_activity', { theme: 'Nature' }) }}" class="theme-card">
+          <img src="{{ asset('images/themes/nature.png') }}" alt="Nature">
+          <span>NATURE</span>
+        </a>
 
-				{# Liens directs vers le filtre par thème #}
-				<a href="{{ path('app_activity', { theme: 'Motricité' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/moticite.png') }}" alt="Motricité">
-					<span>MOTRICITÉ</span>
-				</a>
+        <a href="{{ path('app_activity', { theme: 'Creatif' }) }}" class="theme-card">
+          <img src="{{ asset('images/themes/creatif.png') }}" alt="Créatif">
+          <span>CRÉATIF</span>
+        </a>
 
-				<a href="{{ path('app_activity', { theme: 'Nature' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/nature.png') }}" alt="Nature">
-					<span>NATURE</span>
-				</a>
+        <a href="{{ path('app_activity', { theme: 'Cognitif' }) }}" class="theme-card">
+          <img src="{{ asset('images/themes/cognitif.png') }}" alt="Cognitif">
+          <span>COGNITIF</span>
+        </a>
 
-				<a href="{{ path('app_activity', { theme: 'Creatif' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/creatif.png') }}" alt="Créatif">
-					<span>CRÉATIF</span>
-				</a>
+        <a href="{{ path('app_activity', { theme: 'Scientifique' }) }}" class="theme-card">
+          <img src="{{ asset('images/themes/scientifique.png') }}" alt="Scientifique">
+          <span>SCIENTIFIQUE</span>
+        </a>
 
-				<a href="{{ path('app_activity', { theme: 'Cognitif' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/cognitif.png') }}" alt="Cognitif">
-					<span>COGNITIF</span>
-				</a>
+        <a href="{{ path('app_activity', { theme: 'Expression' }) }}" class="theme-card">
+          <img src="{{ asset('images/themes/expression.png') }}" alt="Expression">
+          <span>EXPRESSION</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-				<a href="{{ path('app_activity', { theme: 'Scientifique' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/scientifique.png') }}" alt="Scientifique">
-					<span>SCIENTIFIQUE</span>
-				</a>
+  {# ===============================
+     SECTION : ACTIVITÉ DU JOUR
+     - H2 pour la section, H3 pour le titre d’activité
+     - lien vers la page détail
+     =============================== #}
+  <section class="activity-of-day">
+    <div class="activity-of-day-container">
+      {% for item in activityOfTheDay %}
+        <div class="activity-text">
+          <h2>Découvrez notre activité du jour</h2>
+          <h3>{{ item.title }}</h3>
 
-				<a href="{{ path('app_activity', { theme: 'Expression' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/expression.png') }}" alt="Expression">
-					<span>EXPRESSION</span>
-				</a>
+          {# Affiche uniquement la clé "objectif" si présente #}
+          {% if item.description is iterable and 'objectif' in item.description|keys %}
+            <p>{{ item.description['objectif'] }}</p>
+          {% endif %}
 
-			</div>
-		</div>
-	</section>
+          <a href="{{ path('activity_detail', { id: item.id }) }}" class="btn-secondary" aria-label="Découvrir l’activité {{ item.title }}">
+            Découvrir
+          </a>
+        </div>
 
-	{# ===============================
-				     SECTION : ACTIVITÉ DU JOUR
-				     =============================== #}
-	<section class="activity-of-day">
-		<div class="activity-container">
-			{% for item in activityOfTheDay %}
-				<div class="activity-text">
-					<h3>Découvrez notre activité du jour</h3>
-					<h4>{{ item.title }}</h4>
-					{# si key =objectif alors #}
-					{% for lineKey in item.description|keys %}
-						{% if lineKey == "objectif" %}
-							<p>{{ item.description[lineKey]}}</p>
-						{% endif %}
-					{% endfor %}
-					<a href="{{ path('activity_detail', { id: item.id }) }}" class="btn-secondary">
-						Découvrir
-					</a>
-				</div>
-				<div class="activity-image">
-					<img src="{{ asset('images/activities/' ~ item.image) }}" alt="{{ item.title }}">
-				</div>
-			{% endfor %}
-		</div>
-	</section>
+        <div class="activity-of-day-image">
+          <img src="{{ asset('images/activities/' ~ item.image) }}" alt="{{ item.title }}">
+        </div>
+      {% endfor %}
+    </div>
+  </section>
 
-	{# =============================
-				     SECTION : SLOGON FINAL
-				     ============================= #}
-	<section class="slogon">
-		<div class="slogon-container">
-			<img src="{{ asset('images/slogon.jpg') }}" alt="slogon">
-			<div class="slogon-text">
-				<h3>Des activités amusantes pour chaque enfant, à portée de clic !</h3>
-			</div>
-		</div>
-	</section>
+  {# =============================
+     SECTION : SLOGAN FINAL
+     (tu as nommé la classe 'slogon', je garde pour ne pas casser ton CSS)
+     ============================= #}
+  <section class="slogon" style="background-image: url('{{ asset('images/slogon8.png') }}');">
+    <div class="slogon-text">
+      <h2>Des activités amusantes pour chaque enfant, à portée de clic !</h2>
+      <P>Kidzen&fun vous offre une multitude d'activités adaptées à tous les âges. Explorez, jouez et apprenez en toute simplicité avec notre sélection variée.</P>
+    </div>
+  </section>
 
 {% endblock %}

@@ -2,3 +2,59 @@
 /* body {
     background-color: lightgray;
 } */
+ /* ===================== */
+/* STYLE GLOBAL DU SITE  */
+/* ===================== */
+
+/* Police et style général */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #111827; /* gris foncé */
+  background-color: #ffffff;
+  line-height: 1.6;
+}
+
+/* Hiérarchie des titres */
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Liens */
+a {
+  color: #7C3AED; /* violet principal */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Conteneur global */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+

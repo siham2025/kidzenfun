@@ -1,0 +1,199 @@
+/* ============================= */
+/* FOOTER - STYLES GÉNÉRAUX      */
+/* ============================= */
+.footer {
+  background: rgb(255, 255, 255);
+  color: #111827;              /* texte gris très foncé */
+  padding-top: 60px;
+  padding-bottom: 2px;
+  font-family: Arial, sans-serif;
+}
+
+/* ============================= */
+/* SECTION DU HAUT DU FOOTER     */
+/* ============================= */
+.footer-top {
+  width: 100%;                 /* occupe toute la largeur */
+  margin: 0;                   /* plus de centrage */
+  display: grid;               
+  gap: 60px;
+  grid-template-columns: 0.5fr 1fr 1.4fr 1fr;
+  align-items:flex-start;
+  justify-items: center;     /* centre horizontalement chaque cellule */
+  
+}
+
+/* ============================= */
+/* LOGO ET NOM DE MARQUE         */
+/* ============================= */
+
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* ============================= */
+/* TITRES DE COLONNES            */
+/* ============================= */
+.links h3,
+.news h3,
+.socials h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 4px 0 12px;
+}
+
+/* ============================= */
+/* LISTE DE LIENS UTILES         */
+/* ============================= */
+.links ul {
+  list-style: none;   /* supprime les puces */
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.links a {
+  color: #111827;
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: #7C3AED;     /* violet au survol */
+}
+
+/* ============================= */
+/* BLOC NEWSLETTER               */
+/* ============================= */
+
+.footer .news {
+  text-align: center;   /* centre tout le texte */
+}
+
+.footer .news form {
+  display: inline-flex; /* formulaire centré horizontalement */
+  gap: 8px;             /* petit espace entre input et bouton */
+}
+.news p {
+  color: #6B7280;     /* texte gris moyen */
+  margin: 0 0 12px;
+}
+
+.news-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.news-form input {
+  flex: 1;
+  height: 40px;
+  padding: 0 60px;
+  border: 1px solid #7C3AED; /* contour violet */
+  border-radius: 6px;
+  outline: none;
+}
+
+.news-form button {
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #7C3AED;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.news small {
+  color: #6B7280;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ============================= */
+/* ICONES RÉSEAUX SOCIAUX        */
+/* ============================= */
+.icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+  font-size: 20px; /* taille emoji ou icônes */
+}
+
+/* ============================= */
+/* SÉPARATEUR                    */
+/* ============================= */
+.divider {
+  border: none;
+  border-top: 1px solid #E5E7EB; /* gris clair */
+  margin: 28px auto 12px;
+  width: 100%;
+}
+
+/* ============================= */
+/* SECTION DU BAS DU FOOTER      */
+/* ============================= */
+.footer-bottom {
+  max-width: 1100px;           /* limite la largeur */
+  margin: 0 auto;              /* centre le bloc */
+  display: flex;               /* alignement en ligne */
+  align-items: center;         /* aligne verticalement */
+  justify-content: center;     /* centre horizontalement */
+  gap: 40px;                   /* espace entre le texte et les liens */
+  color: #6B7280;              /* texte gris */
+  font-size: 14px;
+}
+
+.footer-bottom ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;                   /* espace entre les liens */
+  padding: 0;
+  margin: 0;
+}
+
+.footer-bottom a {
+  color: #111827;
+  text-decoration: underline;  /* liens soulignés */
+}
+
+.footer-bottom a:hover {
+  color: #7C3AED;              /* violet au hover */
+}
+
+/* ============================= */
+/* ACCESSIBILITÉ (textes cachés) */
+/* ============================= */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================= */
+/* RESPONSIVE                    */
+/* ============================= */
+@media (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr; /* 2 colonnes sur tablette */
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-top {
+    grid-template-columns: 1fr; /* 1 colonne sur mobile */
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

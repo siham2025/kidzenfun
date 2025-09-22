@@ -7,39 +7,13 @@
   background-color: #f5f5fa;
 }
 
-/* ===============================
-   📍 Sidebar
-=============================== */
-.sidebar {
-  width: 220px; /* ou 240px selon ta maquette */
-  background-color: #6c45e0;
-  color: white;
-  padding: 1rem 0;
-  flex-shrink: 0; /* important pour éviter que la sidebar rétrécisse */
-}
-.sidebar h2 {
-  margin-bottom: 2rem;
-  font-size: 1.2rem;
-}
 
-.sidebar a {
-  display: flex;
-  align-items: center;
-  color: white;
-  text-decoration: none;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-}
-
-.sidebar a:hover {
-  text-decoration: underline;
-}
 
 /* ===============================
    🧾 Contenu principal
 =============================== */
 .admin-main-content {
-  flex: 1; /* Prend tout l'espace restant */
+  flex: 1;
   padding: 2rem;
   background-color: #f9f9fb;
   min-height: 100vh;
