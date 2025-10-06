@@ -16,6 +16,7 @@ import './../styles/app/home.css';
 //Partials
 import './../styles/partials/header.css';
 import './../styles/partials/footer.css';
+import './../styles/partials/buttons.css';
 
 //Activity
 import './../styles/app/filter.css';
@@ -28,7 +29,13 @@ import './../styles/user/registration.css';
 import './../styles/user/contact.css';
 
 //legal
-import './../styles/legal/charte.css';
+import './../styles/legal/legal.css';
+
+//pages
+
+import './../styles/pages/about.css';
+import './../styles/pages/faq.css';
+
 
 //Admin
 import './../styles/admin/_admin.css';

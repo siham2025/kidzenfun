@@ -1,0 +1,174 @@
+/* ===========================
+   PAGE — À PROPOS / ABOUT
+   =========================== */
+
+/* Conteneur principal centré */
+.about {
+  padding: 64px 0 48px;
+  background: #fff;
+}
+
+.about-container {
+  max-width: 800px;          /* largeur lisible */
+  margin: 0 auto;            /* centre la page */
+  padding: 0 20px;           /* respiration latérale */
+}
+
+/* Petit motif/eyebrow (… ) au-dessus du titre */
+.about-eyebrow {
+  font-size: 28px;
+  line-height: 1;
+  margin: 0 0 12px;
+  color: #a78bfa;            /* violet doux */
+  text-align: center;
+}
+
+/* Titre principal de la page */
+.about-title {
+  font-size: 38px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Accroche sous le titre */
+.about-lead {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 28px;
+  color: #374151;
+}
+
+.about-lead strong {
+  color: #7C3AED; /* accent violet principal */
+  text-shadow: 0 0 8px rgba(124, 58, 237, 0.4); /* effet lumineux */
+  font-weight: 700;
+}
+
+/* Paragraphe courant */
+.about-content p {
+  color: #374151;
+  line-height: 2;
+}
+
+/* Liens éventuels */
+.about a {
+  color: #7C3AED;
+  text-decoration: underline;
+}
+.about a:hover { text-decoration-thickness: 2px; }
+
+/* ===========================
+   BLOC — NOTE DE LA FONDATRICE
+   =========================== */
+
+.founder-note {
+  margin: 48px 0 0;
+}
+
+.founder-card {
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    radial-gradient(1200px 200px at 50% -160px,
+      rgba(124,58,237,.08), transparent) border-box;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow:
+    0 10px 25px rgba(17, 24, 39, .06),
+    0 1px 2px rgba(17, 24, 39, .05);
+  padding: 28px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Aspect "papier ligné" */
+.founder-card::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 31px,
+      rgba(17, 24, 39, .04) 32px
+    );
+  pointer-events: none;
+}
+
+/* Titre de la note */
+.founder-title {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* -------- Note de la fondatrice : habillage sans grid -------- */
+.founder-wrap {
+  position: relative;
+}
+
+/* Image flottée à droite + habillage circulaire */
+.founder-figure {
+  float: right;                    
+  width: 200px;
+  height: 200px;
+  shape-outside: circle(50%);
+  margin-bottom: 30px;
+}
+
+.founder-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid #ede9fe;
+  box-shadow: 0 6px 16px rgba(17,24,39,.12),
+              0 0 0 6px rgba(167,139,250,.25);
+}
+
+/* Contenir le float */
+.founder-wrap::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Texte */
+.founder-text p { margin: 0 0 14px; color: #374151; line-height: 2;}
+.founder-text em { font-style: italic; }
+.founder-sign {
+  margin-top: 12px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ===========================
+   RÉPONSIVE
+   =========================== */
+@media (max-width: 1024px) {
+  .about-title { font-size: 34px; }
+  .about-lead  { font-size: 17px; }
+}
+
+@media (max-width: 768px) {
+  .about-container { padding: 0 16px; }
+  .about-title     { font-size: 30px; }
+  .founder-figure {
+    float: none;
+    shape-outside: none;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 12px;
+    display: block;
+  }
+}
+
+@media (max-width: 420px) {
+  .about-title { font-size: 26px; }
+  .about-lead  { font-size: 16px; }
+  .founder-card { padding: 20px; border-radius: 12px; }
+}

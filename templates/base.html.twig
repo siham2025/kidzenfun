@@ -25,18 +25,22 @@
 		{% endblock %}
 		{# ---- IMPORT DES SCRIPTS VIA IMPORTMAP ---- #}
 		{# {% block importmap %}
-						      {{ importmap('app') }}
-						    {% endblock %} #}
+								      {{ importmap('app') }}
+								    {% endblock %} #}
 	</head>
 
 	<body>
 		{# ---- EN-TÊTE DU SITE (partagé sur toutes les pages) ---- #}
 		{% include 'partials/header.html.twig' %}
 
+		  {# affiche les flashs #}
+  {% include 'partials/_flash.html.twig' %}
+
 		{# ---- CONTENU PRINCIPAL DE CHAQUE PAGE ---- #}
 		{% block body %}{% endblock %}
 
-        {# ---- PIED DE PAGE DU SITE (partagé sur toutes les pages) ---- #}
+		{# ---- PIED DE PAGE DU SITE (partagé sur toutes les pages) ---- #}
 		{% include 'partials/footer.html.twig'%}
 	</body>
+
 </html>

@@ -6,12 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CharteController extends AbstractController
+class TermsController extends AbstractController
 {
-    #[Route('/charte', name: 'app_charte')]
+    #[Route('/terms', name: 'app_terms')]
     public function index(): Response
     {
-        return $this->render('legal/charte.html.twig'); 
+        return $this->render('legal/terms.html.twig'); 
         // tu peux mettre 'charte.html.twig' direct si tu le mets à la racine de templates
     }
 }

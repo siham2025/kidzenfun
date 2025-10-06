@@ -25,15 +25,15 @@
 
 		<!-- NAVIGATION PRINCIPALE -->
 		<nav class="main-nav">
-			<a href="/">Accueil</a>
-			<a href="/activities">Activités</a>
-			<a href="/profile">Mon profil</a>
-			<a href="/contact">Contact</a>
+			<a href="{{ path('home') }}">Accueil</a>
+			<a href="{{ path('app_activity') }}">Activités</a>
+			<a href="{{ path('app_profile') }}">Mon profil</a>
+			<a href="{{ path('app_contact') }}">Contact</a>
 		</nav>
 		<!-- BOUTONS CONNEXION / INSCRIPTION -->
 		<div class="account-buttons">
-			<a href="/login" class="btn-login">Connexion</a>
-			<a href="/registration" class="btn-register">Inscription</a>
+			<a href="{{ path('app_login') }}" class="btn-login">Connexion</a>
+			<a href="{{ path('registration') }}" class="btn-register">Inscription</a>
 		</div>
 
 	</div>

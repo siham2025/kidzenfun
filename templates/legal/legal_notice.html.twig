@@ -1,0 +1,58 @@
+{# =============================
+   PAGE : MENTIONS LÉGALES
+   ============================= #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions légales - Kidzen&Fun{% endblock %}
+
+{% block body %}
+  <section class="legal-page legal-notice">
+    <h2>Mentions légales</h2>
+    <p><em>Mise à jour : {{ "now"|date("d/m/Y") }}</em></p>
+
+    <h3>Éditeur du site</h3>
+    <p>
+      Site : <strong>Kidzen&Fun</strong><br>
+      Éditeur : [Nom / Raison sociale]<br>
+      Adresse : [36 Rue du Sergent Michel Berthet, 69009 Lyon]<br>
+      Email : <a href="mailto:[email]">[email]</a><br>
+      Téléphone : [0785836877]<br>
+      N° SIREN / SIRET : [xxxxx xxxxxx]<br>
+      Responsable de la publication : [Vinchon Siham]
+    </p>
+
+    <h3>Hébergement</h3>
+    <p>
+      Hébergeur : [Nom de l’hébergeur]<br>
+      Adresse : [Adresse de l’hébergeur]<br>
+      Téléphone : [numero]
+    </p>
+
+    <h3>Propriété intellectuelle</h3>
+    <p>
+      L’ensemble des contenus (textes, visuels, logos, éléments graphiques) présents sur ce site
+      sont protégés par le droit d’auteur. Toute reproduction, représentation, modification ou
+      diffusion, totale ou partielle, sans autorisation écrite préalable est interdite.
+    </p>
+
+    <h3>Responsabilité</h3>
+    <p>
+      Nous nous efforçons d’assurer l’exactitude et la mise à jour des informations diffusées.
+      Toutefois, des erreurs ou omissions peuvent survenir. L’éditeur ne saurait être tenu
+      responsable des conséquences d’un mauvais usage du site ou des liens externes pointant vers
+      d’autres ressources.
+    </p>
+
+    <h3>Données personnelles</h3>
+    <p>
+      Pour toute information sur la collecte et le traitement des données, merci de consulter la
+      <a href="{{ path('app_privacy') }}">Politique de confidentialité</a>.
+    </p>
+
+    <h3>Contact</h3>
+    <p>
+      Pour toute question concernant ces mentions, vous pouvez nous écrire à :
+      <a href="mailto:[email]">[email]</a>, ou directement via le <a href="{{ path('app_contact') }}">formulaire de contact</a>.
+    </p>
+  </section>
+{% endblock %}

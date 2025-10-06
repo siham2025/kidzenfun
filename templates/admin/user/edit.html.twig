@@ -1,51 +1,49 @@
+{% extends 'base.html.twig' %}
 
 {# Titre de l'onglet du navigateur #}
 {% block title %}Modifier l'utilisateur{% endblock %}
 
 {# Inclusion des feuilles de style spécifiques à l'admin #}
 {% block stylesheets %}
-    {{ encore_entry_link_tags('app') }}
+  {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block body %}
-    <div class="admin-container">
-        <div class="admin-layout">
-            {# Barre latérale (navigation admin) #}
-		<aside class="sidebar">
-				<nav>
-					<ul>
-						<li>
-							<a href="{{ path('admin_dashboard') }}">🏠 Tableau de bord</a>
-						</li>
-						<li class="active">
-							<a href="{{ path('admin_users') }}">👥 Gérer les utilisateurs</a>
-						</li>
-						<li>
-							<a href="{{ path('admin_activities') }}">🎨 Gérer les activités</a>
-						</li>
-						<li>
-							<a href="#">🚪 Déconnexion</a>
-						</li>
-					</ul>
-				</nav>
-			</aside>
+<div class="admin-container">
+  <div class="admin-layout">
+    {% include 'admin/partials/_sidebar.html.twig' %}
 
-            <div class="admin-content">
-                {# Titre dynamique avec le nom de l’utilisateur #}
-                <h1>Modifier l'utilisateur : {{ user.firstName }} {{ user.lastName }}</h1>
+    <div class="admin-content">
+      <h1 class="page-title">Modifier l’utilisateur</h1>
 
-                {# Début du formulaire Symfony #}
-                {{ form_start(form) }}
+      {# 🔽 assure l’affichage des flashs sur cette page #}
+      {% include 'partials/_flash.html.twig' %}
 
-                    {# Affiche tous les champs automatiquement #}
-                    {{ form_widget(form) }}
+      {# --- FORMULAIRE D’ÉDITION --- #}
+      {{ form_start(form, { attr: { class: 'user-form' } }) }}
 
-                    {# Bouton de soumission #}
-                    <button type="submit" class="btn btn-primary mt-2">Enregistrer</button>
+      {{ form_row(form.lastName,  { row_attr:{ class:'field' }, label:'Nom', label_attr:{ class:'label' }, attr:{ class:'input', placeholder:'Vinchon' } }) }}
+      {{ form_row(form.firstName, { row_attr:{ class:'field' }, label:'Prénom', label_attr:{ class:'label' }, attr:{ class:'input', placeholder:'Siham' } }) }}
+      {{ form_row(form.email,     { row_attr:{ class:'field' }, label:'Email', label_attr:{ class:'label' }, attr:{ class:'input', placeholder:'sihamvinchon@gmail.com' } }) }}
+      {{ form_row(form.role,      { row_attr:{ class:'field' }, label:'Rôle',  label_attr:{ class:'label' }, attr:{ class:'select' } }) }}
+      {{ form_row(form.status,    { row_attr:{ class:'field' }, label:'Status',label_attr:{ class:'label' }, attr:{ class:'select' } }) }}
 
-                {# Fin du formulaire #}
-                {{ form_end(form) }}
-            </div>
-        </div>
+      <div class="actions buttons">
+        <button type="submit" class="btn purple">Enregistrer</button>
+        <a href="{{ path('admin_users') }}" class="btn withe">Annuler</a>
+      </div>
+
+      {{ form_end(form, { render_rest: false }) }}
+      {# --- FIN FORMULAIRE D’ÉDITION --- #}
+
+      {# --- FORMULAIRE SÉPARÉ : ENVOYER LIEN RESET --- #}
+      <form method="post"
+            action="{{ path('admin_user_send_reset', { id: user.id }) }}"
+            class="buttons" style="margin-top:12px">
+        <input type="hidden" name="_token" value="{{ csrf_token('send_reset_' ~ user.id) }}">
+        <button class="btn withe">Envoyer le lien pour réinitialiser le mot de passe</button>
+      </form>
     </div>
+  </div>
+</div>
 {% endblock %}

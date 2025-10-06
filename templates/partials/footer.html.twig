@@ -9,10 +9,10 @@
     <nav class="links" aria-label="Liens utiles">
       <h3>Liens Utiles</h3>
       <ul>
-        <li><a href="/a-propos">A&nbsp;Propos</a></li>
-        <li><a href="/contact">Contactez nous</a></li>
-        <li><a href="/activites">Activités</a></li>
-        <li><a href="/faq">FAQ</a></li>
+        <li><a href="{{ path('app_about') }}">A&nbsp;Propos</a></li>
+        <li><a href="{{ path('app_contact') }}">Contactez nous</a></li>
+        <li><a href="{{ path('app_activity') }}">Activités</a></li>
+        <li><a href="{{ path('app_faq') }}">FAQ</a></li>
       </ul>
     </nav>
 
@@ -55,9 +55,9 @@
   <div class="footer-bottom">
     <p>© 2025 Kidzen&fun. Tous droits réservés.</p>
     <ul>
-      <li><a href="/confidentialite">Politique de Confidentialité</a></li>
-      <li><a href="/mentions-legales">Mentions légales</a></li>
-      <li><a href="{{ path('app_charte') }}">Charte utilisateur</a></li>
+      <li><a href="{{ path('app_privacy') }}">Politique de confidentialité</a></li>
+      <li><a href="{{path('app_legal_notice')}}">Mentions légales</a></li>
+      <li><a href="{{ path('app_terms') }}">Charte utilisateur</a></li>
     </ul>
   </div>
 </footer>

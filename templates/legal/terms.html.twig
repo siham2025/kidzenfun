@@ -1,18 +1,19 @@
 {# =============================
    PAGE : CHARTE UTILISATEUR
    ============================= #}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Charte d’utilisation - Kidzen&Fun{% endblock %}
 
 {% block body %}
-  <section class="charte container">
-    <h2 class="charte__title">Conditions générales d'utilisation</h2>
-    <p class="charte__date"><em>Mise à jour : {{ "now"|date("d/m/Y") }}</em></p>
+  <section class="legal-page terms">
+    <h2>Conditions générales d'utilisation</h2>
+    <p><em>Mise à jour : 22/09/2025</em></p>
 
     <h3>1. Objet</h3>
     <p>
-      Cette charte définit les règles d’utilisation du site <strong>Kidzen&Fun</strong>,
+      Cette charte définit les règles d’utilisation du site <strong>Kidzen&Fun</strong>, 
       qui propose des activités éducatives et ludiques pour enfants.
     </p>
 
@@ -37,32 +38,32 @@
 
     <h3>5. Données personnelles</h3>
     <p>
-      Les informations recueillies respectent la confidentialité et la protection des données,
+      Les informations recueillies respectent la confidentialité et la protection des données, 
       conformément à la législation en vigueur.
     </p>
 
     <h3>6. Propriété intellectuelle</h3>
     <p>
-      Les contenus du site (textes, images, activités) sont protégés par le droit d’auteur.
+      Les contenus du site (textes, images, activités) sont protégés par le droit d’auteur. 
       Toute reproduction, diffusion ou utilisation non autorisée est interdite.
     </p>
 
     <h3>7. Responsabilités</h3>
     <p>
-      Kidzen&Fun ne peut être tenu responsable d’un usage inapproprié des activités proposées.
+      Kidzen&Fun ne peut être tenu responsable d’un usage inapproprié des activités proposées. 
       Les adultes doivent vérifier l’adéquation des activités avec l’âge et les capacités de l’enfant.
     </p>
 
     <h3>8. Évolutions du site</h3>
     <p>
-      Kidzen&Fun se réserve le droit de modifier ou supprimer certaines activités.
+      Kidzen&Fun se réserve le droit de modifier ou supprimer certaines activités. 
       La charte peut être mise à jour ; les utilisateurs sont invités à la consulter régulièrement.
     </p>
 
     <h3>9. Contact</h3>
     <p>
-      Pour toute question ou remarque, vous pouvez nous contacter via le
-      <a href="{{ path('contact') }}">formulaire de contact</a>.
+      Pour toute question ou remarque, vous pouvez nous contacter via le 
+      <a href="{{ path('app_contact') }}">formulaire de contact</a>.
     </p>
   </section>
 {% endblock %}

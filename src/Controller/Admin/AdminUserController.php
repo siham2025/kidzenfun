@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Form\Admin\UserEditType;
 use App\Form\Admin\RegistrationForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,14 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+//pour la gestion des mots de passe oubliés
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
+use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 
 // 1- Méthode pour récupérer la liste des utilisateurs présents dans la base de données 
 
@@ -95,45 +104,74 @@ class AdminUserController extends AbstractController
     // 5- Méthode pour modifier un utilisateur 
 
     #[Route('/{id}/edit', name: 'admin_user_edit')]
-public function edit(
-    Request $request,                         // Pour gérer la requête HTTP
-    User $user,                               // Symfony injecte automatiquement l'utilisateur selon l'id dans l'URL
-    EntityManagerInterface $em,               // Pour interagir avec la base de données
-    UserPasswordHasherInterface $hasher       // Pour hacher un nouveau mot de passe si besoin
-): Response {
-    // Crée le formulaire et lie les données existantes de l'utilisateur
-    $form = $this->createForm(RegistrationForm::class, $user);
+    public function edit(
+        Request $request,
+        User $user,
+        EntityManagerInterface $em
+    ): Response {
+        $form = $this->createForm(UserEditType::class, $user);
+        $form->handleRequest($request);
 
-    // Récupère les données du formulaire si celui-ci est soumis
-    $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Récupère les 2 champs non mappés
+            $user->setRoles([$form->get('role')->getData()]);
+            $user->setIsVerified((bool) $form->get('status')->getData());
 
-    // Si le formulaire est soumis et valide
-    if ($form->isSubmitted() && $form->isValid()) {
-        // On récupère le champ "plainPassword" (non mappé, donc manuel)
-        $plainPassword = $form->get('plainPassword')->getData();
+            $em->flush();
+            $this->addFlash('success', 'Utilisateur modifié avec succès.');
 
-        // Si un mot de passe a été saisi, on le hache et on le met à jour
-        if ($plainPassword) {
-            $user->setPassword($hasher->hashPassword($user, $plainPassword));
+            return $this->redirectToRoute('admin_users'); // <- ton nom de route liste
         }
 
-        // Enregistre les modifications dans la base de données
-        $em->flush();
-
-        // Message de confirmation
-        $this->addFlash('success', 'Utilisateur modifié avec succès.');
-
-        // Redirection vers la liste des utilisateurs
-        return $this->redirectToRoute('admin_users');
+        return $this->render('admin/user/edit.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user,
+        ]);
     }
 
-    // Affiche la page avec le formulaire prérempli
-    return $this->render('admin/user/edit.html.twig', [
-        'form' => $form->createView(),
-        'user' => $user
-    ]);
-}
+    //gestion des mots de passes oubliés
+
+    #[Route('/{id}/send-reset', name: 'admin_user_send_reset', methods: ['POST'])]
+    public function sendResetLink(
+        User $user,
+        Request $request,
+        ResetPasswordHelperInterface $resetPasswordHelper,
+        MailerInterface $mailer
+    ): Response {
+        // CSRF
+        if (!$this->isCsrfTokenValid('send_reset_' . $user->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException('Token CSRF invalide');
+        }
+
+        try {
+            // 1) Générer le token
+            $resetToken = $resetPasswordHelper->generateResetToken($user);
+        } catch (ResetPasswordExceptionInterface $e) {
+            $this->addFlash('warning', 'Un lien a déjà été envoyé récemment. Réessaie plus tard.');
+            return $this->redirectToRoute('admin_user_edit', ['id' => $user->getId()]);
+        }
+
+        // 2) envoie l'e-mail 
+        $email = (new TemplatedEmail())
+            ->from(new Address('no-reply@kidzenfun.fr', 'Kidzen&fun'))
+            ->to($user->getEmail())
+            ->subject('Réinitialisation de votre mot de passe')
+            ->htmlTemplate('emails/reset_password_admin.html.twig')
+            ->context([
+                'resetToken' => $resetToken,
+                'user'       => $user,
+            ]);
+
+        $mailer->send($email);
+
+        // (facultatif) afficher aussi le lien à l’admin
+        $link = $this->generateUrl('app_reset_password', ['token' => $resetToken->getToken()], UrlGeneratorInterface::ABSOLUTE_URL);
+        $this->addFlash(
+            'success',
+            sprintf('Lien envoyé à %s — <a href="%s" target="_blank" rel="noopener">Ouvrir le lien</a>', $user->getEmail(), $link)
+        );
 
 
-
+        return $this->redirectToRoute('admin_user_edit', ['id' => $user->getId()]);
+    }
 }

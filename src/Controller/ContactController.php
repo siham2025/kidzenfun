@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'contact')]
+    #[Route('/contact', name: 'app_contact')]
     public function contact(Request $request, EntityManagerInterface $em): Response
     {
         $contact = new Contact();
@@ -29,7 +29,7 @@ class ContactController extends AbstractController
             $this->addFlash('success', 'Votre message a bien été envoyé !');
 
             // Redirige vers la même page ou une autre
-            return $this->redirectToRoute('contact');
+            return $this->redirectToRoute('app_contact');
         }
 
         return $this->render('user/contact.html.twig', [

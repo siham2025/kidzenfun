@@ -1,0 +1,42 @@
+/* ===================== */
+/* STYLES PAGES LÉGALES  */
+/* ===================== */
+
+.legal-page {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 0 16px;
+  line-height: 1.8;
+  font-size: 16px;
+  color: #111827;
+}
+
+/* Titre principal de la page légale */
+.legal-page h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #7C3AED;
+}
+
+/* Sous-sections */
+.legal-page h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 12px;
+  color: #374151;
+  border-left: 4px solid #7C3AED;
+  padding-left: 12px; /* espace entre le texte et la bordure */
+}
+
+.legal-page p,
+.legal-page ul {
+  margin-bottom: 16px;
+}
+
+.legal-page ul {
+  padding-left: 20px;
+  list-style: disc;
+}

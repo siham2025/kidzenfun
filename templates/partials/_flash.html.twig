@@ -1,0 +1,10 @@
+{# templates/partials/_flash.html.twig #}
+{% set types = ['success', 'warning', 'error', 'info'] %}
+
+{% for type in types %}
+  {% for message in app.flashes(type) %}
+    <div class="flash {{ type }}" role="{{ type in ['error','warning'] ? 'alert' : 'status' }}">
+      {{ message|raw }}
+    </div>
+  {% endfor %}
+{% endfor %}

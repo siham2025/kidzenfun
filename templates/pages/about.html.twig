@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block title %}À propos - Kidzen&Fun
+{% endblock %}
+
+{% block body %}
+	<section class="about">
+		<div class="about-container">
+			<p class="about-eyebrow" aria-hidden="true">⋯</p>
+
+			<h2 class="about-title">À propos</h2>
+
+			<p class="about-lead">
+				Nous aidons les familles à partager des instants de <strong>complicité</strong> et de <strong>créativité</strong>, grâce à des activités ludiques
+		    et éducatives qui éveillent la curiosité et renforcent les liens.
+			</p>
+
+			<div class="about-content">
+				<p>
+					Bienvenue sur Kidzen&Fun ! Notre mission est simple : faciliter le quotidien des parents, enseignants et éducateurs en proposant des idées
+					<em>simples, créatives et adaptées</em> aux enfants.
+				</p>
+				<p>
+					Chaque activité est catégorisée (âge, thème, type d'activité)
+															        pour que tu trouves vite ce qui convient, même quand le temps est serré.
+				</p>
+				<p>
+					Du bricolage aux jeux d’extérieur, notre bibliothèque s’enrichit en continu pour nourrir l’imagination, le mouvement et la complicité.
+				</p>
+			</div>
+
+			{# Section fondatrice #}
+			<section class="founder-note">
+  <div class="founder-card">
+    <h3 class="founder-title">Note de la fondatrice</h3>
+
+    {# wrapper simple pour contenir le float #}
+    <div class="founder-wrap">
+      {# L’IMAGE DOIT ÊTRE AVANT LE TEXTE pour que l’habillage marche #}
+      <figure class="founder-figure">
+        <img
+          src="{{ asset('images/siham.png') }}"
+          alt="Siham, fondatrice de Kidzen&Fun"
+          width="220" height="220" loading="lazy">
+      </figure>
+
+      <div class="founder-text">
+        <p>👋 Bonjour,</p>
+        <p>
+          Je m’appelle <strong>Siham</strong> — je suis développeuse web, et surtout, maman.
+          Ce projet est né de ces moments du quotidien où l’on cherche des idées simples
+          pour occuper et amuser son enfant. Quand mon fils était plus jeune et que j’étais
+          fatiguée, je manquais souvent d’inspiration pour imaginer des activités ludiques et
+          enrichissantes à partager avec lui.
+        </p>
+        <p>
+          Je voulais mieux pour lui : des moments de complicité, de créativité, de découverte.
+          J’aurais aimé une ressource claire pour trouver rapidement des idées adaptées,
+          amusantes et éducatives. Alors j’ai créé <strong>Kidzen&Fun</strong>.
+        </p>
+        <p>
+          Ce site est un outil pour aider les familles à se reconnecter, rire davantage et
+          créer des souvenirs <em>sans dépendre des écrans</em>. Chaque activité est choisie
+          avec soin pour encourager la curiosité, l’imagination et le jeu.
+        </p>
+        <p>
+          Merci d’être ici. J’espère que <strong>Kidzen&Fun</strong> apportera à votre famille
+          autant de joie qu’il en apporte à la mienne.
+        </p>
+        <p class="founder-sign">— Siham</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+		</div>
+	</section>
+{% endblock %}
