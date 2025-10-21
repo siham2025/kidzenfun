@@ -1,0 +1,113 @@
+/* ===== Liste utilisateurs (Admin) ===== */
+
+/* Titre */
+.page-title{
+  max-width:1200px;margin:24px auto 18px;font-size:32px;font-weight:800;
+}
+
+/* Barre outils */
+.list-toolbar{
+  max-width:1200px;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.search-group{
+  position: relative;flex: 0 0 280px;   /* largeur fixe de 280px */ min-width: 280px;  
+}
+.search-group i{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#888;}
+.search-input{
+  width:100%;height:36px;padding:8px 12px 8px 32px;border:1px solid #ddd;border-radius:8px;background:#fff;outline:none;
+  transition:border-color .15s, box-shadow .15s;
+}
+.search-input:focus{border-color:#6e49ff;box-shadow:0 0 0 3px rgba(110,73,255,.12);}
+
+/* Tableau */
+.table-wrapper{
+  max-width:1200px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(16,24,40,.06);overflow:hidden;
+}
+.users-table{
+  width:100%;border-collapse:separate;border-spacing:0;table-layout:auto;font-size:14px;
+}
+.users-table thead th{
+  text-align:left;background:#fafafa;color:#555;padding:16px 22px;font-weight:800;border-bottom:1px solid #eee;
+}
+.users-table tbody td{
+  padding:16px 22px;border-bottom:1px solid #f2f2f2;vertical-align:middle;
+}
+
+/* colonnes + aération */
+.col-name{width:240px;}
+.col-email{width:320px;}
+.col-role{width:140px;}
+.col-status{width:140px;}
+.col-actions{width:260px;}
+
+.users-table tbody tr:hover{background:#fcfcff;}
+.th-caret{font-size:12px;color:#999;margin-left:6px}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;color:#333;}
+
+.empty{text-align:center;color:#777;padding:18px 0;}
+
+/* Actions : boutons côte à côte */
+.actions{
+  display:flex;gap:10px;align-items:center;justify-content:flex-start;flex-wrap:nowrap;
+}
+.inline-form{display:inline;}
+.actions form{margin:0;}
+.actions .btn{white-space:nowrap;}
+
+/* Badges */
+.badge{
+  display:inline-block;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:800;border:1px solid transparent;
+}
+.badge.active{background:#dcfce7;color:#166534;border-color:#86efac;}
+.badge.inactive{background:#f3f4f6;color:#374151;border-color:#e5e7eb;}
+
+/* Boutons cohérents */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;border-radius:12px;font-weight:800;border:1px solid transparent;background:#eee;color:#111;text-decoration:none;cursor:pointer;transition:.15s;}
+.btn.sm{height:36px;padding:0 14px;border-radius:10px;font-size:13px;}
+
+.btn.purple{background:#6e49ff;color:#fff;border-color:#6e49ff;}
+.btn.purple:hover{filter:brightness(.95);}
+
+.btn.withe{background:#fff;color:#6e49ff;border-color:#6e49ff;}
+.btn.withe:hover{background:#f7f5ff;}
+
+.btn.danger{background:#fff;color:#b42318;border-color:#fda29b;}
+.btn.danger:hover{background:#fff5f5;}
+
+/* ===== Modale de confirmation ===== */
+.modal.hidden { display: none; }
+.modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: block;
+}
+.modal-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(15, 18, 33, .45);
+  backdrop-filter: blur(2px);
+}
+.modal-dialog {
+  position: relative;
+  max-width: 440px;
+  margin: 18vh auto 0;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(16,24,40,.20);
+  padding: 20px 22px;
+}
+.modal-dialog h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 800;
+}
+.modal-dialog p {
+  margin: 0;
+  color: #444;
+  line-height: 1.5;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}

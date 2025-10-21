@@ -1,10 +1,91 @@
+{# {% extends 'base.html.twig' %} #}
 
-{% block title %}Ajouter un utilisateur{% endblock %}
+{# {% block title %}Ajouter un utilisateur{% endblock %} #}
 
-{% block body %}
-    <h1>Ajouter un utilisateur</h1>
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type="submit">Créer</button>
-    {{ form_end(form) }}
+	{% block stylesheets %}
+{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+	{% block body %}
+		<div class="admin-container"> <div class="admin-layout">
+
+			{% include 'admin/partials/_sidebar.html.twig' %}
+
+			<div class="admin-content">
+				<h1 class="page-title">Ajouter un utilisateur</h1>
+
+				{% include 'partials/_flash.html.twig' %}
+
+				{{ form_start(form, { attr: { class: 'user-form' } }) }}
+				{# erreurs globales #}
+				{{ form_errors(form) }}
+
+				{# erreurs de champs si besoin #}
+				{{ form_errors(form.email) }}
+
+				{{ form_row(form.firstName, {
+          row_attr:   { class: 'field' },
+          label:      'Prénom',
+          label_attr: { class: 'label' },
+          attr:       { class: 'input', placeholder: 'Lucas' }
+        }) }}
+
+				{{ form_row(form.lastName, {
+          row_attr:   { class: 'field' },
+          label:      'Nom',
+          label_attr: { class: 'label' },
+          attr:       { class: 'input', placeholder: 'Martin' }
+        }) }}
+
+				{{ form_row(form.email, {
+          row_attr:   { class: 'field' },
+          label:      'Email',
+          label_attr: { class: 'label' },
+          attr:       { class: 'input', placeholder: 'lucas.martin@email.com' }
+        }) }}
+
+				{# Téléphone : gère phone ou telephone selon ton FormType #}
+				{% if form.phone is defined %}
+					{{ form_row(form.phone, {
+            row_attr:   { class: 'field' },
+            label:      'Téléphone',
+            label_attr: { class: 'label' },
+            attr:       { class: 'input', placeholder: '06 12 34 56 78', inputmode: 'tel' }
+          }) }}
+				{% elseif form.telephone is defined %}
+					{{ form_row(form.telephone, {
+            row_attr:   { class: 'field' },
+            label:      'Téléphone',
+            label_attr: { class: 'label' },
+            attr:       { class: 'input', placeholder: '06 12 34 56 78', inputmode: 'tel' }
+          }) }}
+				{% endif %}
+
+				{% if form.role is defined %}
+					{{ form_row(form.role, {
+            row_attr:   { class: 'field' },
+            label:      'Rôle',
+            label_attr: { class: 'label' },
+            attr:       { class: 'select' }
+          }) }}
+				{% endif %}
+
+				{% if form.status is defined %}
+					{{ form_row(form.status, {
+            row_attr:   { class: 'field' },
+            label:      'Statut',
+            label_attr: { class: 'label' },
+            attr:       { class: 'select' }
+          }) }}
+				{% endif %}
+
+				<div class="buttons">
+					<button type="submit" class="btn purple">Créer</button>
+					<a href="{{ path('admin_users') }}" class="btn withe">Annuler</a>
+				</div>
+
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -33,7 +33,6 @@ class UserEditType extends AbstractType
                 'choices' => [
                     'Admin'       => 'ROLE_ADMIN',
                     'Utilisateur' => 'ROLE_USER',
-                    'Visiteur'    => 'ROLE_VISITOR',
                 ],
                 'data'    => $currentRole,
             ])
