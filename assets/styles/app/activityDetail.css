@@ -193,3 +193,21 @@
   object-fit: cover;
   border-radius: 8px;
 }
+/* Cartes d'info (matériel / objectif / étapes / conseils) */
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  border: 1px solid #f0f0ff;
+}
+.info-card h3 {
+  margin: 0 0 10px;
+  font-weight: 700;
+}

@@ -73,35 +73,54 @@
 					     DÉTAILS DE L'ACTIVITÉ
 					     ============================= #}
 	<section class="activity-details">
-		<div class="details-container">
+  <div class="details-container info-cards">
 
-			<div class="materials">
-				<h3>Matériel nécessaire :</h3>
-				<ul>
-					{% for material in activity.materials %}
-						<li>{{ material }}</li>
-					{% endfor %}
-				</ul>
-			</div>
 
-			<div class="steps">
-				<h3>Étapes de réalisation :</h3>
-				<ol>
-					{% for item in activity.description %}
-						{% if item is iterable %}
-							{% for step in item %}
-								<li>{{ step }}</li>
-							{% endfor %}
-						{% else %}
-							<li>{{ item }}</li>
-						{% endif %}
-					{% endfor %}
-				</ol>
-			</div>
 
-		</div>
-	</section>
+    {# 2) Objectif #}
+    <div class="info-card">
+      <h3>Objectif :</h3>
+      <p>{{ activity.objective|default('Non renseigné.')|nl2br }}</p>
+    </div>
 
+	    {# 1) Matériel nécessaire #}
+    <div class="info-card">
+      <h3>Matériel nécessaire :</h3>
+      <ul>
+        {% for line in activity.materialsLines %}
+          <li>{{ line }}</li>
+        {% else %}
+          <li>Aucun matériel renseigné.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {# 3) Étapes de réalisation #}
+    <div class="info-card">
+      <h3>Étapes de réalisation :</h3>
+      <ol>
+        {% for s in activity.stepsLines %}
+          <li>{{ s }}</li>
+        {% else %}
+          <li>Aucune étape renseignée.</li>
+        {% endfor %}
+      </ol>
+    </div>
+
+    {# 4) Conseils #}
+    <div class="info-card">
+      <h3>Conseils :</h3>
+      <ol>
+        {% for t in activity.tipsLines %}
+          <li>{{ t }}</li>
+        {% else %}
+          <li>Aucun conseil renseigné.</li>
+        {% endfor %}
+      </ol>
+    </div>
+
+  </div>
+</section>
 	{# =============================
 					     ACTIVITÉS SIMILAIRES (CARROUSEL)
 					     ============================= #}
