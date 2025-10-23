@@ -50,22 +50,21 @@ class AdminActivityController extends AbstractController
                 $file->move($this->getParameter('activities_upload_dir'), $filename);
                 $activity->setImage($filename);
             }
-            // Sélectionner et associer les thèmes et types
-            $selectedTheme = $form->get('theme')->getData();
-            $selectedType  = $form->get('activityType')->getData();
+            // === Thème & Type (sélection simple) ===
+            $selectedTheme = $form->get('theme')->getData();        // Theme|null
+            $selectedType  = $form->get('activityType')->getData(); // ActivityType|null
 
-            // Associe le thème à l'activité
+            // Pas d'anciens liens en création, on nettoie par sécurité puis on ajoute des 2 côtés
             $activity->getThemes()->clear();
             if ($selectedTheme) {
-                $activity->addTheme($selectedTheme);
-                $selectedTheme->addActivity($activity);  // Ajouter l'activité au thème
+                $activity->addTheme($selectedTheme);        // côté inverse
+                $selectedTheme->addActivity($activity);     // côté propriétaire
             }
 
-            // Associe le type à l'activité
             $activity->getActivityTypes()->clear();
             if ($selectedType) {
-                $activity->addActivityType($selectedType);
-                $selectedType->addActivity($activity);  // Ajouter l'activité au type
+                $activity->addActivityType($selectedType);  // côté inverse
+                $selectedType->addActivity($activity);      // côté propriétaire
             }
 
             $this->em->persist($activity);
@@ -80,64 +79,75 @@ class AdminActivityController extends AbstractController
         ]);
     }
 
-#[Route('/{id}/edit', name: 'admin_activity_edit', methods: ['GET','POST'])]
-public function edit(Activity $activity, Request $request): Response
-{
-    $oldImage = $activity->getImage();
+    #[Route('/{id}/edit', name: 'admin_activity_edit', methods: ['GET', 'POST'])]
+    public function edit(Activity $activity, Request $request): Response
+    {
+        $oldImage = $activity->getImage();
 
-    // Pré-remplissage des champs non mappés : thème et type
-    $currentTheme = $activity->getThemes()[0] ?? null;
-    $currentType  = $activity->getActivityTypes()[0] ?? null;
+        // Pré-remplissage des champs non mappés : thème et type
+        $currentTheme = $activity->getThemes()[0] ?? null;
+        $currentType  = $activity->getActivityTypes()[0] ?? null;
 
-    $form = $this->createForm(ActivityFormType::class, $activity, [
-        'current_theme' => $currentTheme,
-        'current_type'  => $currentType,
-    ]);
-    $form->handleRequest($request);
+        $form = $this->createForm(ActivityFormType::class, $activity, [
+            'current_theme' => $currentTheme,
+            'current_type'  => $currentType,
+        ]);
+        $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        // Image upload
-        /** @var UploadedFile|null $file */
-        $file = $form->get('image')->getData();
-        if ($file instanceof UploadedFile) {
-            $filename = uniqid('act_').'.'.$file->guessExtension();
-            $file->move($this->getParameter('activities_upload_dir'), $filename);
-            // Supprimer l'ancienne image si elle existait
-            if ($oldImage) {
-                $this->removeImage($oldImage);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Image upload
+            /** @var UploadedFile|null $file */
+            $file = $form->get('image')->getData();
+            if ($file instanceof UploadedFile) {
+                $filename = uniqid('act_') . '.' . $file->guessExtension();
+                $file->move($this->getParameter('activities_upload_dir'), $filename);
+                // Supprimer l'ancienne image si elle existait
+                if ($oldImage) {
+                    $this->removeImage($oldImage);
+                }
+                $activity->setImage($filename);
+            } else {
+                $activity->setImage($oldImage);  // Garder l'ancienne image
             }
-            $activity->setImage($filename);
-        } else {
-            $activity->setImage($oldImage);  // Garder l'ancienne image
+
+            // === Thème & Type (édition : remplacer l’existant) ===
+            $selectedTheme = $form->get('theme')->getData();        // Theme|null
+            $selectedType  = $form->get('activityType')->getData(); // ActivityType|null
+
+            // Détacher tous les anciens thèmes (des 2 côtés)
+            foreach ($activity->getThemes()->toArray() as $oldTheme) {
+                $oldTheme->removeActivity($activity);   // propriétaire
+                $activity->removeTheme($oldTheme);      // inverse
+            }
+            // Attacher le nouveau thème (des 2 côtés)
+            if ($selectedTheme) {
+                $activity->addTheme($selectedTheme);    // inverse
+                $selectedTheme->addActivity($activity); // propriétaire
+            }
+
+            // Détacher tous les anciens types (des 2 côtés)
+            foreach ($activity->getActivityTypes()->toArray() as $oldType) {
+                $oldType->removeActivity($activity);        // propriétaire
+                $activity->removeActivityType($oldType);    // inverse
+            }
+            // Attacher le nouveau type (des 2 côtés)
+            if ($selectedType) {
+                $activity->addActivityType($selectedType);  // inverse
+                $selectedType->addActivity($activity);      // propriétaire
+            }
+
+
+            $this->em->flush();
+
+            $this->addFlash('success', 'Activité mise à jour.');
+            return $this->redirectToRoute('admin_activities');
         }
 
-        // Thème & Type sélection simple
-        $selectedTheme = $form->get('theme')->getData();
-        $selectedType  = $form->get('activityType')->getData();
-
-        $activity->getThemes()->clear();
-        if ($selectedTheme) {
-            $activity->addTheme($selectedTheme);
-            $selectedTheme->addActivity($activity);  // Ajouter l'activité au thème
-        }
-
-        $activity->getActivityTypes()->clear();
-        if ($selectedType) {
-            $activity->addActivityType($selectedType);
-            $selectedType->addActivity($activity);  // Ajouter l'activité au type
-        }
-
-        $this->em->flush();
-
-        $this->addFlash('success', 'Activité mise à jour.');
-        return $this->redirectToRoute('admin_activities');
+        return $this->render('admin/activity/edit.html.twig', [
+            'form'     => $form->createView(),
+            'activity' => $activity,
+        ]);
     }
-
-    return $this->render('admin/activity/edit.html.twig', [
-        'form'     => $form->createView(),
-        'activity' => $activity,
-    ]);
-}
 
     #[Route('/{id}/delete', name: 'admin_activity_delete', methods: ['POST'])]
     public function delete(Activity $activity, Request $request): Response
