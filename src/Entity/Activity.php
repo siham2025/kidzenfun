@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ManyToMany;
 use App\Entity\User;
 
-
 #[ORM\Entity()]
 class Activity
 {
@@ -30,13 +29,26 @@ class Activity
     #[ORM\Column(type: 'string')]
     private string $ageGroup;
 
-    // ========== DESCRIPTION (liste d’étapes - JSON) ==========
-    #[ORM\Column(type: 'json', nullable: true)]
-    private ?array $description = null;
+    /**
+     * ======================== IMPORTANT ========================
+     * On remplace les anciens champs JSON par 4 champs TEXT simples :
+     * - materials  : chaque ligne = 1 élément de matériel
+     * - objective  : texte libre
+     * - steps      : chaque ligne = 1 étape
+     * - tips       : chaque ligne = 1 conseil
+     * ===========================================================
+     */
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $materials = null;
 
-    // ========== MATÉRIELS NÉCESSAIRES (JSON) ==========
-    #[ORM\Column(type: 'json', nullable: true)]
-    private ?array $materials = null;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $objective = null;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $steps = null;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $tips = null;
 
     // ========== RELATION MANY-TO-MANY AVEC ActivityType ==========
     #[ManyToMany(targetEntity: ActivityType::class, mappedBy: 'activities')]
@@ -50,12 +62,16 @@ class Activity
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorites')]
     private Collection $favoritedBy;
 
+    // ========= GESTION ACITIVITE DU JOUR =========
+    #[ORM\Column(type: 'boolean')]
+    private bool $isDailyActivity = false;
+
     // ========== CONSTRUCTEUR ==========
     public function __construct()
     {
         $this->activityTypes = new ArrayCollection();
-        $this->themes = new ArrayCollection();
-        $this->favoritedBy = new ArrayCollection();
+        $this->themes        = new ArrayCollection();
+        $this->favoritedBy   = new ArrayCollection();
     }
 
     // ========== GETTERS & SETTERS ==========
@@ -99,48 +115,61 @@ class Activity
         return $this;
     }
 
-    // Description
-    public function getDescription(): ?array
-    {
-        return $this->description;
-    }
-    public function setDescription(?array $description): self
-    {
-        $this->description = $description;
-        return $this;
-    }
+    // ========== NOUVEAUX CHAMPS ==========
 
-    // Matériel
-    public function getMaterials(): ?array
-    {
-        return $this->materials;
-    }
-    public function setMaterials(?array $materials): self
-    {
-        $this->materials = $materials;
-        return $this;
-    }
+    public function getMaterials(): ?string { return $this->materials; }
+    public function setMaterials(?string $materials): self { $this->materials = $materials; return $this; }
+
+    public function getObjective(): ?string { return $this->objective; }
+    public function setObjective(?string $objective): self { $this->objective = $objective; return $this; }
+
+    public function getSteps(): ?string { return $this->steps; }
+    public function setSteps(?string $steps): self { $this->steps = $steps; return $this; }
+
+    public function getTips(): ?string { return $this->tips; }
+    public function setTips(?string $tips): self { $this->tips = $tips; return $this; }
 
     // ========= GESTION DES TYPES D'ACTIVITÉ =========
 
-    public function getActivityTypes(): Collection
-    {
-        return $this->activityTypes;
-    }
+// ========= GESTION DES TYPES D'ACTIVITÉ =========
 
-    public function addActivityTypes(ActivityType $activityType): self
-    {
-        if (!$this->activityTypes->contains($activityType)) {
-            $this->activityTypes->add($activityType);
-        }
-        return $this;
-    }
+public function getActivityTypes(): Collection
+{
+    return $this->activityTypes;
+}
 
-    public function removeActivityTypes(ActivityType $activityType): self
-    {
-        $this->activityTypes->removeElement($activityType);
-        return $this;
+/**
+ * IMPORTANT : méthodes au SINGULIER pour que Symfony sache ajouter/retirer
+ * quand on soumet le formulaire (by_reference=false).
+ */
+public function addActivityType(ActivityType $activityType): self
+{
+    if (!$this->activityTypes->contains($activityType)) {
+        $this->activityTypes->add($activityType);
     }
+    return $this;
+}
+
+public function removeActivityType(ActivityType $activityType): self
+{
+    $this->activityTypes->removeElement($activityType);
+    return $this;
+}
+
+/**
+ * (Optionnel) Garde ces anciennes méthodes si tu les appelles ailleurs,
+ * mais Symfony n’en a pas besoin.
+ */
+public function addActivityTypes(ActivityType $activityType): self
+{
+    return $this->addActivityType($activityType);
+}
+
+public function removeActivityTypes(ActivityType $activityType): self
+{
+    return $this->removeActivityType($activityType);
+}
+
 
     // ========= GESTION DES THÈMES =========
 
@@ -169,11 +198,7 @@ class Activity
         return $this->favoritedBy;
     }
 
-
-    // ========= GESTION ACITIVITE DU JOUR =========
-    #[ORM\Column(type: 'boolean')]
-    private bool $isDailyActivity = false;
-
+    // ========= ACTIVITÉ DU JOUR =========
     public function isDailyActivity(): bool
     {
         return $this->isDailyActivity;
@@ -183,5 +208,35 @@ class Activity
     {
         $this->isDailyActivity = $isDailyActivity;
         return $this;
+    }
+
+    // ========= HELPERS D’AFFICHAGE (listes) =========
+
+    /** Retourne chaque ligne du matériel comme un item de liste */
+    public function getMaterialsLines(): array
+    {
+        return $this->splitLines($this->materials);
+    }
+
+    /** Retourne chaque ligne des étapes comme un item numéroté */
+    public function getStepsLines(): array
+    {
+        return $this->splitLines($this->steps);
+    }
+
+    /** Retourne chaque ligne des conseils comme un item numéroté */
+    public function getTipsLines(): array
+    {
+        return $this->splitLines($this->tips);
+    }
+
+    /** Petit utilitaire pour découper un bloc texte en lignes non vides */
+    private function splitLines(?string $text): array
+    {
+        if (!$text) return [];
+        return array_values(array_filter(
+            preg_split('/\R/u', $text) ?: [],
+            fn($l) => trim($l) !== ''
+        ));
     }
 }

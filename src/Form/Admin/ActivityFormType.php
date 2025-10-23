@@ -2,72 +2,110 @@
 
 namespace App\Form\Admin;
 
-use App\Entity\Theme;
 use App\Entity\Activity;
-use App\Entity\ActivityType;
+use App\Entity\Theme;
+use App\Entity\ActivityType as ActivityTypeEntity;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ActivityFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // Champ du titre de l'activité
+            // ===== Infos de base =====
             ->add('title', TextType::class, [
-                'label' => 'Titre'
+                'label'    => 'Titre',
+                'required' => true,
             ])
 
-            // Champ pour la tranche d'âge
-            ->add('ageGroup', TextType::class, [
-                'label' => 'Tranche d\'âge'
+            // Image (non mappé : on gère l’upload dans le contrôleur)
+            ->add('image', FileType::class, [
+                'label'    => 'Image',
+                'mapped'   => false,
+                'required' => false,
             ])
 
-            // Champ pour le nom du fichier image (si upload non géré)
-            ->add('image', TextType::class, [
-                'label' => 'Nom du fichier image'
+            ->add('ageGroup', ChoiceType::class, [
+                'label'   => 'Âge',
+                'choices' => [
+                    '0-2 ans'  => '0-2 ans',
+                    '3-5 ans'  => '3-5 ans',
+                    '6-8 ans'  => '6-8 ans',
+                    '9-12 ans' => '9-12 ans',
+                ],
+                'placeholder' => 'Sélectionner…',
+                'required'    => true,
             ])
 
-            // Sélection d’un ou plusieurs thèmes associés
-            ->add('themes', EntityType::class, [
-                'class' => Theme::class,
+            // ===== Sélection simple pour Thème & Type (non mappés) =====
+            ->add('theme', EntityType::class, [
+                'label'        => 'Thème',
+                'class'        => Theme::class,
                 'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => false,
-                'label' => 'Thèmes'
+                'multiple'     => false,
+                'expanded'     => false,     // <select>
+                'mapped'       => false,     // on mettra à jour la collection à la main
+                'required'     => false,
+                'placeholder'  => 'Sélectionner…',
+                'data'         => $options['current_theme'] ?? null, // préremplir en édition
             ])
 
-            // Sélection des types d’activité (checkbox)
-            ->add('activityTypes', EntityType::class, [
-                'class' => ActivityType::class,
+            ->add('activityType', EntityType::class, [
+                'label'        => 'Type',
+                'class'        => ActivityTypeEntity::class,
                 'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'label' => 'Types d\'activité'
+                'multiple'     => false,
+                'expanded'     => false,
+                'mapped'       => false,
+                'required'     => false,
+                'placeholder'  => 'Sélectionner…',
+                'data'         => $options['current_type'] ?? null,
             ])
 
+            // ===== Contenu pédagogique =====
+            ->add('objective', TextareaType::class, [
+                'label'      => 'Objectif',
+                'required'   => false,
+                'empty_data' => '',
+            ])
+            ->add('steps', TextareaType::class, [
+                'label'      => 'Étapes',
+                'required'   => false,
+                'empty_data' => '',
+            ])
             ->add('materials', TextareaType::class, [
-                'required' => false,
-                'mapped' => false,
-                'label' => 'Matériel nécessaire',
-                'attr' => ['rows' => 6],
+                'label'      => 'Matériel nécessaire',
+                'required'   => false,
+                'empty_data' => '',
             ])
-            ->add('description', TextareaType::class, [
-                'label' => 'Étapes de réalisation',
+            ->add('tips', TextareaType::class, [
+                'label'      => 'Conseils',
+                'required'   => false,
+                'empty_data' => '',
+            ])
+
+            // ===== Drapeau "activité du jour" =====
+            ->add('isDailyActivity', CheckboxType::class, [
+                'label'    => 'Activité du jour ?',
                 'required' => false,
-                'attr' => ['rows' => 10],
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        // Le formulaire est lié à l’entité Activity
         $resolver->setDefaults([
-            'data_class' => Activity::class,
+            'data_class'    => Activity::class,
+            // pour pré-remplir les champs non mappés en édition
+            'current_theme' => null,
+            'current_type'  => null,
         ]);
     }
 }

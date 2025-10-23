@@ -1,76 +1,103 @@
-{% block stylesheets %}
-	{{ encore_entry_link_tags('app') }}
-{% endblock %}
+{# templates/admin/activity/index.html.twig #}
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
 {% block body %}
-	<div
-		class="admin-wrapper">
-		{#  SIDEBAR #}
-		{% include 'admin/partials/_sidebar.html.twig' %}
+<div class="admin-wrapper">
+  {# Sidebar #}
+  {% include 'admin/partials/_sidebar.html.twig' %}
 
-		<div class="admin-main-content">
+  <div class="admin-main-content">
+    <div class="admin-header">
+      <h2 class="page-title">Gérer les activités</h2>
+      <a href="{{ path('home') }}" class="btn btn-outline-primary">Voir le site ⤴</a>
+    </div>
 
-			<div class="admin-header">
-				<h2 class="page-title">Gérer les activités</h2>
-				<a href="{{ path('home') }}" class="btn btn-outline-primary">Voir le site ⤴</a>
+    {# Barre d’outils : recherche à gauche, bouton à droite #}
+    <div class="list-toolbar">
+      <div class="search-group">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" class="search-input" placeholder="Rechercher une activité">
+      </div>
 
+      <a href="{{ path('admin_activity_new') }}" class="btn purple">
+        <i class="fa-solid fa-plus"></i>&nbsp; Ajouter une activité
+      </a>
+    </div>
 
-			</div>
-			<div class="admin-actions-bar">
-				<form class="search-bar" action="/recherche" method="get">
-					<input type="text" placeholder="Recherche">
-					<button type="submit" aria-label="Rechercher">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24">
-							<circle cx="11" cy="11" r="8"></circle>
-							<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-						</svg>
-					</button>
-				</form>
-				<a href="{{ path('admin_activity_new') }}" class="btn btn-primary">+ Ajouter une activité</a>
+    <div class="table-wrapper">
+      <table class="users-table activities-table">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th class="col-thumb">Image</th>
+            <th>Âge</th>
+            <th>Thème</th>
+            <th>Type</th>
+            <th>Activité du jour</th>
+            <th class="col-actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for activity in activities %}
+            <tr>
+              <td class="col-title">{{ activity.title }}</td>
 
-			</div>
+              <td class="col-thumb">
+                {% if activity.image %}
+                  <img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
+                {% else %}
+                  <img src="{{ asset('images/placeholder-activity.png') }}" alt="placeholder">
+                {% endif %}
+              </td>
 
-			<table class="admin-table">
-				<thead>
-					<tr>
-						<th>Titre</th>
-						<th>Image</th>
-						<th>Âge</th>
-						<th>Thème</th>
-						<th>Type</th>
-						<th>Activité du jour</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for activity in activities %}
-						<tr>
-							<td>{{ activity.title }}</td>
-							<td><img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}"></td>
-							<td>{{ activity.ageGroup }}</td>
-							<td>{{ activity.themes[0].name }}</td>
-							<td>
-								{% for type in activity.activityTypes %}
-									{{ type.name }}
-									{% if not loop.last %},
-									{% endif %}
-								{% endfor %}
-							</td>
-							<td>
-								<input type="checkbox" {% if activity.isDailyActivity %} checked {% endif %} disabled>
-							</td>
-							<td>
-								<a href="#" class="btn btn-sm btn-outline-primary">Modifier</a>
-								<a href="#" class="btn btn-sm btn-outline-danger">Supprimer</a>
-							</td>
-						</tr>
-					{% else %}
-						<tr>
-							<td colspan="7">Aucune activité disponible.</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</div>
+              <td class="col-age">{{ activity.ageGroup }}</td>
+
+              <td class="col-theme">
+                {% if activity.themes is not empty %}
+                  {{ activity.themes|map(t => t.name)|join(', ') }}
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+
+              <td class="col-type">
+                {% if activity.activityTypes is not empty %}
+                  {{ activity.activityTypes|map(t => t.name)|join(', ') }}
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+
+              <td class="col-daily">
+                <input type="checkbox" {% if activity.isDailyActivity %}checked{% endif %} disabled>
+              </td>
+
+              <td class="actions">
+                <a href="{{ path('admin_activity_edit', { id: activity.id }) }}" class="btn withe sm">
+                  Modifier
+                </a>
+
+                <form method="post"
+                      action="{{ path('admin_activity_delete', { id: activity.id }) }}"
+                      style="display:inline"
+                      onsubmit="return confirm('Supprimer cette activité ?');">
+                  <input type="hidden" name="_token" value="{{ csrf_token('del_activity_' ~ activity.id) }}">
+                  <button class="btn danger sm">Supprimer</button>
+                </form>
+              </td>
+            </tr>
+          {% else %}
+            <tr>
+              <td colspan="7" class="empty">Aucune activité disponible.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 {% endblock %}

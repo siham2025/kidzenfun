@@ -1,21 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvelle activité{% endblock %}
-
 {% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('app') }}
+  {{ parent() }}
+  {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block body %}
-    <div class="admin-container">
-        <h1>Ajouter une activité</h1>
-
-        {# Affiche les erreurs globales du formulaire s'il y en a #}
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
-
-            <button class="btn btn-primary mt-3">Créer</button>
-        {{ form_end(form) }}
-    </div>
+<div class="admin-wrapper">
+  {% include 'admin/partials/_sidebar.html.twig' %}
+  <div class="admin-main-content">
+    <h1 class="page-title">Créer une activité</h1>
+    {{ form_start(form, { attr:{ class:'activity-form' } }) }}
+      {% include 'admin/activity/_form_fields.html.twig' with { form: form } %}
+    {{ form_end(form) }}
+  </div>
+</div>
 {% endblock %}

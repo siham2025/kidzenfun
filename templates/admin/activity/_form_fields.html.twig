@@ -1,0 +1,92 @@
+{# Form fields communs au NEW et EDIT #}
+<div class="activity-form">
+  <div class="form-grid">
+
+    <div class="field">
+      <label for="{{ form.title.vars.id }}">Titre</label>
+      {{ form_widget(form.title, {
+        attr: { class:'input', placeholder:'Ex : Peinture aux doigts' }
+      }) }}
+      {{ form_errors(form.title) }}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.ageGroup.vars.id }}">Âge</label>
+      {{ form_widget(form.ageGroup, { attr: { class:'select' } }) }}
+      {{ form_errors(form.ageGroup) }}
+    </div>
+
+    <div class="field">
+      <label>Image</label>
+      <div class="image-inline">
+        <div class="thumb">
+          {% set current = (activity is defined and activity.image) ? asset('images/activities/' ~ activity.image) : asset('images/placeholder-activity.png') %}
+          <img id="preview" src="{{ current }}" alt="">
+        </div>
+        {{ form_widget(form.image, { attr: { class:'input-file', accept:'image/*', onchange:'previewFile(this)' } }) }}
+      </div>
+      {{ form_errors(form.image) }}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.theme.vars.id }}">Thème</label>
+      {{ form_widget(form.theme, { attr: { class:'select' } }) }}
+      {{ form_errors(form.theme) }}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.activityType.vars.id }}">Type</label>
+      {{ form_widget(form.activityType, { attr: { class:'select' } }) }}
+      {{ form_errors(form.activityType) }}
+    </div>
+
+    <div class="two-cols">
+      <div class="field">
+        <label for="{{ form.objective.vars.id }}">Objectif</label>
+        {{ form_widget(form.objective, { attr: { class:'textarea', placeholder:"Décris l’objectif pédagogique" } }) }}
+        {{ form_errors(form.objective) }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.steps.vars.id }}">Étapes</label>
+        {{ form_widget(form.steps, { attr: { class:'textarea', placeholder:"Une étape par ligne" } }) }}
+        {{ form_errors(form.steps) }}
+      </div>
+    </div>
+
+    <div class="two-cols">
+      <div class="field">
+        <label for="{{ form.materials.vars.id }}">Matériel nécessaire</label>
+        {{ form_widget(form.materials, { attr: { class:'textarea', placeholder:"Un élément par ligne" } }) }}
+        {{ form_errors(form.materials) }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.tips.vars.id }}">Conseils</label>
+        {{ form_widget(form.tips, { attr: { class:'textarea', placeholder:"Un conseil par ligne" } }) }}
+        {{ form_errors(form.tips) }}
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="{{ form.isDailyActivity.vars.id }}">Activité du jour ?</label>
+      {{ form_widget(form.isDailyActivity) }}
+      {{ form_errors(form.isDailyActivity) }}
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button type="submit" class="btn purple">Enregistrer</button>
+    <a href="{{ path('admin_activities') }}" class="btn withe">Annuler</a>
+  </div>
+</div>
+
+<script>
+  function previewFile(input){
+    const file = input.files && input.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e => { const img = document.getElementById('preview'); if(img) img.src = e.target.result; };
+    reader.readAsDataURL(file);
+  }
+</script>

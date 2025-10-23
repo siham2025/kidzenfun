@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+<div class="admin-wrapper">
+  {% include 'admin/partials/_sidebar.html.twig' %}
+  <div class="admin-main-content">
+    <h1 class="page-title">Modifier l’activité</h1>
+    {{ form_start(form, { attr:{ class:'activity-form' } }) }}
+      {% include 'admin/activity/_form_fields.html.twig' with { form: form, activity: activity } %}
+    {{ form_end(form) }}
+  </div>
+</div>
+{% endblock %}
