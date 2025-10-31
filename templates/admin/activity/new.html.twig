@@ -1,18 +1,26 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 
 {% block stylesheets %}
-  {{ parent() }}
   {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block body %}
 <div class="admin-wrapper">
   {% include 'admin/partials/_sidebar.html.twig' %}
+
   <div class="admin-main-content">
-    <h1 class="page-title">Créer une activité</h1>
-    {{ form_start(form, { attr:{ class:'activity-form' } }) }}
-      {% include 'admin/activity/_form_fields.html.twig' with { form: form } %}
-    {{ form_end(form) }}
+    <div class="content-inner">
+      <div class="content-header">
+        <a class="brand" href="{{ path('admin_dashboard') }}"><i class="fas fa-sun"></i> kidzen&fun</a>
+        <a href="{{ path('home') }}" class="btn withe">Voir le site ⤴</a>
+      </div>
+
+      <h1 class="page-title">Créer une activité</h1>
+
+      {{ form_start(form, { attr:{ class:'activity-form' } }) }}
+        {% include 'admin/activity/_form_fields.html.twig' with { form: form } %}
+      {{ form_end(form) }}
+    </div>
   </div>
 </div>
 {% endblock %}

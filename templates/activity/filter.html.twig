@@ -6,7 +6,6 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-{{ parent() }}
     {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
@@ -21,10 +20,10 @@
      SECTION : BANNIÈRE HERO
      ======================== #}
   <section class="hero-banner">
-    <img src="{{ asset('images/activities-banner.png') }}" alt="Enfants faisant des activités" class="hero-image">
+    <img src="{{ asset('images/banner_activities.png') }}" alt="Enfants faisant des activités" class="hero-image">
     <div class="overlay"></div> {# Superposition sombre sur l’image #}
     <div class="hero-text">
-      <h2>Explorer les Activités</h2>
+      <h2>Explorez les Activités</h2>
       <p>
         Personnalisez votre recherche et découvrez des activités ludiques et éducatives adaptées à l’âge,
         aux centres d’intérêt et aux besoins de vos enfants.
@@ -69,13 +68,11 @@
     <h3 class="result-count">{{ activities|length }} Activités trouvées</h3>
 
     {# ========================
-       AFFICHAGE DES ACTIVITÉS
-       ======================== #}
-    <div class="activity-grid">
+      AFFICHAGE DES ACTIVITÉS (+ Voir plus simple)
+      ======================== #}
+    <div class="activity-grid" id="activityGrid" data-chunk="12">
       {% for activity in activities %}
-        <div class="activity-card">
-
-          {# Image de l'activité (si disponible) #}
+        <div class="activity-card{% if loop.index0 >= 12 %} is-hidden{% endif %}">
           {% if activity.image %}
             <img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
           {% endif %}
@@ -99,6 +96,56 @@
         </div>
       {% endfor %}
     </div>
-
   </div>
+{% if activities|length > 12 %}
+  <div class="load-more right">
+    <button id="loadMoreBtn" class="btn" type="button">
+      Voir plus <span class="arrow">→</span>
+    </button>
+  </div>
+{% endif %}
+
+
+<script>
+// Attendre que le HTML soit chargé avant d'exécuter le script
+document.addEventListener('DOMContentLoaded', function () {
+  // Récupère le conteneur des cartes
+  const grid = document.getElementById('activityGrid');
+  if (!grid) return; // Si pas de grille, on arrête
+
+  // Lit la taille du "lot" (12 par défaut) depuis data-chunk
+  const chunk = parseInt(grid.dataset.chunk || '12', 10);
+  // Transforme la NodeList des cartes en vrai tableau JS
+  const cards = Array.from(grid.querySelectorAll('.activity-card'));
+  // Récupère le bouton "Voir plus"
+  const btn   = document.getElementById('loadMoreBtn');
+
+  // Nombre de cartes actuellement visibles (au départ, 12 max)
+  let shown = Math.min(chunk, cards.length);
+
+  // Fonction qui révèle les 12 cartes suivantes
+  function revealNext() {
+    // Calcule l'index de fin (sans dépasser le total)
+    const next = Math.min(shown + chunk, cards.length);
+    // Retire la classe .is-hidden des cartes du lot suivant
+    for (let i = shown; i < next; i++) {
+      cards[i].classList.remove('is-hidden');
+    }
+    // Met à jour le compteur de cartes visibles
+    shown = next;
+    // Si tout est affiché, cacher le bouton
+    if (btn && shown >= cards.length) {
+      btn.style.display = 'none';
+    }
+  }
+
+  // Associe le clic du bouton à la révélation du prochain lot
+  if (btn) {
+    btn.addEventListener('click', revealNext);
+    // Si toutes les cartes tiennent déjà à l'écran, on cache le bouton
+    if (shown >= cards.length) btn.style.display = 'none';
+  }
+});
+</script>
+
 {% endblock %}

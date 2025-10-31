@@ -1,18 +1,67 @@
-.profile-banner {
-  background-color: #444;
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
+
+/* ===========================
+   PROFILE BANNER
+   =========================== */
+.profile-banner{
+  position: relative;
+  min-height: 280px;               /* hauteur de la bannière */
+  display: grid;
+  place-items: center;             /* centre le bloc interne */
+  padding: 40px 16px;
+  color: #fff;
+
+  /* image de fond via variable CSS (posée en inline style dans Twig) */
+  background-image: var(--profile-banner);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.profile-banner .btn {
-  margin: 10px;
+/* overlay (dégradé léger pour lisibilité du texte) */
+.profile-banner::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,.35) 0%,
+    rgba(0,0,0,.25) 60%,
+    rgba(0,0,0,.20) 100%
+  );
+  pointer-events:none;
 }
 
-.profile-actions {
-  margin: 30px auto;
-  text-align: center;
+.profile-banner .container-profile{
+  position: relative;              /* au-dessus de l’overlay */
+  z-index: 1;
+  max-width: 1100px;
+  width: 100%;
+  text-align: left;                /* ou center si tu préfères */
 }
+
+.profile-banner h2{
+  font-size: 34px;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.profile-banner p{
+  font-size: 16px;
+  margin: 0 0 18px;
+  opacity: .95;
+}
+
+.profile-buttons{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* arrondir un peu les boutons sur la banner */
+.profile-banner .btn{
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+
 
 .favorites {
   padding: 40px 20px;

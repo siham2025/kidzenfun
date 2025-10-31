@@ -1,20 +1,429 @@
-/* Conteneur global */
-.admin-wrapper {
-  display: flex;
-  min-height: 100vh;
-  position: sticky;
+/* ==========================================================================
+   Admin – layout unifié (structure commune à toutes les pages)
+   ========================================================================== */
+
+/* --- Variables globales (couleurs, halo, etc.) --- */
+:root {
+  --brand: #6e49ff;
+  /* violet principal */
+  --brand-200: #d9ccff;
+  /* violet clair (bordure par défaut) */
+  --ring: rgba(110, 73, 255, .22);
+  /* halo focus */
+  --container-bg: #f7f7f9;
 }
 
-/* Conteneur horizontal : sidebar + contenu */
+/* 1) Conteneurs globaux (deux variantes présentes dans tes pages) */
+.admin-wrapper,
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--container-bg);
+}
+
+/* 2) Ligne principale (deux variantes) */
 .admin-layout {
   display: flex;
   flex: 1;
 }
 
-/* Pour que main prenne toute la place à droite */
+/* Certaines pages ont directement .admin-main-content à côté de la sidebar */
+.admin-main,
+.admin-main-content,
 .admin-content {
   flex: 1;
-  padding: 2rem;
-  background-color: #f7f7f7;
-  overflow-x: auto;
+  padding: 24px;
+}
+
+/* 3) Sidebar (partial) – sticky, largeur fixe */
+.admin-sidebar {
+  flex: 0 0 260px;
+  width: 260px;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  /* nécessaire pour sticky en flex */
+  height: 100vh;
+  margin-right: 28px;
+  /* utile si la page n’a pas .admin-layout */
+}
+
+/* IMPORTANT : ne JAMAIS mettre sticky sur le wrapper/conteneur global */
+.admin-wrapper {
+  position: static;
+}
+
+.admin-container {
+  position: static;
+}
+
+/* 4) Bloc intérieur centré pour tous les contenus */
+.content-inner {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Content header (logo à gauche, bouton à droite)
+   ========================================================================== */
+
+/* En-tête intégré AU contenu : alignement gauche/droite */
+.content-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+/* Pousse le 1er bouton présent dans le header complètement à droite */
+.content-header>.btn {
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   Titres, barres d’outils & recherche
+   ========================================================================== */
+
+.page-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0px 0 18px;
+
+}
+
+.list-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 10px 0 18px;
+}
+
+.search-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  height: 38px;
+  border: 1px solid #e7e6f4;
+  /* sera surcouché plus bas par le look & feel */
+  border-radius: 8px;
+  padding: 0 12px;
+  min-width: 260px;
+  background: #fff;
+}
+
+/* ==========================================================================
+   Table générique
+   ========================================================================== */
+
+.table-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 18px rgba(22, 26, 32, .05);
+  overflow: hidden;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0eefb;
+}
+
+.users-table thead th {
+  background: #faf9ff;
+  font-weight: 700;
+  text-align: left;
+}
+
+.users-table .actions {
+  display: flex;
+  gap: 8px;
+}
+
+.users-table .col-actions {
+  width: 260px;
+}
+
+/* Badges */
+.badge {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.active {
+  background: #e9f7ef;
+  color: #16784e;
+}
+
+.badge.inactive {
+  background: #fdecea;
+  color: #b81c1c;
+}
+
+/* ==========================================================================
+   Formulaires Users (structure)
+   ========================================================================== */
+
+.user-form {
+  width: min(700px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.user-form .field .label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.user-form .input,
+.user-form .select {
+  height: 42px;
+}
+
+.user-form .buttons {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* ==========================================================================
+   Formulaire Activities (structure – réutilise tes classes existantes)
+   ========================================================================== */
+
+.activity-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 60px;
+  row-gap: 20px;
+}
+
+.activity-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.activity-form .two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+}
+
+.activity-form .input,
+.activity-form .select,
+.activity-form .textarea,
+.activity-form .input-file {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e7e6f4;
+  /* sera surcouché plus bas par le look & feel */
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+}
+
+.activity-form .textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.activity-form .image-inline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.activity-form .image-inline .thumb {
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f6f6fb;
+  border: 1px solid #eee9fe;
+  box-shadow: 0 2px 10px rgba(110, 73, 255, .06);
+  flex: 0 0 110px;
+}
+
+.activity-form .image-inline .thumb.lg {
+  width: 160px;
+  height: 160px;
+  border-radius: 10px;
+}
+
+.activity-form .image-inline .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.activity-form .buttons {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* Sélecteur de secours si un jour la structure change */
+.activity-form .form-grid + .buttons{
+  margin-top: 24px;
+}
+
+.activity-form .two-main-cols {
+  grid-template-columns: 1fr 1fr;
+}
+
+.activity-form .left-col,
+.activity-form .right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.activity-form .full-span {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 20px 24px;
+}
+
+/* ==========================================================================
+   Modale (si utilisée)
+   ========================================================================== */
+
+.modal.hidden {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .35);
+}
+
+.modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(520px, 92%);
+  margin: 10vh auto 0;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 980px) {
+  .admin-sidebar {
+    margin-right: 0;
+    position: static;
+    height: auto;
+  }
+
+  .admin-layout {
+    gap: 0;
+    flex-direction: column;
+  }
+
+  .admin-main,
+  .admin-main-content,
+  .admin-content {
+    padding: 16px;
+  }
+
+  .content-inner {
+    width: 100%;
+  }
+
+  .activity-form .form-grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  .activity-form .two-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Form fields – look & feel (SURCOUCHE : bordures violettes visibles)
+   ========================================================================== */
+
+/* Aspect par défaut : bordure violette claire, angles doux */
+.input,
+.select,
+.textarea,
+.search-input {
+  border: 2px solid var(--brand-200) !important;
+  border-radius: 10px;
+  background: #fff;
+}
+
+/* Focus : violet plein + halo */
+.input:focus,
+.select:focus,
+.textarea:focus,
+.search-input:focus {
+  outline: none;
+  border-color: var(--brand) !important;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* Hover léger (optionnel) */
+.input:hover,
+.select:hover,
+.textarea:hover,
+.search-input:hover {
+  border-color: #bba8ff;
+}
+
+/* Hauteurs confortables */
+.input,
+.select,
+.search-input {
+  height: 44px;
+}
+
+.textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Compatibilité <select> natif (certains navigateurs imposent un style) */
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 36px;
+  /* laisse de la place pour l’icône native */
+  background-clip: padding-box;
 }

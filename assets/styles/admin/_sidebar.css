@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 2rem 1.5rem;
-  min-height: 100vh;
+  min-height: 100vh;  
 }
 
 /* ===============================
@@ -77,36 +77,3 @@
 }
 
 
-/* ==========================================
-   📚 SIDEBAR - Menu de navigation latéral
-========================================== */
-/* .sidebar {
-  width: 220px;
-  background-color: #6c45e0;
-  padding: 2rem 1rem;
-  color: white;
-}
-
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar nav ul li {
-  margin-bottom: 1rem;
-}
-
-.sidebar nav ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 8px 12px;
-  display: block;
-  border-radius: 6px;
-  font-weight: 500;
-}
-
-.sidebar nav ul li.active a,
-.sidebar nav ul li a:hover {
-  background-color: #5434c2;
-} */

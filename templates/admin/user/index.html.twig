@@ -1,151 +1,122 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 
-{% block title %}Gérer les utilisateurs
-{% endblock %}
+{% block title %}Gérer les utilisateurs{% endblock %}
 
 {% block stylesheets %}
-	{{ encore_entry_link_tags('app') }}
+  {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block body %}
-	<div class="admin-container">
-		<div
-			class="admin-layout">
+<div class="admin-container">
+  <div class="admin-layout">
+    {# Sidebar #}
+    {% include 'admin/partials/_sidebar.html.twig' %}
 
-			{# Sidebar #}
-			{% include 'admin/partials/_sidebar.html.twig' %}
+    <div class="admin-content">
+      <div class="content-inner">
+        <div class="content-header">
+          <a class="brand" href="{{ path('admin_dashboard') }}"><i class="fas fa-sun"></i> kidzen&fun</a>
+          <a href="{{ path('home') }}" class="btn withe">Voir le site ⤴</a>
+        </div>
 
-			<div class="admin-content">
-				<h1 class="page-title">Gérer les utilisateurs</h1>
+        <h1 class="page-title">Gérer les utilisateurs</h1>
 
-				{# Barre d’outils : recherche à gauche, bouton à droite #}
-				<div class="list-toolbar">
-					<div class="search-group">
-						<i class="fa-solid fa-magnifying-glass"></i>
-						<input type="text" class="search-input" placeholder="Rechercher utilisateur">
-					</div>
-					<a href="{{ path('admin_user_new') }}" class="btn purple">
-						<i class="fa-solid fa-plus"></i>&nbsp; Ajouter un utilisateur
-					</a>
-				</div>
+        <div class="list-toolbar">
+          <div class="search-group">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="search-input" placeholder="Rechercher utilisateur">
+          </div>
+          <a href="{{ path('admin_user_new') }}" class="btn purple">
+            <i class="fa-solid fa-plus"></i>&nbsp; Ajouter un utilisateur
+          </a>
+        </div>
 
-				<div class="table-wrapper">
-					<table class="users-table">
-						<thead>
-							<tr>
-								<th>Nom</th>
-								<th>Email</th>
-								<th>Rôle
-									<span class="th-caret">▾</span>
-								</th>
-								<th>Statut
-									<span class="th-caret">▾</span>
-								</th>
-								<th class="col-actions">Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for user in users %}
-								<tr>
-									<td class="col-name">{{ user.firstName }}
-										{{ user.lastName }}</td>
-									<td class="mono col-email">{{ user.email }}</td>
-									<td class="col-role">{{ user.roles[0] == 'ROLE_ADMIN' ? 'Admin' : 'Utilisateur' }}</td>
-									<td class="col-status">
-										{% if user.isVerified %}
-											<span class="badge active">Actif</span>
-										{% else %}
-											<span class="badge inactive">Inactif</span>
-										{% endif %}
-									</td>
-									<td class="actions">
-										<a href="{{ path('admin_user_edit', { id: user.id }) }}" class="btn withe sm">Modifier</a>
+        <div class="table-wrapper">
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôle <span class="th-caret">▾</span></th>
+                <th>Statut <span class="th-caret">▾</span></th>
+                <th class="col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+                <tr>
+                  <td class="col-name">{{ user.firstName }} {{ user.lastName }}</td>
+                  <td class="mono col-email">{{ user.email }}</td>
+                  <td class="col-role">{{ user.roles[0] == 'ROLE_ADMIN' ? 'Admin' : 'Utilisateur' }}</td>
+                  <td class="col-status">
+                    {% if user.isVerified %}
+                      <span class="badge active">Actif</span>
+                    {% else %}
+                      <span class="badge inactive">Inactif</span>
+                    {% endif %}
+                  </td>
+                  <td class="actions">
+                    <a href="{{ path('admin_user_edit', { id: user.id }) }}" class="btn withe sm">Modifier</a>
 
-										<form method="post" action="{{ path('admin_user_delete', { id: user.id }) }}" class="inline-form js-delete-form" data-user="{{ user.firstName }} {{ user.lastName }}">
-											<input type="hidden" name="_token" value="{{ csrf_token('delete_user_' ~ user.id) }}">
-											<button class="btn danger sm js-open-delete" type="button">supprimer</button>
-										</form>
-									</td>
-								</tr>
-							{% else %}
-								<tr>
-									<td colspan="5" class="empty">Aucun utilisateur trouvé.</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-			{# --- Modale de confirmation --- #}
-			<div id="confirmModal" class="modal hidden" aria-hidden="true">
-				<div class="modal-backdrop" data-close="1"></div>
+                    <form method="post" action="{{ path('admin_user_delete', { id: user.id }) }}" class="inline-form js-delete-form" data-user="{{ user.firstName }} {{ user.lastName }}">
+                      <input type="hidden" name="_token" value="{{ csrf_token('delete_user_' ~ user.id) }}">
+                      <button class="btn danger sm js-open-delete" type="button">supprimer</button>
+                    </form>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td colspan="5" class="empty">Aucun utilisateur trouvé.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div> {# /.content-inner #}
 
-				<div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-					<h3 id="modalTitle">Confirmer la suppression</h3>
-					<p>Êtes-vous sûr de vouloir supprimer
-						<strong id="modalUserName">cet utilisateur</strong>
-						?</p>
+      {# Modale (en dehors du centrer si tu préfères) #}
+      <div id="confirmModal" class="modal hidden" aria-hidden="true">
+        <div class="modal-backdrop" data-close="1"></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <h3 id="modalTitle">Confirmer la suppression</h3>
+          <p>Êtes-vous sûr de vouloir supprimer <strong id="modalUserName">cet utilisateur</strong> ?</p>
+          <div class="modal-actions">
+            <button type="button" class="btn withe" id="modalCancel">Annuler</button>
+            <button type="button" class="btn danger" id="modalConfirm">Confirmer</button>
+          </div>
+        </div>
+      </div>
 
-					<div class="modal-actions">
-						<button type="button" class="btn withe" id="modalCancel">Annuler</button>
-						<button type="button" class="btn danger" id="modalConfirm">Confirmer</button>
-					</div>
-				</div>
-			</div>
+      <script>
+      (function () {
+        const modal = document.getElementById('confirmModal');
+        const modalUserName = document.getElementById('modalUserName');
+        const btnCancel = document.getElementById('modalCancel');
+        const btnConfirm = document.getElementById('modalConfirm');
+        let currentForm = null;
 
-			{# --- JS minimal pour la modale --- #}
-			<script>
-				(function () {
-const modal = document.getElementById('confirmModal');
-const modalUserName = document.getElementById('modalUserName');
-const btnCancel = document.getElementById('modalCancel');
-const btnConfirm = document.getElementById('modalConfirm');
-let currentForm = null;
+        document.querySelectorAll('.js-open-delete').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const form = e.currentTarget.closest('form.js-delete-form');
+            currentForm = form;
+            modalUserName.textContent = form.dataset.user || 'cet utilisateur';
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          });
+        });
 
-// Ouvrir la modale
-document.querySelectorAll('.js-open-delete').forEach(btn => {
-btn.addEventListener('click', (e) => {
-const form = e.currentTarget.closest('form.js-delete-form');
-currentForm = form;
-modalUserName.textContent = form.dataset.user || 'cet utilisateur';
-modal.classList.remove('hidden');
-document.body.style.overflow = 'hidden'; // lock scroll
-});
-});
-
-// Fermer (annuler)
-function closeModal() {
-modal.classList.add('hidden');
-document.body.style.overflow = '';
-currentForm = null;
-}
-btnCancel.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => {
-if (e.target.dataset.close) 
-closeModal();
-
-
-// clic sur le backdrop
-});
-
-// Confirmer
-btnConfirm.addEventListener('click', () => {
-if (currentForm) 
-currentForm.submit();
-
-
-
-});
-
-// Échap pour fermer
-document.addEventListener('keydown', (e) => {
-if (e.key === 'Escape' && ! modal.classList.contains('hidden')) {
-closeModal();
-}
-});
-})();
-			</script>
-
-		</div>
-	</div>
+        function closeModal() {
+          modal.classList.add('hidden');
+          document.body.style.overflow = '';
+          currentForm = null;
+        }
+        btnCancel.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target.dataset.close) closeModal(); });
+        btnConfirm.addEventListener('click', () => { if (currentForm) currentForm.submit(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal(); });
+      })();
+      </script>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -40,6 +40,7 @@ class ActivityFormType extends AbstractType
                     '3-5 ans'  => '3-5 ans',
                     '6-8 ans'  => '6-8 ans',
                     '9-12 ans' => '9-12 ans',
+                    'tout age' => 'tout age',
                 ],
                 'placeholder' => 'Sélectionner…',
                 'required'    => true,

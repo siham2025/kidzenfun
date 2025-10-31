@@ -6,35 +6,39 @@
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
 
-{# {% extends 'base.html.twig' %} #}
+{# pas d’extends ici, on garde ta structure existante #}
 {% block body %}
 <div class="admin-wrapper">
-
-    <!-- 🟣 Sidebar (gauche) -->
+    {# Sidebar #}
     {% include 'admin/partials/_sidebar.html.twig' %}
 
-    <!-- ⚪ Main (droite) -->
+    {# Contenu #}
     <div class="admin-main">
-
         <div class="admin-content">
-            <h1>Tableau de bord</h1>
+            <div class="content-inner">
+                <div class="content-header">
+                    <a class="brand" href="{{ path('admin_dashboard') }}"><i class="fas fa-sun"></i> kidzen&fun</a>
+                    <a href="{{ path('home') }}" class="btn withe">Voir le site ⤴</a>
+                </div>
 
-            <div class="dashboard-cards">
-                <div class="card">
-                    <h2>{{ userCount }}</h2>
-                    <p>Utilisateurs</p>
-                </div>
-                <div class="card">
-                    <h2>{{ activityCount }}</h2>
-                    <p>Activités</p>
-                </div>
-                <div class="card">
-                    <h2>{{ themeCount }}</h2>
-                    <p>Thèmes</p>
+                <h1>Tableau de bord</h1>
+
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <h2>{{ userCount }}</h2>
+                        <p>Utilisateurs</p>
+                    </div>
+                    <div class="card">
+                        <h2>{{ activityCount }}</h2>
+                        <p>Activités</p>
+                    </div>
+                    <div class="card">
+                        <h2>{{ themeCount }}</h2>
+                        <p>Thèmes</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 {% endblock %}

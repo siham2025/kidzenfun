@@ -8,24 +8,24 @@
 {% endblock %}
 
 {% block body %}
-	<section class="profile-banner">
-		<div class="container-profile">
-			<h2>Bienvenue,
-				{{ app.user.firstname|default('Nom de l’utilisateur') }}</h2>
-			<p>Découvrez vos activités favorites et gérez votre profil ici.</p>
-			<div class="profile-buttons">
-				<a href="#" class="btn btn-secondary">Modifier</a>
-				<a href="#" class="btn btn-outline">Déconnexion</a>
-				{# <a href="{{ path('app_logout') }}" class="btn btn-outline">Déconnexion</a> #}
-			</div>
-		</div>
-	</section>
+<section class="profile-banner" style="--profile-banner:url('{{ asset('images/profile-banner.png') }}')">
+  <div class="container-profile">
+    <h2>Bienvenue, {{ app.user.firstname|default('Nom de l’utilisateur') }}</h2>
+    <p>Découvrez vos activités favorites et gérez votre profil ici.</p>
 
-	<section class="profile-actions">
+    <div class="profile-buttons">
+      <a href="#" class="btn btn-secondary">Modifier</a>
+      <a href="#" class="btn btn-outline">Déconnexion</a>
+      {# <a href="{{ path('app_logout') }}" class="btn btn-outline">Déconnexion</a> #}
+    </div>
+  </div>
+</section>
+
+	{# <section class="profile-actions">
 		<div
 			class="container">{# <a href="{{ path('app_home') }}" class="btn btn-primary">Chercher une activité</a> #}
-		</div>
-	</section>
+		{# </div> #}
+	{# </section> #} 
 
 	<section class="favorites">
 		<div class="container-profile">

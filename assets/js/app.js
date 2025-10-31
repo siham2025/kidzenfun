@@ -41,7 +41,6 @@ import './../styles/pages/faq.css';
 import './../styles/admin/_admin.css';
 import './../styles/admin/_sidebar.css';
 import './../styles/admin/adminDashboard.css';
-import './../styles/admin/adminActivities.css';
 import './../styles/admin/adminActivityForm.css';
 import './../styles/admin/adminUsers.css';
 import './../styles/admin/adminUserForm.css';
