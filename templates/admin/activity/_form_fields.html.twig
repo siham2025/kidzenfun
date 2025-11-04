@@ -14,7 +14,7 @@
         <label>Image</label>
         <div class="image-inline">
           <div class="thumb lg">
-            {% set current = (activity is defined and activity.image) ? asset('images/activities/' ~ activity.image) : asset('images/placeholder-activity.png') %}
+            {% set current = (activity is defined and activity.image) ? asset('images/activities/' ~ activity.image) : asset('images/activities/default.png') %}
             <img id="preview" src="{{ current }}" alt="">
           </div>
           {{ form_widget(form.image, { attr: { class:'input-file', accept:'image/*', onchange:'previewFile(this)' } }) }}

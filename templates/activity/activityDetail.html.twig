@@ -6,12 +6,12 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('app') }}
+	{{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('activityDetail') }}
+	{{ parent() }}
+	{{ encore_entry_script_tags('activityDetail') }}
 {% endblock %}
 
 {% block title %}
@@ -22,8 +22,8 @@
 {% block body %}
 
 	{# =============================
-							     EN-TÊTE DE L'ACTIVITÉ
-							     ============================= #}
+													     EN-TÊTE DE L'ACTIVITÉ
+													     ============================= #}
 	<section class="activity-header">
 		<div class="activity-container">
 
@@ -53,13 +53,35 @@
 					{{ activity.ageGroup }}</p>
 
 				<div class="activity-actions">
-					<button class="favorite-toggle" data-id="{{ activity.id }}">
-						<i class="fas fa-heart {% if app.user and activity in app.user.favorites %}favorited{% endif %}"></i> 
-						{# classe conditionnelle:  pré-remplir le bouton si l’activité est déjà un favori de l’utilisateur. #}
+					<button class="icon-btn favorite-toggle" data-id="{{ activity.id }}">
+						<i class="fas fa-heart {% if app.user and activity in app.user.favorites %}favorited{% endif %}"></i>
 					</button>
-					<i class="fas fa-share-alt"></i>
-					<i class="fas fa-print"></i>
-					<i class="fas fa-download"></i>
+
+					<button type="button" class="icon-btn print-btn" aria-label="Imprimer">
+						<i class="fas fa-print" aria-hidden="true"></i>
+					</button>
+
+					<div class="share">
+						<button type="button" class="icon-btn share-toggle" data-title="{{ activity.title }}" data-text="Découvrez cette activité sur Kidzen&Fun :" data-url="{{ url('activity_detail', { id: activity.id }) }}" aria-haspopup="true" aria-expanded="false" aria-label="Partager cette activité">
+							<i class="fas fa-share-alt" aria-hidden="true"></i>
+						</button>
+
+						{# petit menu, caché par défaut #}
+						<div class="share-menu" hidden>
+							<a class="share-link share-fb" href="#" target="_blank" rel="noopener" aria-label="Partager sur Facebook">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+							<a class="share-link share-wa" href="#" target="_blank" rel="noopener" aria-label="Partager sur WhatsApp">
+								<i class="fab fa-whatsapp"></i>
+							</a>
+							<a class="share-link share-li" href="#" target="_blank" rel="noopener" aria-label="Partager sur LinkedIn">
+								<i class="fab fa-linkedin-in"></i>
+							</a>
+							<a class="share-link share-mail" href="#" aria-label="Partager par e-mail">
+								<i class="fas fa-envelope"></i>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -68,74 +90,83 @@
 	</section>
 
 	{# =============================
-					     DÉTAILS DE L'ACTIVITÉ
-					     ============================= #}
+									     DÉTAILS DE L'ACTIVITÉ
+									     ============================= #}
 	<section class="activity-details">
-  <div class="details-container info-cards">
+		<div
+			class="details-container info-cards">
 
 
+			{# 2) Objectif #}
+			<div class="info-card">
+				<h3>Objectif :</h3>
+				<p>{{ activity.objective|default('Non renseigné.')|nl2br }}</p>
+			</div>
 
-    {# 2) Objectif #}
-    <div class="info-card">
-      <h3>Objectif :</h3>
-      <p>{{ activity.objective|default('Non renseigné.')|nl2br }}</p>
-    </div>
+			{# 1) Matériel nécessaire #}
+			<div class="info-card">
+				<h3>Matériel nécessaire :</h3>
+				<ul>
+					{% for line in activity.materialsLines %}
+						<li>{{ line }}</li>
+					{% else %}
+						<li>Aucun matériel renseigné.</li>
+					{% endfor %}
+				</ul>
+			</div>
 
-	    {# 1) Matériel nécessaire #}
-    <div class="info-card">
-      <h3>Matériel nécessaire :</h3>
-      <ul>
-        {% for line in activity.materialsLines %}
-          <li>{{ line }}</li>
-        {% else %}
-          <li>Aucun matériel renseigné.</li>
-        {% endfor %}
-      </ul>
-    </div>
+			{# 3) Étapes de réalisation #}
+			<div class="info-card">
+				<h3>Étapes de réalisation :</h3>
+				<ol>
+					{% for s in activity.stepsLines %}
+						<li>{{ s }}</li>
+					{% else %}
+						<li>Aucune étape renseignée.</li>
+					{% endfor %}
+				</ol>
+			</div>
 
-    {# 3) Étapes de réalisation #}
-    <div class="info-card">
-      <h3>Étapes de réalisation :</h3>
-      <ol>
-        {% for s in activity.stepsLines %}
-          <li>{{ s }}</li>
-        {% else %}
-          <li>Aucune étape renseignée.</li>
-        {% endfor %}
-      </ol>
-    </div>
+			{# 4) Conseils #}
+			<div class="info-card">
+				<h3>Conseils :</h3>
+				<ol>
+					{% for t in activity.tipsLines %}
+						<li>{{ t }}</li>
+					{% else %}
+						<li>Aucun conseil renseigné.</li>
+					{% endfor %}
+				</ol>
+			</div>
 
-    {# 4) Conseils #}
-    <div class="info-card">
-      <h3>Conseils :</h3>
-      <ol>
-        {% for t in activity.tipsLines %}
-          <li>{{ t }}</li>
-        {% else %}
-          <li>Aucun conseil renseigné.</li>
-        {% endfor %}
-      </ol>
-    </div>
-
-  </div>
-</section>
+		</div>
+	</section>
 	{# =============================
-					     ACTIVITÉS SIMILAIRES (CARROUSEL)
-					     ============================= #}
+									     ACTIVITÉS SIMILAIRES 
+									     ============================= #}
 	<section class="related-activities">
-		<h3>Activités similaires :</h3>
+		<div class="details-container">
+			<h3>Activités similaires :</h3>
 
-		<div class="carousel">
-			{% for related in relatedActivities %}
-				{% if related.id != activity.id %}
-					<div class="carousel-item">
-						<a href="{{ path('activity_detail', { id: related.id }) }}">
-							<img src="{{ asset('images/activities/' ~ related.image) }}" alt="{{ related.title }}">
-							<h4>{{ related.title }}</h4>
-						</a>
-					</div>
-				{% endif %}
-			{% endfor %}
+			<div class="related-list">
+				{# Variante A : limiter à 6 #}
+				{# {% set items = relatedActivities|slice(0, 4) %} #}
+
+				{# Variante B : mélanger + limiter  #}
+				{% set items = relatedActivities|shuffle|slice(0, 4) %}
+
+					{% for related in items %}
+						{% if related.id != activity.id %}
+							<div class="related-item"> <a href="{{ path('activity_detail', { id: related.id }) }}">
+								<img src="{{ asset('images/activities/' ~ related.image) }}" alt="{{ related.title }}">
+								<h4>{{ related.title }}</h4>
+							</a>
+						</div>
+					{% endif %}
+				{% else %}
+					<p>Aucune activité similaire pour le moment.</p>
+				{% endfor %}
+			</div>
 		</div>
 	</section>
 {% endblock %}

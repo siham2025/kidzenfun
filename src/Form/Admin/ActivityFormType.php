@@ -54,10 +54,11 @@ class ActivityFormType extends AbstractType
                 'multiple'     => false,
                 'expanded'     => false,     // <select>
                 'mapped'       => false,     // on mettra à jour la collection à la main
-                'required'     => false,
+                'required'     => true,
                 'placeholder'  => 'Sélectionner…',
                 'data'         => $options['current_theme'] ?? null, // préremplir en édition
             ])
+            
 
             ->add('activityType', EntityType::class, [
                 'label'        => 'Type',
@@ -66,30 +67,31 @@ class ActivityFormType extends AbstractType
                 'multiple'     => false,
                 'expanded'     => false,
                 'mapped'       => false,
-                'required'     => false,
+                'required'     => true,
                 'placeholder'  => 'Sélectionner…',
                 'data'         => $options['current_type'] ?? null,
+    
             ])
 
             // ===== Contenu pédagogique =====
             ->add('objective', TextareaType::class, [
                 'label'      => 'Objectif',
-                'required'   => false,
+                'required'   => true,
                 'empty_data' => '',
             ])
             ->add('steps', TextareaType::class, [
                 'label'      => 'Étapes',
-                'required'   => false,
+                'required'   => true,
                 'empty_data' => '',
             ])
             ->add('materials', TextareaType::class, [
                 'label'      => 'Matériel nécessaire',
-                'required'   => false,
+                'required'   => true,
                 'empty_data' => '',
             ])
             ->add('tips', TextareaType::class, [
                 'label'      => 'Conseils',
-                'required'   => false,
+                'required'   => true,
                 'empty_data' => '',
             ])
 

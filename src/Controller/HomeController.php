@@ -6,26 +6,24 @@ use App\Repository\ThemeRepository;
 use App\Repository\ActivityRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// #[Route(path: '/activities')] factorisation si y a /activities par exemple qui se répète peut etre j'en ai pas besoin 
-// si je veux sécuriser toutes les routes qui sont dans le contrôleur je doit mettre IS Granted avant la class (ici) et la supprimer à l'intérieur de la class
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    // #[IsGranted('ROLE_USER')]   // pour sécuriser la route dans ce cas c'est la home '/'
-    public function index(ThemeRepository $themeRepo, ActivityRepository $activityRepo): Response
-    {
-        // Récupérer tous les thèmes
+    public function index(
+        ThemeRepository $themeRepo,
+        ActivityRepository $activityRepo
+    ): Response {
+        // (optionnel) si tu affiches encore des thèmes sur la home
         $themes = $themeRepo->findAll();
 
-        // Récupérer une activité du jour (aléatoire)
-        $activityOfTheDay = $activityRepo->findRandom();
+        // Activité du jour (déterministe : change chaque jour)
+        $activity = $activityRepo->findOfTheDay();
 
         return $this->render('home.html.twig', [
-            // 'themes' => $themes,
-            'activityOfTheDay' => [$activityOfTheDay],
+            // 'themes' => $themes, // dé-commente si tu utilises les thèmes dans le twig
+            'activityOfTheDay' => $activity ? [$activity] : [], // ton twig attend un tableau
         ]);
     }
 }

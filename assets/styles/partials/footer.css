@@ -28,11 +28,21 @@
 /* ============================= */
 
 
-.logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+.logo{
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 8px;
+  margin-left: 40px;
 }
+.logo_img{
+  height: 70px;       
+  width: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 6px;  /* optionnel si ton jpeg a des coins carrés */
+}
+
 
 /* ============================= */
 /* TITRES DE COLONNES            */

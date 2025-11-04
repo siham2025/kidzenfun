@@ -1,69 +1,59 @@
 /* ==========================================
-   HEADER PRINCIPAL : Apparence & position
+   HEADER PRINCIPAL : apparence & position
    ========================================== */
-
-.site-header {
+.site-header{
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgb(255, 255, 255);
+  background: #fff;
   border-bottom: 1px solid #eaeaea;
-  padding: 20px 20px; /* ← ajoute du padding interne */
-  height: 50px; /* ← optionnel si tu veux forcer la hauteur */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* un peu d’ombre légère */
-
+  box-shadow: 0 2px 4px rgba(0,0,0,.05);
 }
 
-.site-header .container-header {
+.site-header .container-header{
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* important pour que le logo reste à gauche */
   gap: 32px;
-  padding: 16px 10px; /* ← ajoute plus de padding à gauche et droite */
-}
-
-
-/* ==========================================
-   LOGO (gauche) - maintenant c’est un <h1>
-   ========================================== */
-.logo {
-  display: flex;
-  align-items: center;
-  font-size: 32px;
-  font-weight: bold;
-  color: #5f2eea;
-  margin: 0;
-  margin-right: 12px;
-}
-
-.logo h1 {
-  font-size: inherit;
-  font-weight: inherit;
-  margin: 0;
-  color: inherit;
+  padding: 30px 40px;
 }
 
 /* ==========================================
-   BARRE DE RECHERCHE (centre)
+   LOGO (image cliquable vers home)
    ========================================== */
-.search-bar {
+.site-header .logo{
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 6px;
+}
+.site-header .logo_img{
+  height: 70px;        /* ajuste si besoin */
+  width: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 6px;  /* optionnel si ton jpeg a des coins carrés */
+}
+
+/* ==========================================
+   BARRE DE RECHERCHE
+   ========================================== */
+.search-bar{
   display: flex;
   align-items: center;
+  height: 40px;
+  width: 300px;
   border: 1px solid #b6aaff;
   border-radius: 8px;
+  background: #fff;
   overflow: hidden;
-  background-color: #fff;
-  height: 40px;
-  width: 240px; 
- margin-right: 100px; /*espace entre la barre et la nav */
-  margin-left: 110px; /* ← ajuste ici la distance par rapport au logo */
 
-  
+  /* placement par rapport au logo / nav */
+  margin-left: 100px;
+  margin-right: 100px;
 }
-
-.search-bar input {
+.search-bar input{
   flex: 1;
   border: none;
   outline: none;
@@ -71,80 +61,122 @@
   font-size: 14px;
   color: #333;
 }
-
-.search-bar button {
+.search-bar button{
   border: none;
   background: none;
   padding: 0 12px;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   cursor: pointer;
 }
-
-.search-bar button svg {
+.search-bar button svg{
   width: 18px;
   height: 18px;
   stroke: #5f2eea;
 }
+
 /* ==========================================
-   MENU DE NAVIGATION (liens centraux)
+   NAVIGATION PRINCIPALE
    ========================================== */
-.main-nav {
+.main-nav{
   display: flex;
- gap: 50px; /* un peu moins d’écart */
-
+  gap: 50px;
 }
-
-.main-nav a {
+.main-nav a{
   text-decoration: none;
-  color: black;
-  font-size: px;
+  color: #111;
+  font-size: 17px;
   font-weight: 500;
 }
-
-.main-nav a:hover {
+.main-nav a:hover{
   color: #5f2eea;
 }
 
 /* ==========================================
-   BOUTONS DE COMPTE (droite)
+   BOUTONS COMPTE (droite)
    ========================================== */
-.account-buttons {
+.account-buttons{
   display: flex;
-  gap: 14px;
-  margin-left: auto;
-
+  gap: 16px;
+  margin-left: auto; /* pousse le bloc à droite */
 }
 
-/* Bouton Connexion (violet plein) */
-.btn-login {
-  background-color: #7c4dff;
-  color: white;
+/* Connexion (plein violet) */
+.btn-login{
+  background: #7c4dff;
+  color: #fff;
   border: none;
-  padding: 8px 16px;
+  padding: 10px 30px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   display: inline-block;
 }
 
-/* Bouton Inscription (violet contour) */
-.btn-register {
-  background-color: white;
+/* Inscription (contour violet) */
+.btn-register{
+  background: #fff;
   color: #7c4dff;
   border: 1px solid #7c4dff;
-  padding: 8px 16px;
+  padding: 10px 30px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   display: inline-block;
 }
+.btn-register:hover{ background: #f4f0ff; }
 
-.btn-register:hover {
-  background-color: #f4f0ff;
+/* Lien "Mon profil" quand connecté */
+.profile-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #111;
+  border: 1px solid #b6aaff;
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.profile-link i{
+  font-size: 24px;
+  color: #7c4dff;
+}
+.profile-link:hover{
+  background: #f7f5ff;
+  
 }
 
+/* ==========================================
+   RÉPONSIVE
+   ========================================== */
+@media (max-width: 1100px){
+  .search-bar{ margin-right: 20px; width: 220px; }
+  .main-nav{ gap: 28px; }
+}
+
+@media (max-width: 900px){
+  .search-bar{ display: none; }       /* on masque la recherche si l'espace manque */
+  .main-nav{ gap: 22px; }
+}
+
+@media (max-width: 700px){
+  .site-header .container-header{
+    gap: 16px;
+  }
+  .main-nav{
+    gap: 16px;
+  }
+  .account-buttons .btn-login,
+  .account-buttons .btn-register,
+  .account-buttons .profile-link{
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+  .site-header .logo_img{ height: 34px; }
+}

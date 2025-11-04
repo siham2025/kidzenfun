@@ -61,7 +61,9 @@
   border-radius: 10px;
   box-shadow: 0 8px 22px rgba(0,0,0,.12);
 }
-
+.profile-banner .btn-secondary{
+  color: #ffffff;
+}
 
 .favorites {
   padding: 40px 20px;
@@ -91,7 +93,9 @@
   object-fit: cover;
   border-radius: 8px;
 }
-
+.activity-card .btn.btn-sm:hover {
+  color: #fff;
+}
 .delete-favorite-form {
   position: absolute;
   bottom: 10px;

@@ -52,20 +52,37 @@ class ActivityRepository extends ServiceEntityRepository
 
     /**
      * =============================
-     * ACTIVITÉ ALÉATOIRE : findRandom
+     * ACTIVITÉ DU JOUR
      * =============================
      * Utilisé sur la page d’accueil pour afficher une activité du jour.
      */
-    public function findRandom(): ?Activity
-    {
-        $all = $this->findAll(); // récupère toutes les activités
-        if (count($all) === 0) {
-            return null;
-        }
 
-        return $all[array_rand($all)]; // en choisit une au hasard
+public function findOfTheDay(?\DateTimeInterface $date = null): ?Activity
+{
+    $date ??= new \DateTimeImmutable('today');    // date du jour (minuit)
+
+    // 1) nombre total d'activités
+    $count = (int) $this->createQueryBuilder('a')
+        ->select('COUNT(a.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+    if ($count === 0) {
+        return null;
     }
 
+    // 2) jour de l'année (0..365) -> index stable du jour
+    $dayOfYear = (int) $date->format('z');        // 0-based
+    $offset    = $dayOfYear % $count;             // tourne sur le catalogue
+
+    // 3) prendre l’élément à l’offset (ordre stable !)
+    return $this->createQueryBuilder('a')
+        ->orderBy('a.id', 'ASC')                  // ordre déterministe
+        ->setFirstResult($offset)
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
     /**
      * ===================================
      * FILTRE PAR THÈME (via son nom) : findByThemes

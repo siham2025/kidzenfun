@@ -8,27 +8,30 @@
 {% endblock %}
 
 {% block body %}
-<section class="profile-banner" style="--profile-banner:url('{{ asset('images/profile-banner.png') }}')">
-  <div class="container-profile">
-    <h2>Bienvenue, {{ app.user.firstname|default('Nom de l’utilisateur') }}</h2>
-    <p>Découvrez vos activités favorites et gérez votre profil ici.</p>
+	<section class="profile-banner" style="--profile-banner:url('{{ asset('images/profile2.png') }}')">
+		<div class="container-profile">
+			<h2>Bienvenue,
+				{{ app.user.firstname|default('Nom de l’utilisateur') }}</h2>
+			<p>Découvrez vos activités favorites et gérez votre profil ici.</p>
 
-    <div class="profile-buttons">
-      <a href="#" class="btn btn-secondary">Modifier</a>
-      <a href="#" class="btn btn-outline">Déconnexion</a>
-      {# <a href="{{ path('app_logout') }}" class="btn btn-outline">Déconnexion</a> #}
-    </div>
-  </div>
-</section>
+			<div class="profile-buttons">
+				<a href="#" class="btn btn-secondary">Modifier</a>
+				<form action="{{ path('app_logout') }}" method="post" style="display:inline;">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+					<button type="submit" class="btn btn-outline">Déconnexion</button>
+				</form>
+				{# <a href="{{ path('app_logout') }}" class="btn btn-outline">Déconnexion</a> #}
+			</div>
+		</div>
+	</section>
 
 	{# <section class="profile-actions">
-		<div
-			class="container">{# <a href="{{ path('app_home') }}" class="btn btn-primary">Chercher une activité</a> #}
-		{# </div> #}
-	{# </section> #} 
+			<div
+				class="container">{# <a href="{{ path('app_home') }}" class="btn btn-primary">Chercher une activité</a> #}
+	{# </div> #}
+	{# </section> #}
 
-	<section class="favorites">
-		<div class="container-profile">
+		<section class="favorites"> <div class="container-profile">
 			<h3>Mes activités favorites</h3>
 			<div class="favorites-grid">
 				{% for activity in favorites %}

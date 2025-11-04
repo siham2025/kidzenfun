@@ -49,6 +49,11 @@ class AdminActivityController extends AbstractController
                 $filename = uniqid('act_') . '.' . $file->guessExtension();
                 $file->move($this->getParameter('activities_upload_dir'), $filename);
                 $activity->setImage($filename);
+            } else {
+                // ⬅️ ICI : si rien uploadé, on met l'image par défaut
+                if (!$activity->getImage()) {
+                    $activity->setImage('default.png'); 
+                }
             }
             // === Thème & Type (sélection simple) ===
             $selectedTheme = $form->get('theme')->getData();        // Theme|null

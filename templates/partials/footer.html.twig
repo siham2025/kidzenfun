@@ -1,16 +1,18 @@
+
 <footer class="footer" >
   <div class="footer-top">
     <!-- Logo -->
-    <a>
-      <img src="/logo.svg" alt="kidzen&fun" class="logo">
+    <a href="{{ path('home') }}" class="logo" aria-label="Aller à l’accueil">
+      <img src="{{ asset('images/logo_KZF.png') }}" alt="Kidzen&fun" class="logo_img">
     </a>
+
 
     <!-- Liens utiles -->
     <nav class="links" aria-label="Liens utiles">
       <h3>Liens Utiles</h3>
       <ul>
-        <li><a href="{{ path('app_about') }}">A&nbsp;Propos</a></li>
-        <li><a href="{{ path('app_contact') }}">Contactez nous</a></li>
+        <li><a href="{{ path('app_about') }}">À&nbsp;Propos</a></li>
+        <li><a href="{{ path('app_contact') }}">Contact</a></li>
         <li><a href="{{ path('app_activity') }}">Activités</a></li>
         <li><a href="{{ path('app_faq') }}">FAQ</a></li>
       </ul>

@@ -11,52 +11,17 @@
     </p>
 
     <div class="faq-list">
-      <details class="faq-item" open>
-        <summary class="faq-question">À qui s’adresse Kidzen&Fun ?</summary>
-        <div class="faq-answer">
-          Le site s’adresse aux adultes (parents, enseignants, animateurs) qui cherchent
-          des idées d’activités ludiques et éducatives à proposer aux enfants.
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Comment sont classées les activités ?</summary>
-        <div class="faq-answer">
-          Par âge, type d’activité (bricolage, sciences, motricité, etc.). L’objectif est que tu trouves vite une idée adaptée.
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Est-ce que les activités sont testées ?</summary>
-        <div class="faq-answer">
-          Oui, elles sont sélectionnées et revues avec soin pour privilégier la sécurité,
-          la simplicité et le plaisir d’apprendre.
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Le site est-il gratuit ?</summary>
-        <div class="faq-answer">
-          L’accès aux activités proposées est gratuit. Certaines fonctionnalités futures
-          (ex. liste personnalisée) pourraient évoluer, mais l’essentiel restera accessible.
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Puis-je proposer une activité ?</summary>
-        <div class="faq-answer">
-          Oui ! Écris-nous via le <a href="{{ path('app_contact') }}">formulaire de contact</a>.
-          On adore les idées de la communauté 🤍
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-question">Qu’en est-il des droits d’image et des sources ?</summary>
-        <div class="faq-answer">
-          Les visuels utilisés sont libres de droits ou créés pour le site. Nous respectons la
-          propriété intellectuelle et le droit à l’image.
-        </div>
-      </details>
+      {# On boucle sur les FAQ envoyées par le contrôleur #}
+      {% for item in faqs %}
+        <details class="faq-item" {{ loop.first ? 'open' }}>
+          <summary class="faq-question">{{ item.question }}</summary>
+          <div class="faq-answer">
+            {{ item.answer|raw }} {# |raw pour autoriser un peu de HTML dans la réponse #}
+          </div>
+        </details>
+      {% else %}
+        <p>Aucune question pour le moment.</p>
+      {% endfor %}
     </div>
   </div>
 </section>

@@ -164,6 +164,7 @@
 
 .btn:hover {
   background-color: #a493e9;
+  color: #fff;
 }
 
 /* cacher les cartes supplémentaires */

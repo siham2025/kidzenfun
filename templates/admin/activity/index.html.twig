@@ -1,85 +1,92 @@
 {# {% extends 'base.html.twig' %} #}
 
 {% block stylesheets %}
-  {{ encore_entry_link_tags('app') }}
+	{{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block body %}
-<div class="admin-wrapper">
-  {% include 'admin/partials/_sidebar.html.twig' %}
+	<div class="admin-wrapper">
+		{% include 'admin/partials/_sidebar.html.twig' %}
 
-  <div class="admin-main-content">
-    <div class="content-inner">
-      <div class="content-header">
-        <a class="brand" href="{{ path('admin_dashboard') }}"><i class="fas fa-sun"></i> kidzen&fun</a>
-        <a href="{{ path('home') }}" class="btn withe">Voir le site ⤴</a>
-      </div>
+		<div class="admin-main-content">
+			<div class="content-inner">
+				<div class="content-header">
+					<a href="{{ path('home') }}" class="logo" aria-label="Aller à l’accueil">
+						<img src="{{ asset('images/logo_KZF.png') }}" alt="Kidzen&fun" class="logo_img">
+					</a>
+					<a href="{{ path('home') }}" class="btn withe">Voir le site ⤴</a>
+				</div>
 
-      <div class="admin-header">
-        <h2 class="page-title">Gérer les activités</h2>
-      </div>
+				<div class="admin-header">
+					<h2 class="page-title">Gérer les activités</h2>
+				</div>
 
-      <div class="list-toolbar">
-        <div class="search-group">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" class="search-input" placeholder="Rechercher une activité">
-        </div>
-        <a href="{{ path('admin_activity_new') }}" class="btn purple">
-          <i class="fa-solid fa-plus"></i>&nbsp; Ajouter une activité
-        </a>
-      </div>
+				<div class="list-toolbar">
+					<div class="search-group">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<input type="text" class="search-input" placeholder="Rechercher une activité">
+					</div>
+					<a href="{{ path('admin_activity_new') }}" class="btn purple">
+						<i class="fa-solid fa-plus"></i>&nbsp; Ajouter une activité
+					</a>
+				</div>
 
-      <div class="table-wrapper">
-        <table class="users-table activities-table">
-          <thead>
-            <tr>
-              <th>Titre</th>
-              <th class="col-thumb">Image</th>
-              <th>Âge</th>
-              <th>Thème</th>
-              <th>Type</th>
-              <th>Activité du jour</th>
-              <th class="col-actions">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for activity in activities %}
-              <tr>
-                <td class="col-title">{{ activity.title }}</td>
-                <td class="col-thumb">
-                  {% if activity.image %}
-                    <img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
-                  {% else %}
-                    <img src="{{ asset('images/placeholder-activity.png') }}" alt="placeholder">
-                  {% endif %}
-                </td>
-                <td class="col-age">{{ activity.ageGroup }}</td>
-                <td class="col-theme">
-                  {% if activity.themes is not empty %}
-                    {{ activity.themes|map(t => t.name)|join(', ') }}
-                  {% else %}-{% endif %}
-                </td>
-                <td class="col-type">
-                  {% if activity.activityTypes is not empty %}
-                    {{ activity.activityTypes|map(t => t.name)|join(', ') }}
-                  {% else %}-{% endif %}
-                </td>
-                <td class="col-daily"><input type="checkbox" {% if activity.isDailyActivity %}checked{% endif %} disabled></td>
-                <td class="actions">
-                  <a href="{{ path('admin_activity_edit', { id: activity.id }) }}" class="btn withe sm">Modifier</a>
-                  <form method="post" action="{{ path('admin_activity_delete', { id: activity.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer cette activité ?');">
-                    <input type="hidden" name="_token" value="{{ csrf_token('del_activity_' ~ activity.id) }}">
-                    <button class="btn danger sm">Supprimer</button>
-                  </form>
-                </td>
-              </tr>
-            {% else %}
-              <tr><td colspan="7" class="empty">Aucune activité disponible.</td></tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div> {# /.content-inner #}
-  </div>
-</div>
+				<div class="table-wrapper">
+					<table class="users-table activities-table">
+						<thead>
+							<tr>
+								<th>Titre</th>
+								<th class="col-thumb">Image</th>
+								<th>Âge</th>
+								<th>Thème</th>
+								<th>Type</th>
+								<th>Activité du jour</th>
+								<th class="col-actions">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for activity in activities %}
+								<tr>
+									<td class="col-title">{{ activity.title }}</td>
+									<td class="col-thumb">
+										{% if activity.image %}
+											<img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
+										{% else %}
+											<img src="{{ asset('images/placeholder-activity.png') }}" alt="placeholder">
+										{% endif %}
+									</td>
+									<td class="col-age">{{ activity.ageGroup }}</td>
+									<td class="col-theme">
+										{% if activity.themes is not empty %}
+											{{ activity.themes|map(t => t.name)|join(', ') }}
+											{% else %}-
+										{% endif %}
+									</td>
+									<td class="col-type">
+										{% if activity.activityTypes is not empty %}
+											{{ activity.activityTypes|map(t => t.name)|join(', ') }}
+											{% else %}-
+										{% endif %}
+									</td>
+									<td class="col-daily"><input type="checkbox" {% if activity.isDailyActivity %} checked {% endif %} disabled></td>
+									<td class="actions">
+										<a href="{{ path('admin_activity_edit', { id: activity.id }) }}" class="btn withe sm">Modifier</a>
+										<form method="post" action="{{ path('admin_activity_delete', { id: activity.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer cette activité ?');">
+											<input type="hidden" name="_token" value="{{ csrf_token('del_activity_' ~ activity.id) }}">
+											<button class="btn danger sm">Supprimer</button>
+										</form>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="7" class="empty">Aucune activité disponible.</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			{# /.content-inner #}
+		</div>
+	</div>
 {% endblock %}

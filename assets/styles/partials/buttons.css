@@ -1,54 +1,59 @@
-/* Variables simples */
-:root{
-  --brand: #6e49ff;
-  --brand-hover: #5a3ef6;
-  --ring: rgba(110,73,255,.25);
-  --btn-h: 46px;
-  --btn-minw: 160px;
-  --btn-r: 10px;
-  --btn-pad-x: 22px;
-  --btn-fs: 16px;
-}
-
-/* Base identique pour <button> et <a> */
+/* ===== Boutons – base commune ===== */
 .btn,
 button.btn,
 a.btn{
-  box-sizing: border-box;              /* taille = contenu + padding + bordure */
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: var(--btn-h);
-  min-width: var(--btn-minw);
-  padding: 0 var(--btn-pad-x);
-  border-radius: var(--btn-r);
-  border: 1px solid transparent;       /* même épaisseur pour les deux variantes */
-  font: 600 var(--btn-fs)/1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  height: 46px;
+  min-width: 160px;
+  padding: 0 22px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+
+  font: 600 16px/1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   text-decoration: none;
   cursor: pointer;
+
   transition: background-color .15s, color .15s, border-color .15s, box-shadow .15s;
 }
-.btn:focus{ outline: none; box-shadow: 0 0 0 3px var(--ring); }
+
+.btn:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(110,73,255,.25); /* focus ring */
+}
+
+/* ===== Variantes ===== */
 
 /* Violet plein */
-.btn.purple{
-  background: var(--brand);
+.btn-primary{
+  background: #6e49ff;
   color: #fff;
-  border-color: var(--brand);          /* même bordure (couleur identique) => dimensions strictement égales */
+  border-color: #6e49ff;
 }
-.btn.purple:hover{ background: var(--brand-hover); }
+.btn-primary:hover{ background: #5a3ef6; }
 
-/* Blanc avec contour violet (mêmes dimensions que purple) */
-.btn.withe{
+/* Blanc contour violet */
+.btn-outline{
   background: #fff;
-  color: var(--brand);
-  border-color: var(--brand);
+  color: #6e49ff;
+  border-color: #6e49ff;
 }
-.btn.withe:hover{ background: rgba(110,73,255,.06); }
+.btn-outline:hover{ background: rgba(110,73,255,.06); }
 
 /* Désactivé */
-.btn[disabled]{ opacity: .6; pointer-events: none; }
+.btn[disabled],
+.btn.is-disabled{
+  opacity: .6;
+  pointer-events: none;
+}
 
-/* Aide pour l’alignement de deux boutons */
-.buttons{ display: flex; gap: 16px; }
+/* Groupe de boutons (alignement) */
+.btn-group{ display: flex; gap: 16px; }
+
+/* (optionnel) tailles rapides */
+.btn-sm{ height: 38px; min-width: 120px; padding: 0 16px; font-size: 14px; }
+.btn-lg{ height: 54px; min-width: 180px; padding: 0 26px; font-size: 18px; }

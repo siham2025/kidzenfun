@@ -1,27 +1,27 @@
+/* =========================================================
+   PAGE : DÉTAIL D’UNE ACTIVITÉ
+   Fichier : assets/styles/activity/detail.css
+   ========================================================= */
 
 
-
-/* ===========================
-   SECTION : IMAGE + INFOS PRINCIPALES
-   =========================== */
-
+/* =========================================================
+   1) EN-TÊTE (image + infos principales)
+   ========================================================= */
 .activity-header {
   padding: 40px 20px;
   background-color: #fff;
 }
 
-/* Conteneur principal avec image et infos côte à côte */
 .activity-container {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 150px auto 0;
   display: flex;
+  flex-wrap: wrap;
   gap: 40px;
   align-items: flex-start;
-  flex-wrap: wrap; /* Pour le responsive */
-  margin-top: 150px;
 }
 
-/* Image de l’activité */
+/* Image */
 .activity-image img {
   width: 100%;
   max-width: 300px;
@@ -29,7 +29,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Colonne avec les infos texte + icônes */
+/* Bloc infos */
 .activity-info {
   flex: 1;
   min-width: 250px;
@@ -37,7 +37,7 @@
   flex-direction: column;
 }
 
-/* Titre de l’activité */
+/* Titre + infos textuelles */
 .activity-title {
   font-size: 28px;
   font-weight: 700;
@@ -45,7 +45,6 @@
   color: #222;
 }
 
-/* Infos supplémentaires */
 .activity-theme,
 .activity-type,
 .activity-age {
@@ -54,160 +53,269 @@
   color: #444;
 }
 
-/* ===========================
-   ICÔNES D'ACTIONS (Favori, Partage, Impression, Téléchargement)
-   =========================== */
 
+/* =========================================================
+   2) ACTIONS (favori, partage, impression, etc.)
+   ========================================================= */
 .activity-actions {
-  margin-top: 40px; /* espace au-dessus */
+  margin-top: 40px;
   display: flex;
   gap: 30px;
-  
 }
 
-.activity-actions i {
-  font-size: 18px;
-  padding: 10px;
- 
-  border-radius: 8px;
-  background-color: white;
-  color: black;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.activity-actions i:hover {
-  transform: scale(1.2);
-  background-color: #7c4dff;
-  color: white;
-  border-color: #7c4dff;
-}
-
-.favorited {
-	color: #7c4dff !important; /* Violet vif */
-}
-
-.favorite-toggle i {
-	transition: color 0.3s ease;
-}
-
-.favorite-toggle {
+/* Reset commun pour TOUS les boutons d'action */
+.activity-actions .icon-btn{
   border: none;
   background: none;
-  cursor: pointer;
   padding: 0;
+  margin: 0;
+  cursor: pointer;
   outline: none;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-.favorite-toggle i {
-  font-size: 20px;
-  color: #000; /* ou la couleur de ton choix */
-  transition: color 0.3s;
+/* Style identique pour les icônes */
+.activity-actions .icon-btn i{
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #000;
+  display: inline-block;
+  transition: transform .3s ease, background-color .3s ease, color .3s ease;
 }
 
-.favorite-toggle:hover i {
-  color: rgb(243, 227, 135); /* couleur au survol */
+.activity-actions .icon-btn:hover i{
+  transform: scale(1.2);
+  background-color: #7c4dff;
+  color: #fff;
 }
-/* ===========================
-   SECTION : MATÉRIEL + ÉTAPES
-   =========================== */
 
+/* Focus clavier accessible et propre */
+.activity-actions .icon-btn:focus-visible i{
+  outline: 2px solid #7c4dff;
+  outline-offset: 2px;
+}
+
+/* Spécifique Favori */
+.favorite-toggle i { font-size: 20px; transition: color .3s ease; }
+.favorite-toggle:hover i { color: rgb(243, 227, 135); }
+.favorited { color: #7c4dff !important; }
+
+/* Partage (popover) : on garde uniquement le positionnement */
+.share{ position: relative; }
+
+/* MENU AU-DESSUS DU BOUTON */
+.share-menu{
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  z-index: 20;
+}
+
+.share-menu[hidden]{ display: none; }
+
+.share-link{
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  text-decoration: none;
+}
+
+.share-menu::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: #fff;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.08));
+}
+
+/* couleurs des marques */
+.share-fb  { color:#1877f2; }
+.share-wa  { color:#25D366; }
+.share-li  { color:#0A66C2; }
+.share-mail{ color:#7c4dff; }
+
+
+/* =========================================================
+   3) DÉTAILS (Objectif, Matériel, Étapes, Conseils)
+   ========================================================= */
 .activity-details {
   padding: 40px 20px;
   background-color: #fafafa;
 }
 
-/* Disposition du matériel et des étapes */
 .details-container {
   max-width: 1000px;
   margin: 0 auto;
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
-/* Deux colonnes flexibles (matériel / étapes) */
-.materials,
-.steps {
-  flex: 1;
-  min-width: 300px;
-}
-
-/* Titres de section */
-.materials h3,
-.steps h3 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 8px;
-}
-
-/* Listes (puces ou numérotées) */
-.materials ul,
-.steps ol {
-  padding-left: 20px;
-  line-height: 1.6;
-  color: #333;
-}
-
-/* Couleur personnalisée pour les puces/numéros */
-.materials li::marker,
-.steps li::marker {
-  color: #5f2eea;
-}
-
-
-/* ===========================
-   SECTION : ACTIVITÉS SIMILAIRES (CAROUSEL)
-   =========================== */
-
-.related-activities {
-  margin-top: 60px;
-}
-
-.related-activities h3 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-/* Carrousel horizontal scrollable */
-.carousel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-}
-
-/* Élément individuel du carrousel */
-.carousel-item {
-  min-width: 200px;
-  flex: 0 0 auto;
-  text-align: center;
-}
-
-/* Image des cartes du carrousel */
-.carousel-item img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-/* Cartes d'info (matériel / objectif / étapes / conseils) */
+/* Grille des cartes */
 .info-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
+/* La première carte (Objectif) sur toute la ligne */
+.info-cards > .info-card:first-child { grid-column: 1 / -1; }
+
+/* Carte */
 .info-card {
   background: #fff;
   border-radius: 12px;
   padding: 18px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   border: 1px solid #f0f0ff;
 }
 .info-card h3 {
   margin: 0 0 10px;
   font-weight: 700;
+}
+
+
+/* =========================================================
+   4) ACTIVITÉS SIMILAIRES 
+   ========================================================= */
+.related-activities {
+  margin-top: 60px;
+ 
+}
+.related-activities h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Liste horizontale scrollable */
+.related-list{
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 6px;              /* petit espace pour la scrollbar */
+  scroll-snap-type: x mandatory;    /* optionnel, pour snap */
+}
+.related-item{
+  min-width: 200px;
+  flex: 0 0 auto;
+  text-align: center;
+  scroll-snap-align: start;         /* optionnel, avec snap */
+}
+.related-item img{
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+/* =========================================================
+   Impression (version simple : footer normal + footer-top masqué)
+   ========================================================= */
+@media print {
+  /* Reset doux */
+  * { box-shadow: none !important; text-shadow: none !important; }
+  html, body { background: #fff !important; color: #000 !important; }
+
+  /* Marges de page classiques */
+  @page { margin: 15mm; }
+
+  /* Masquer ce qui n’est pas utile sur papier */
+  .activity-actions,
+  .share,
+  .related-activities,
+  .search-bar,
+  .main-nav,
+  .account-buttons,
+  .icons,
+  .news, .news-form,
+  .links,
+  .no-print { display: none !important; }
+
+  /* Header : cacher tout sauf le logo */
+  .site-header { visibility: hidden; }
+  .site-header .logo, .site-header .logo * {
+    visibility: visible; position: relative;
+  }
+
+  /* Entête : image + infos côte à côte */
+  .activity-container{
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+    flex-wrap: nowrap !important;
+  }
+  .activity-image{ flex: 0 0 auto !important; }
+  .activity-image img{ width:100% !important; max-width:300px !important; border-radius:12px !important; }
+  .activity-info{ flex:1 1 auto !important; min-width:0 !important; text-align:left !important; align-items:flex-start !important; }
+  .activity-title{ margin-top:0 !important; }
+
+  /* Détails en une colonne */
+  .info-cards { display:block !important; }
+  .info-card { border:0 !important; padding:0 !important; margin-bottom:12pt !important; break-inside:avoid; page-break-inside:avoid; }
+  .info-card h3 { margin:0 0 6pt !important; }
+
+  /* Footer : on garde le footer, on masque seulement la partie haute */
+  .footer-top { display: none !important; }
+  .footer .footer-bottom{
+    visibility:visible;
+    position:fixed;
+    left:0; right:0; bottom:0mm;
+    height:10mm; line-height:10mm;
+    text-align:center;
+    margin:0; padding:0;
+    z-index:10;
+  }
+  .footer .footer-bottom ul { display: none !important; }
+
+  /* Ne pas afficher les URL après les liens */
+  a[href]::after { content: none !important; }
+
+  /* Petits ajustements */
+  .activity-header { padding-bottom: 16px !important; }
+  .activity-details { padding-top: 16px !important; }
+  .activity-container { margin-top: 0 !important; }
+}
+
+
+/* =========================================================
+   6) MEDIA QUERIES (responsive)
+   ========================================================= */
+
+/* Tablettes (≤ 992px) */
+@media (max-width: 992px) {
+  .activity-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .activity-info {
+    text-align: center;
+    align-items: center;
+  }
+  .info-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobiles (≤ 600px) */
+@media (max-width: 600px) {
+  .activity-container { margin-top: 100px; }
+  .activity-title { font-size: 24px; }
+  .info-cards { grid-template-columns: 1fr; }
+  .related-item img { height: 100px; }
 }
