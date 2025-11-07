@@ -1,0 +1,48 @@
+{# {% extends 'base.html.twig' %} #}
+{# {% block title %}FAQ — Admin{% endblock %} #}
+{% block stylesheets %}
+  {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+<div class="admin-wrapper">
+  {% include 'admin/partials/_sidebar.html.twig' %}
+  <div class="admin-main-content">
+    <div class="content-inner">
+      <div class="content-header">
+        <h1>FAQ</h1>
+        <a href="{{ path('admin_faq_new') }}" class="btn purple">Nouvelle question</a>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th><th>Catégorie</th><th>Position</th>
+            <th>Question</th><th>Publié</th><th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for f in faqs %}
+          <tr>
+            <td>{{ f.id }}</td>
+            <td>{{ f.category }}</td>
+            <td>{{ f.position }}</td>
+            <td>{{ f.question }}</td>
+            <td>{{ f.isPublished ? 'Oui' : 'Non' }}</td>
+            <td class="actions">
+              <a href="{{ path('admin_faq_edit', {id: f.id}) }}" class="btn withe">Éditer</a>
+              <form method="post" action="{{ path('admin_faq_delete', {id: f.id}) }}" style="display:inline" onsubmit="return confirm('Supprimer ?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('del_faq_' ~ f.id) }}">
+                <button class="btn withe">Supprimer</button>
+              </form>
+            </td>
+          </tr>
+        {% else %}
+          <tr><td colspan="6">Aucune entrée.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

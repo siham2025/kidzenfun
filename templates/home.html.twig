@@ -11,6 +11,7 @@
 
 {# --- CSS/JS de l’entry "app" --- #}
 {% block stylesheets %}
+	{{ parent() }}
 	{{ encore_entry_link_tags('app') }}
 {% endblock %}
 
