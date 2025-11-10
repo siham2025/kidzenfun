@@ -19,11 +19,18 @@
             <span>connexion</span>
         </div>
 
+        {# ✅ Messages flash (succès, info, erreur, etc.) #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
         {# 🔐 Titre #}
         <h2 class="login-title">Connectez-vous ici</h2>
         <p class="login-intro">Entrez vos informations pour accéder à votre compte.</p>
 
-        {# ⚠️ Message d'erreur #}
+        {# ⚠️ Message d'erreur d'authentification #}
         {% if error %}
             <div class="flash-error">
                 {{ error.messageKey|trans(error.messageData, 'security') }}
@@ -32,9 +39,9 @@
 
         {# ✅ Formulaire de connexion #}
         <form method="post" class="login-form" action="{{ path('app_login') }}">
-        {# Jeton CSRF pour sécuriser le formulaire contre les attaques CSRF (Cross-Site Request Forgery).
-   Le nom "authenticate" doit correspondre à celui défini dans security.yaml sous csrf_token_id. #}
-          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            {# CSRF (doit correspondre à csrf_token_id: authenticate) #}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
             <div class="form-group">
                 <label for="inputEmail">Email</label>
                 <input type="email" id="inputEmail" name="_username" required autofocus placeholder="Entrez votre email..." class="form-control">

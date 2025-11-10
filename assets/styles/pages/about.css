@@ -146,18 +146,28 @@
   color: #111827;
 }
 
-/* ===========================
-   RÉPONSIVE
-   =========================== */
-@media (max-width: 1024px) {
-  .about-title { font-size: 34px; }
-  .about-lead  { font-size: 17px; }
-}
+/* =======================================
+   ABOUT — Mobile (≤768px) :
+   ======================================= */
+@media (max-width: 768px){
 
-@media (max-width: 768px) {
-  .about-container { padding: 0 16px; }
-  .about-title     { font-size: 30px; }
-  .founder-figure {
+  /* Conteneur */
+  .about-container{
+    padding: 0 16px;
+  }
+
+  /* Titres & lead */
+  .about-title{
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 0 0 12px;
+  }
+  .about-lead{
+    font-size: 16px;
+  }
+
+  /* Photo/figure du fondateur : plus de float, centrée, taille fixe */
+  .founder-figure{
     float: none;
     shape-outside: none;
     width: 180px;
@@ -165,10 +175,15 @@
     margin: 0 auto 12px;
     display: block;
   }
-}
 
-@media (max-width: 420px) {
-  .about-title { font-size: 26px; }
-  .about-lead  { font-size: 16px; }
-  .founder-card { padding: 20px; border-radius: 12px; }
+  /* Carte / encart fondateur */
+  .founder-card{
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  /* (Optionnel) Si tu as une grille à 2 colonnes, on empile en mobile */
+  /* .about-grid{ display: block; } */
+  /* ou si c’est une grille CSS :
+     .about-grid{ display:grid; grid-template-columns: 1fr; gap:16px; } */
 }

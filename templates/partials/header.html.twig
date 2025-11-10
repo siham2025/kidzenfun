@@ -1,39 +1,71 @@
-
 {# =============================
    PARTIAL : HEADER DU SITE
    Fichier : partials/header.html.twig
    ============================= #}
 
-
 <header class="site-header">
   <div class="container-header">
 
-    {# LOGO image renvoie à l'accueil #}
+    {# ======================================
+       1) LOGO / FAVICON
+       - Desktop : grand logo
+       - Mobile  : favicon (le grand logo sera masqué par CSS)
+       ====================================== #}
     <a href="{{ path('home') }}" class="logo" aria-label="Aller à l’accueil">
-      <img src="{{ asset('images/logo_KZF.png') }}" alt="Kidzen&fun" class="logo_img">
+      <img src="{{ asset('images/logo_KZF.png') }}" alt="KidZen&Fun" class="logo_img">
+      <img src="{{ asset('images/Favico_KZF.png') }}" alt="" class="logo_favicon" aria-hidden="true">
     </a>
 
-    {# BARRE DE RECHERCHE #}
-    <form class="search-bar" action="/recherche" method="get">
-      <input type="text" name="q" placeholder="Recherche">
+    {# ======================================
+       2) BARRE DE RECHERCHE
+       - Masquée en mobile via CSS pour gagner de la place
+       ====================================== #}
+    <form class="search-bar" action="/recherche" method="get" role="search">
+      <input type="text" name="q" placeholder="Recherche" aria-label="Rechercher sur le site">
       <button type="submit" aria-label="Rechercher">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+             stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       </button>
     </form>
 
-    {# NAVIGATION #}
-    <nav class="main-nav">
+    {# ======================================
+       3) NAVIGATION PRINCIPALE (et compte en mobile)
+       - Liens standards
+       - Bloc .nav-account affiché DANS le burger en mobile :
+         * Non connecté : Connexion + Inscription
+         * Connecté     : Mon profil + Déconnexion
+       ====================================== #}
+    <nav class="main-nav" id="mobile-nav">
       <a href="{{ path('home') }}">Accueil</a>
       <a href="{{ path('app_activity') }}">Activités</a>
       <a href="{{ path('app_about') }}">À&nbsp;propos</a>
       <a href="{{ path('app_contact') }}">Contact</a>
+
+      <div class="nav-account">
+        {% if app.user %}
+          <a href="{{ path('app_profile') }}" class="nav-profile">
+            <i class="fas fa-user-circle" aria-hidden="true"></i>
+            <span>Mon profil</span>
+          </a>
+          <form action="{{ path('app_logout') }}" method="post" class="nav-logout">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+            <button type="submit" class="nav-btn nav-btn-outline">Déconnexion</button>
+          </form>
+        {% else %}
+          <a href="{{ path('app_login') }}" class="nav-btn nav-btn-primary">Connexion</a>
+          <a href="{{ path('registration') }}" class="nav-btn nav-btn-outline">Inscription</a>
+        {% endif %}
+      </div>
     </nav>
 
-    {# COMPTE #}
+    {# ======================================
+       4) COMPTE (BARRE HAUTE)
+       - Desktop : boutons visibles (Connexion/Inscription ou Mon profil)
+       - Mobile  : CSS affiche uniquement l'ICÔNE au centre (texte masqué)
+       ====================================== #}
     <div class="account-buttons">
       {% if app.user %}
         <a href="{{ path('app_profile') }}" class="profile-link" aria-label="Mon profil">
@@ -45,6 +77,20 @@
         <a href="{{ path('registration') }}" class="btn-register">Inscription</a>
       {% endif %}
     </div>
+
+    {# ======================================
+       5) BOUTON BURGER (MOBILE)
+       - Ouvre/ferme la nav (#mobile-nav)
+       - Le JS togglera .is-open sur .site-header
+       ====================================== #}
+    <button class="burger" type="button"
+            aria-label="Ouvrir le menu"
+            aria-controls="mobile-nav"
+            aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
 
   </div>
 </header>

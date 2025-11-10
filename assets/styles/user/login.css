@@ -102,3 +102,68 @@
   border-radius: 6px;
   text-align: center;
 }
+/* ======================================
+   LOGIN — MOBILE (≤768px)
+====================================== */
+@media (max-width: 768px){
+
+  .login-section{
+    padding: 2rem 1rem;
+  }
+
+  .login-container{
+    margin-top: 3rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+
+  .breadcrumb{
+    font-size: .95rem;
+    margin-bottom: .75rem;
+  }
+
+  .login-title{
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+    text-align: left; /* ou center si tu préfères */
+  }
+
+  .login-intro{
+    font-size: .95rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .login-form{
+    gap: 1rem;
+  }
+
+  .form-group label{
+    margin-bottom: .4rem;
+    font-size: .95rem;
+  }
+
+  .form-control{
+    font-size: 1rem;
+    padding: .7rem .9rem;
+  }
+
+  .form-check{
+    gap: .5rem;
+    font-size: .95rem;
+    margin-top: 0; /* enlève le -1rem en mobile */
+  }
+
+  .btn-primary{
+    width: 100%;                 /* bouton plein-ligne */
+    padding: .9rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+
+  .login-links{
+    margin-top: 1.5rem;
+    font-size: .95rem;
+    text-align: center;
+  }
+}
