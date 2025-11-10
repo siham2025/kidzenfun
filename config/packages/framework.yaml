@@ -19,6 +19,9 @@ framework:
   php_errors:
     log: true
 
+  router:
+    default_uri: 'https://www.kidzen-fun.fr' # Décommente et ajuste pour générer des URL absolues en prod
+
 when@test:
   framework:
     test: true

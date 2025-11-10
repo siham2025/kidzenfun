@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+  <body>
+    <p>Bonjour {{ user.firstName ?? user.email }},</p>
+    <p>Bienvenue sur <strong>Kidzen&Fun</strong> 🎉</p>
+    <p>Merci de confirmer votre adresse e-mail en cliquant ici :</p>
+    <p><a href="{{ verifyUrl }}">Activer mon compte</a></p>
+    {% if expiresAt is defined %}
+      <p><em>Le lien expire le {{ expiresAt|date('d/m/Y H:i') }}.</em></p>
+    {% endif %}
+    <p>Si vous n’êtes pas à l’origine de cette inscription, ignorez ce message.</p>
+  </body>
+</html>

@@ -1,61 +1,118 @@
+# config/packages/security.yaml
 security:
-    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
-    password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
-    providers:
-        # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: email
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            lazy: true
-            provider: app_user_provider
-            form_login:
-                login_path: app_login
-                check_path: app_login
-                enable_csrf: true  # active la protection CSRF
-                csrf_token_id: authenticate # correspond à {{ csrf_token('authenticate') }}
-                default_target_path: home # route vers laquelle l'utilisateur est redirigé après connexion ou déconnexion
-                # always_use_default_target_path: true # force la redirection vers cette route, même si une page était initialement demandée
-            logout:
-                path: app_logout
-                # where to redirect after logout
-                target: app_login
+  #####################################################################
+  # 1) Hachage des mots de passe
+  #    'auto' = Symfony choisit le meilleur algo dispo (argon2id/bcrypt).
+  #####################################################################
+  password_hashers:
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
-                #pour le fonctionnalité se sevenir de moi dans le formulaire de connexion
-            remember_me:
-                secret: '%kernel.secret%'
-                lifetime: 604800           # Durée en secondes (ici 1 semaine)
-                path: /
-                always_remember_me: false # ou true si je veux que ce soit activé même sans cocher    
+  #####################################################################
+  # 2) Chargement des utilisateurs (Provider)
+  #    Ici on charge l'utilisateur par son email depuis l'entité User.
+  #####################################################################
+  providers:
+    app_user_provider:
+      entity:
+        class: App\Entity\User
+        property: email
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+  #####################################################################
+  # 3) Hiérarchie des rôles (facultatif mais pratique)
+  #    Un ADMIN hérite de USER, un SUPER_ADMIN hérite de ADMIN.
+  #####################################################################
+  role_hierarchy:
+    ROLE_ADMIN:       [ROLE_USER]
+    ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+  #####################################################################
+  # 4) Firewalls = par où passent les requêtes et comment on authentifie
+  #####################################################################
+  firewalls:
+    # Firewall désactivé pour les outils de dev (profiler, web debug toolbar…)
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control: # partie qui determine le contrôle d'accès
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+    # Firewall principal (tout le site)
+    main:
+      # Lazy = n'initialise la sécurité que si nécessaire (perf)
+      lazy: true
+      provider: app_user_provider
 
+      # Vérifications custom de l'état du compte (ex: email non vérifié)
+      user_checker: App\Security\UserChecker
+
+      ###################################################################
+      # 4.a) Formulaire de connexion
+      #      - CSRF activé (token 'authenticate' injecté dans le login.html.twig)
+      ###################################################################
+      form_login:
+        login_path: app_login   # route GET qui affiche le formulaire
+        check_path: app_login   # route POST qui traite l'authentification
+        enable_csrf: true
+        csrf_token_id: authenticate
+        default_target_path: home      # où rediriger après login réussi
+        # always_use_default_target_path: true  # décommente si tu veux ignorer la page demandée initialement
+
+      ###################################################################
+      # 4.b) Déconnexion
+      #      - Utilise une requête POST avec un token CSRF 'logout'
+      ###################################################################
+      logout:
+        path: app_logout
+        target: app_login
+        csrf_token_id: logout   # => ajoute un <input _csrf_token> dans ton formulaire de logout
+
+      ###################################################################
+      # 4.c) "Se souvenir de moi" (cookie persistant)
+      #      - secret pris sur APP_SECRET
+      #      - secure/samesite durcis pour la prod HTTPS
+      ###################################################################
+      remember_me:
+        secret: '%kernel.secret%'
+        lifetime: 604800    # 7 jours en secondes
+        path: /
+        secure: true        # en PROD avec HTTPS (laisse true, Symfony gère)
+        samesite: lax
+        always_remember_me: false
+
+      ###################################################################
+      # 4.d) Anti-bruteforce (throttling des tentatives de login)
+      ###################################################################
+      login_throttling:
+        max_attempts: 5          # au-delà de 5 tentatives, on ralentit
+        interval: '15 minutes'   # fenêtre de calcul
+
+      # Optionnel : usurpation d'utilisateur (impersonation) pour l'admin
+      # switch_user:
+      #   role: ROLE_SUPER_ADMIN
+      #   parameter: _switch_user
+
+  #####################################################################
+  # 5) Règles d'accès (dans l'ordre : la première qui matche gagne)
+  #    PUBLIC_ACCESS = accessible sans être authentifié.
+  #    Adapte les chemins à TES routes réelles.
+  #####################################################################
+  access_control:
+    - { path: ^/login,          roles: PUBLIC_ACCESS }
+    - { path: ^/register,       roles: PUBLIC_ACCESS }
+    - { path: ^/reset-password, roles: PUBLIC_ACCESS }
+    - { path: ^/verify/resend, roles: PUBLIC_ACCESS }
+    - { path: ^/verify, roles: PUBLIC_ACCESS }
+    - { path: ^/admin,          roles: ROLE_ADMIN }
+    - { path: ^/profil,         roles: ROLE_USER }
+    - { path: ^/favoris,        roles: ROLE_USER }
+    # le reste est public par défaut (sauf si tu ajoutes d'autres règles)
+
+#######################################################################
+# 6) Réglages spécifiques aux tests : on allège le hachage (plus rapide)
+#######################################################################
 when@test:
-    security:
-        password_hashers:
-            # By default, password hashers are resource intensive and take time. This is
-            # important to generate secure password hashes. In tests however, secure hashes
-            # are not important, waste resources and increase test times. The following
-            # reduces the work factor to the lowest possible values.
-            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
-                algorithm: auto
-                cost: 4 # Lowest possible value for bcrypt
-                time_cost: 3 # Lowest possible value for argon
-                memory_cost: 10 # Lowest possible value for argon
+  security:
+    password_hashers:
+      Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+        algorithm: auto
+        cost: 4       # bcrypt min
+        time_cost: 3  # argon min
+        memory_cost: 10
