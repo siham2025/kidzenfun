@@ -21,11 +21,3 @@ services:
   # App\Controller\Admin\AdminActivityController:
   #   arguments:
   #     $activitiesUploadDir: '%activities_upload_dir%'
-
-  # (laisse ce service si tu l’utilises)
-  App\Service\AwsS3Service:
-    arguments:
-      $accessKeyId: '%env(AWS_ACCESS_KEY_ID)%'
-      $accessSecretKey: '%env(AWS_S3_SECRET_KEY)%'
-      $bucketName: '%env(AWS_BUCKET)%'
-      $region: '%env(AWS_REGION)%'
