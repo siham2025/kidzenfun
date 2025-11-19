@@ -18,7 +18,7 @@
 				<a href="#" class="btn btn-secondary">Modifier</a>
 				<form action="{{ path('app_logout') }}" method="post" style="display:inline;">
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
-					<button type="submit" class="btn btn-outline">Déconnexion</button>
+					
 				</form>
 				{# <a href="{{ path('app_logout') }}" class="btn btn-outline">Déconnexion</a> #}
 			</div>

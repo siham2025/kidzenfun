@@ -4,7 +4,6 @@
     padding: 2rem;
     font-family: 'Segoe UI', sans-serif;
     background: #fdfdfd;
-    margin-top: 200px;
 }
 
 .container h1 {
@@ -56,7 +55,9 @@
 .registration-form select,
 .registration-form textarea {
     width: 100%;
+    max-width: 100%;
     padding: 0.6rem;
+    box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -66,7 +67,6 @@
 @media (max-width: 768px){
 
   .registration-section{
-    margin-top: 120px;
     padding: 1.5rem 1rem;
   }
 

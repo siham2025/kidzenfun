@@ -2,18 +2,20 @@
    🔐 Connexion - login.css
 ====================================== */
 .login-section {
-  padding: 4rem 1rem;
+  padding: 24px 12px;
   background-color: #f9f9ff;
 }
 
 .login-container {
-  max-width: 500px;
-  margin: auto;
+  max-width: 480px;
+  margin: 16px auto;
+  width: 100%;
   background: white;
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   margin-top: 10rem;
+  box-sizing: border-box;
 }
 
 .breadcrumb {
@@ -32,6 +34,14 @@
 .login-intro {
   color: #555;
   margin-bottom: 2rem;
+}
+
+/* Les inputs ne dépassent jamais de la carte */
+.login-form .form-control {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .login-form {
@@ -89,6 +99,13 @@
   transition: background 0.3s ease;
 }
 
+.login-form .btn-primary {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 .btn-primary:hover {
   background-color: #5434c2;
 }
@@ -108,7 +125,7 @@
 @media (max-width: 768px){
 
   .login-section{
-    padding: 2rem 1rem;
+    padding: 16px 8px;
   }
 
   .login-container{

@@ -21,23 +21,14 @@ class Activity
     #[ORM\Column(type: 'string')]
     private string $title;
 
-    // ========== IMAGE ASSOCIÉE (facultative) ==========
+    // ========== IMAGE ASSOCIÉE ==========
     #[ORM\Column(length: 255, nullable: true, type: 'string')]
     private ?string $image = null;
 
-    // ========== GROUPE D'ÂGE VISÉ ==========
+    // ========== GROUPE D'ÂGE  ==========
     #[ORM\Column(type: 'string')]
     private string $ageGroup;
-
-    /**
-     * ======================== IMPORTANT ========================
-     * On remplace les anciens champs JSON par 4 champs TEXT simples :
-     * - materials  : chaque ligne = 1 élément de matériel
-     * - objective  : texte libre
-     * - steps      : chaque ligne = 1 étape
-     * - tips       : chaque ligne = 1 conseil
-     * ===========================================================
-     */
+    // ========== DESCRIPTION ==========
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $materials = null;
 

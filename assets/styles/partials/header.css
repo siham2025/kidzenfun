@@ -102,20 +102,39 @@
   gap: 16px;
   margin-left: auto;
 }
-.btn-login{
-  background: #7c4dff; color: #fff;
-  border: none; padding: 10px 30px;
-  border-radius: 6px; font-size: 15px; font-weight: 500;
-  text-decoration: none; display: inline-block;
-}
-.btn-register{
-  background: #fff; color: #7c4dff;
-  border: 1px solid #7c4dff; padding: 10px 30px;
-  border-radius: 6px; font-size: 15px; font-weight: 500;
-  text-decoration: none; display: inline-block;
-}
-.btn-register:hover{ background: #f4f0ff; }
 
+/* Boutons pleins violets (Connexion + Déconnexion) */
+.btn-login,
+.btn-logout{
+  background: #704FE6;
+  color: #fff;
+  border: 1px solid #704FE6;
+  padding: 10px 30px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.btn-login:hover,
+.btn-logout:hover{
+  background: #fff;color: #704FE6;
+  border-color: #704FE6;
+}
+
+/* Bouton outline (Inscription) */
+.btn-register{
+  background: #fff; color: #704FE6;
+  border: 1px solid #704FE6; padding: 10px 30px;
+  border-radius: 6px; font-size: 15px; font-weight: 500;
+  text-decoration: none; display: inline-block;
+}
+.btn-register:hover{ background: #704FE6; color: #fff; }
+
+/* Lien "Mon profil" */
 .profile-link{
   display: inline-flex; align-items: center; gap: 8px;
   text-decoration: none; color: #111;
@@ -126,40 +145,60 @@
 .profile-link i{ font-size: 24px; color: #7c4dff; }
 .profile-link:hover{ background: #f7f5ff; }
 
+/* Form déconnexion inline (pour rester à côté du profil) */
+.logout-form{ margin: 0; display: inline; }
+
 /* ==========================================
    BURGER (desktop caché)
    ========================================== */
 .burger{ display: none; }
 
-/* ==========================================
+/* ===========================
    MOBILE (≤768px)
-   ========================================== */
+   =========================== */
 @media (max-width: 768px){
 
   /* Barre haute : favicon | profil (icône) | burger */
   .site-header .container-header{
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: auto auto;    /* 2e rangée pour la nav */
+    grid-template-rows: auto auto;        /* 2e rangée = menu */
     align-items: center;
     gap: 8px;
-    padding: 12px 14px;
-    position: relative;               /* ancre pour la nav en position absolute */
+    padding: 10px 10px 10px 4px;
+    position: relative;                    /* ancre pour la nav */
   }
 
+ 
+  .site-header {
+    position: fixed;      /* au lieu de sticky sur mobile */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+  }
+
+  /* tu peux ajuster la valeur selon la hauteur réelle du header */
+  body {
+    padding-top: 72px;
+  }
+
+
   /* Logo → favicon */
-  .logo{ order: 1; justify-self: start; display: inline-flex; align-items: center; }
+  .logo{ order: 1; justify-self: start; display: inline-flex; align-items: center;  }
   .logo_img{ display: none !important; }
   .logo_favicon{ display: block !important; height: 50px; width: 50px; }
 
   /* Profil au centre — icône seule */
   .account-buttons{
-    order: 2; justify-self: center; display: flex; align-items: center; gap: 0;
+    order: 2; justify-self: center; display: flex; align-items: center;
   }
-  .btn-login, .btn-register{ display: none !important; }  /* on garde seulement l’icône */
+  .btn-login, .btn-register, .btn-logout{ display: none !important; } /* icône seule */
   .profile-link{
     padding: 6px;
-    border-radius: 8px; border: 1px solid #b6aaff; background:#fff;
+    border: 1px solid #b6aaff;
+    border-radius: 8px;
+    background:#fff;
     display: inline-flex; align-items:center; justify-content:center;
   }
   .profile-link i{ font-size: 20px; }
@@ -169,31 +208,38 @@
   .burger{
     order: 3; justify-self: end;
     display: inline-grid !important; place-items: center;
-    background: none; border: none; padding: 6px; cursor: pointer; color: #111;
+    background: none; border: none; padding: 10px; cursor: pointer; color: #111; 
+    margin-right: 16px;
   }
+
+  .burger:hover {
+  color: #704FE6; /* ça change le stroke du SVG car il utilise currentColor */
+}
+
+   .burger svg{
+    width: 30px;
+    height: 30px;
+  }
+
+  .burger:hover svg {
+  stroke-width: 2.5;
+}
+
+
 
   /* Recherche masquée */
   .search-bar{ display: none !important; }
 
-  /* ===== Menu vertical =====
-     - absolute sous la barre
-     - hauteur max liée au viewport
-     - scroll interne si contenu trop long
-  */
+  /* Menu vertical (sous la barre) */
   .main-nav{
     grid-column: 1 / -1; grid-row: 2;
     position: absolute; top: 100%; left: 0; right: 0;
-
-    display: none; flex-direction: column; gap: 0;
+    display: none; flex-direction: column;
     background: #fff; border-top: 1px solid #eee;
     box-shadow: 0 10px 20px rgba(0,0,0,.06);
-
-    /* ✅ nouvelle partie */
-    max-height: calc(100dvh - 56px);     /* ajuste 56px si ta barre haute est plus grande */
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-
-    padding: 8px 0 24px;                  /* air en bas */
+    max-height: calc(100dvh - 56px);       /* scroll interne si trop long */
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    padding: 8px 0 24px;
     z-index: 1001;
   }
   .main-nav a{
@@ -205,7 +251,7 @@
   /* Bloc compte dans le menu */
   .main-nav .nav-account{
     display: block;
-    padding: 10px 12px;              /* compact + marge interne */
+    padding: 10px 12px;
     border-top: 1px solid #eee;
     margin-top: 4px;
   }
@@ -216,32 +262,21 @@
   }
   .main-nav .nav-profile i{ font-size: 18px; color: #7c4dff; }
 
-  /* Boutons compacts */
   .main-nav .nav-btn{
-    display: block;
-    width: 100%;
-    box-sizing: border-box;          /* évite le débordement */
-    padding: 9px 12px;
-    font-size: 15px;
-    border-radius: 8px;
-    margin: 8px 0 0;
-    text-decoration: none;
-    border: 1px solid transparent;
-    font-weight: 600;
+    display: block; width: 100%; box-sizing: border-box;
+    padding: 9px 12px; font-size: 15px; font-weight: 600;
+    border-radius: 8px; margin-top: 8px;
+    text-decoration: none; border: 1px solid transparent;
   }
-  .main-nav .nav-btn-primary{
-    background:#7c4dff; color:#fff; border:1px solid #7c4dff;
-  }
-  .main-nav .nav-btn-outline{
-    background:#fff; color:#7c4dff; border:1px solid #7c4dff;
-  }
+  .main-nav .nav-btn-primary{ background:#7c4dff; color:#fff; border-color:#7c4dff; }
+  .main-nav .nav-btn-outline{ background:#fff; color:#7c4dff; border-color:#7c4dff; }
   .main-nav .nav-logout{ margin: 0; }
   .main-nav .nav-logout .nav-btn{ width: 100%; cursor: pointer; }
 
-  /* Ouverture via JS (toggle de .is-open sur .site-header) */
+  /* Ouverture via JS (toggle .is-open sur .site-header) */
   .site-header.is-open .main-nav{ display: flex; }
 
-  /* Accessibilité focus */
+  /* Focus accessibles */
   .burger:focus-visible,
   .profile-link:focus-visible,
   .main-nav a:focus-visible{
@@ -249,9 +284,10 @@
   }
 }
 
-/* ==========================================
-   Cache le bloc nav-account en desktop
-   ========================================== */
+/* ===========================
+   DESKTOP (≥769px)
+   =========================== */
 @media (min-width: 769px){
+  /* Le bloc compte du menu mobile n’existe pas en desktop */
   .main-nav .nav-account{ display: none !important; }
 }

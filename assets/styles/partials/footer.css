@@ -47,9 +47,9 @@
 /* ============================= */
 /* TITRES DE COLONNES            */
 /* ============================= */
-.links h3,
-.news h3,
-.socials h3 {
+.links .footer-title,
+.news .footer-title,
+.socials .footer-title {
   font-size: 18px;
   font-weight: bold;
   margin: 4px 0 12px;

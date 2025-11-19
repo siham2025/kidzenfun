@@ -119,11 +119,16 @@
    =========================== */
 
 .activity-card {
+  box-sizing: border-box;
   background-color: #fff8ee;
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 10px;
   text-align: center;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; 
+
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -135,6 +140,7 @@
 
 /* Image d’activité */
 .activity-card img {
+  display: block;
   width: 100%;
   height: auto;
   border-radius: 6px;
@@ -217,7 +223,9 @@
 
   /* ---------- CONTAINER GLOBAL ---------- */
   .container-filter{
-    padding: 20px 12px;
+    /* padding: 20px 12px; */
+    padding: 0 12px;          
+    box-sizing: border-box;
   }
 
   /* ---------- BARRE DE FILTRES ---------- */

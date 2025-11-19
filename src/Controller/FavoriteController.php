@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class FavoriteController extends AbstractController{
 
-    #[Route('/favorite/toggle/{id}', name: 'toggle_favorite', methods: ['POST'])] //on ne peut appeler cette route qu’en POST, pas via une URL normale.
+    #[Route('/favorite/toggle/{id}', name: 'toggle_favorite', methods: ['POST'])]
     #[IsGranted('ROLE_USER')] //On protège la route : seul un utilisateur connecté avec le rôle ROLE_USER peut l'utiliser.
     public function addToFavorites(Activity $activity, EntityManagerInterface $em): JsonResponse
     {

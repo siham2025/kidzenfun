@@ -5,7 +5,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 		<link
 		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -15,31 +15,28 @@
 			{% endblock %}
 		</title>
 
-		{# ---- FAVICON (petit logo de l'onglet) ---- #}
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+		{# ---- STYLES CSS PAR PAGE ---- #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
-		
+		{# ---- SCRIPTS JS PAR PAGE ---- #}
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
-		{# ---- IMPORT DES SCRIPTS VIA IMPORTMAP ---- #}
-		{# {% block importmap %}
-								      {{ importmap('app') }}
-								    {% endblock %} #}
+
 	</head>
 
 	<body>
+	
 		{# ---- EN-TÊTE DU SITE (partagé sur toutes les pages) ---- #}
 		{% include 'partials/header.html.twig' %}
-
 
 		{# ---- CONTENU PRINCIPAL DE CHAQUE PAGE ---- #}
 		{% block body %}{% endblock %}
 
 		{# ---- PIED DE PAGE DU SITE (partagé sur toutes les pages) ---- #}
 		{% include 'partials/footer.html.twig'%}
+
 	</body>
 
 </html>

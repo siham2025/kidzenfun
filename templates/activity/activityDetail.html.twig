@@ -22,8 +22,8 @@
 {% block body %}
 
 	{# =============================
-													     EN-TÊTE DE L'ACTIVITÉ
-													     ============================= #}
+		EN-TÊTE DE L'ACTIVITÉ
+	============================= #}
 	<section class="activity-header">
 		<div class="activity-container">
 
@@ -34,7 +34,7 @@
 			</div>
 
 			<div class="activity-info">
-				<h2 class="activity-title">{{ activity.title }}</h2>
+				<h1 class="activity-title">{{ activity.title }}</h1>
 
 				{% if activity.themes|length > 0 %}
 					<p class="activity-theme">
@@ -90,8 +90,8 @@
 	</section>
 
 	{# =============================
-									     DÉTAILS DE L'ACTIVITÉ
-									     ============================= #}
+		  DÉTAILS DE L'ACTIVITÉ
+	 ============================= #}
 	<section class="activity-details">
 		<div
 			class="details-container info-cards">
@@ -99,13 +99,13 @@
 
 			{# 2) Objectif #}
 			<div class="info-card">
-				<h3>Objectif :</h3>
+				<h2>Objectif :</h2>
 				<p>{{ activity.objective|default('Non renseigné.')|nl2br }}</p>
 			</div>
 
 			{# 1) Matériel nécessaire #}
 			<div class="info-card">
-				<h3>Matériel nécessaire :</h3>
+				<h2>Matériel nécessaire :</h2>
 				<ul>
 					{% for line in activity.materialsLines %}
 						<li>{{ line }}</li>
@@ -117,7 +117,7 @@
 
 			{# 3) Étapes de réalisation #}
 			<div class="info-card">
-				<h3>Étapes de réalisation :</h3>
+				<h2>Étapes de réalisation :</h2>
 				<ol>
 					{% for s in activity.stepsLines %}
 						<li>{{ s }}</li>
@@ -129,7 +129,7 @@
 
 			{# 4) Conseils #}
 			<div class="info-card">
-				<h3>Conseils :</h3>
+				<h2>Conseils :</h2>
 				<ol>
 					{% for t in activity.tipsLines %}
 						<li>{{ t }}</li>
@@ -142,19 +142,15 @@
 		</div>
 	</section>
 	{# =============================
-									     ACTIVITÉS SIMILAIRES 
-									     ============================= #}
+        ACTIVITÉS SIMILAIRES 
+   ============================= #}
 	<section class="related-activities">
 		<div class="details-container">
 			<h3>Activités similaires :</h3>
 
 			<div class="related-list">
-				{# Variante A : limiter à 6 #}
-				{# {% set items = relatedActivities|slice(0, 4) %} #}
-
 				{# Variante B : mélanger + limiter  #}
 				{% set items = relatedActivities|shuffle|slice(0, 4) %}
-
 					{% for related in items %}
 						{% if related.id != activity.id %}
 							<div class="related-item"> <a href="{{ path('activity_detail', { id: related.id }) }}">

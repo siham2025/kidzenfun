@@ -33,7 +33,7 @@ class AdminActivityController extends AbstractController
     {
         $activity = new Activity();
 
-        // pré-remplissage des champs non mappés : rien en création
+        // pré-remplissage des champs non mappés
         $form = $this->createForm(ActivityFormType::class, $activity, [
             'current_theme' => null,
             'current_type'  => null,
@@ -50,7 +50,7 @@ class AdminActivityController extends AbstractController
                 $file->move($this->getParameter('activities_upload_dir'), $filename);
                 $activity->setImage($filename);
             } else {
-                // ⬅️ ICI : si rien uploadé, on met l'image par défaut
+                // ICI : si rien uploadé, on met l'image par défaut
                 if (!$activity->getImage()) {
                     $activity->setImage('default.png'); 
                 }
@@ -59,7 +59,7 @@ class AdminActivityController extends AbstractController
             $selectedTheme = $form->get('theme')->getData();        // Theme|null
             $selectedType  = $form->get('activityType')->getData(); // ActivityType|null
 
-            // Pas d'anciens liens en création, on nettoie par sécurité puis on ajoute des 2 côtés
+          
             $activity->getThemes()->clear();
             if ($selectedTheme) {
                 $activity->addTheme($selectedTheme);        // côté inverse

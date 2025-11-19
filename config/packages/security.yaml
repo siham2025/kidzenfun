@@ -2,7 +2,7 @@
 security:
   #####################################################################
   # 1) Hachage des mots de passe
-  #    'auto' = Symfony choisit le meilleur algo dispo (argon2id/bcrypt).
+  #    'auto' = Symfony choisit le meilleur algo dispo (argon2id).
   #####################################################################
   password_hashers:
     Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
