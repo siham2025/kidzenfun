@@ -1,18 +1,24 @@
-<h1>Réinitialisation de votre mot de passe</h1>
-
-<p>Bonjour,</p>
-
-<p>Pour définir un nouveau mot de passe, cliquez sur le lien ci-dessous&nbsp;:</p>
+<h2>Bonjour !</h2>
 
 <p>
-  <a href="{{ url('app_reset_password', { token: resetToken.token }) }}">
-    Réinitialiser mon mot de passe
-  </a>
+    Pour réinitialiser votre mot de passe sur <strong>KidZen&Fun</strong>,
+    cliquez sur le lien ci-dessous :
 </p>
 
 <p>
-  Ce lien expirera
-  {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">
+        Réinitialiser mon mot de passe
+    </a>
 </p>
 
-<p>Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet e-mail.</p>
+<p>
+    Ce lien expirera dans
+    {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+</p>
+
+<p>
+    Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet email.
+</p>
+
+<p>À bientôt sur Kidzen&Fun !</p>
+<p>L’équipe Kidzen&Fun</p>

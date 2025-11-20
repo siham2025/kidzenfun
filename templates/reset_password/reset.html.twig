@@ -1,23 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveau mot de passe{% endblock %}
+{% block title %}Nouveau mot de passe - Kidzen&Fun{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
 
 {% block body %}
-  <div class="container" style="max-width:720px;margin:32px auto;">
-    <h1>Définir un nouveau mot de passe</h1>
+<section class="reset-page">
+    <div class="reset-container">
 
-    {{ form_start(resetForm, { attr: { class: 'user-form' } }) }}
-      {{ form_row(resetForm.plainPassword, {
-        row_attr:   { class: 'field' },
-        label:      'Nouveau mot de passe',
-        label_attr: { class: 'label' },
-        attr:       { class: 'input' }
-      }) }}
+        <h1 class="reset-title">Choisissez un nouveau mot de passe</h1>
+        <p class="reset-intro">
+            Saisissez votre nouveau mot de passe ci-dessous.
+        </p>
 
-      <div class="buttons" style="margin-top:12px;">
-        <button class="btn purple">Enregistrer</button>
-        <a href="{{ path('app_login') }}" class="btn withe">Annuler</a>
-      </div>
-    {{ form_end(resetForm) }}
-  </div>
+        {{ form_start(resetForm) }}
+
+            <div class="reset-field">
+                {{ form_label(resetForm.plainPassword) }}
+                {{ form_widget(resetForm.plainPassword, {'attr': {'class': 'reset-input'}}) }}
+                {{ form_errors(resetForm.plainPassword) }}
+            </div>
+
+            <button class="reset-button">Mettre à jour le mot de passe</button>
+
+        {{ form_end(resetForm) }}
+
+    </div>
+</section>
 {% endblock %}

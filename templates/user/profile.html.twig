@@ -18,7 +18,7 @@
 				<a href="#" class="btn btn-secondary">Modifier</a>
 				<form action="{{ path('app_logout') }}" method="post" style="display:inline;">
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
-					
+
 				</form>
 				{# <a href="{{ path('app_logout') }}" class="btn btn-outline">Déconnexion</a> #}
 			</div>
@@ -26,8 +26,8 @@
 	</section>
 
 	{# <section class="profile-actions">
-			<div
-				class="container">{# <a href="{{ path('app_home') }}" class="btn btn-primary">Chercher une activité</a> #}
+					<div
+						class="container">{# <a href="{{ path('app_home') }}" class="btn btn-primary">Chercher une activité</a> #}
 	{# </div> #}
 	{# </section> #}
 
@@ -44,8 +44,8 @@
 							{{ activity.themes[0].name }}</p>
 						<a href="{{ path('activity_detail', { id: activity.id }) }}" class="btn btn-sm">Découvrir</a>
 						{# icone de suppression de l'activité #}
-						<form class="delete-favorite-form" method="post" action="{{ path('remove_favorite', { id: activity.id }) }}" onsubmit="return confirm('Supprimer cette activité de vos favoris ?');">
-							<button type="submit" class="tooltip-btn">
+						<form class="delete-favorite-form" method="post" action="{{ path('remove_favorite', { id: activity.id }) }}">
+							<button type="submit" class="tooltip-btn" data-activity-title="{{ activity.title }}" aria-label="Supprimer cette activité de vos favoris">
 								<i class="fas fa-trash"></i>
 								<span class="tooltip-text">Supprimer</span>
 							</button>
@@ -59,4 +59,82 @@
 			</div>
 		</div>
 	</section>
+	{# Modal de confirmation suppression favori #}
+	<div id="favorite-modal-overlay" class="favorite-modal-overlay favorite-modal-hidden">
+		<div class="favorite-modal">
+			<h2 class="favorite-modal-title">Confirmer la suppression</h2>
+			<p class="favorite-modal-text" id="favorite-modal-text">
+				Êtes-vous sûr de vouloir supprimer cette activité de vos favoris ?
+			</p>
+			<div class="favorite-modal-actions">
+				<button type="button" id="favorite-cancel-btn" class="favorite-btn favorite-btn-secondary">
+					Annuler
+				</button>
+				<button type="button" id="favorite-confirm-btn" class="favorite-btn favorite-btn-danger">
+					Confirmer
+				</button>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const overlay   = document.getElementById('favorite-modal-overlay');
+            const cancelBtn = document.getElementById('favorite-cancel-btn');
+            const confirmBtn= document.getElementById('favorite-confirm-btn');
+            const textEl    = document.getElementById('favorite-modal-text');
+
+            if (!overlay || !cancelBtn || !confirmBtn) {
+                return;
+            }
+
+            let formToSubmit = null;
+
+            // Intercepter la soumission des formulaires de suppression
+            document.querySelectorAll('.delete-favorite-form').forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault(); // empêche l'envoi immédiat
+                    formToSubmit = form;
+
+                    // Optionnel : affiche le titre de l'activité dans le texte du modal
+                    const btn = form.querySelector('.tooltip-btn');
+                    const title = btn ? btn.getAttribute('data-activity-title') : null;
+
+                    if (title && textEl) {
+                        textEl.textContent =
+                            'Êtes-vous sûr de vouloir supprimer "' + title + '" de vos favoris ?';
+                    } else if (textEl) {
+                        textEl.textContent =
+                            'Êtes-vous sûr de vouloir supprimer cette activité de vos favoris ?';
+                    }
+
+                    overlay.classList.remove('favorite-modal-hidden');
+                });
+            });
+
+            // Bouton Annuler
+            cancelBtn.addEventListener('click', function () {
+                overlay.classList.add('favorite-modal-hidden');
+                formToSubmit = null;
+            });
+
+            // Bouton Confirmer
+            confirmBtn.addEventListener('click', function () {
+                if (formToSubmit) {
+                    formToSubmit.submit();
+                }
+            });
+
+            // Fermer en cliquant sur l’overlay
+            overlay.addEventListener('click', function (event) {
+                if (event.target === overlay) {
+                    overlay.classList.add('favorite-modal-hidden');
+                    formToSubmit = null;
+                }
+            });
+        });
+    </script>
 {% endblock %}

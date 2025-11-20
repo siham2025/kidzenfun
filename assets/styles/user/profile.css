@@ -1,4 +1,3 @@
-
 /* ===========================
    PROFILE BANNER
    =========================== */
@@ -64,6 +63,10 @@
 }
 
 
+/* ===========================
+   FAVORITES
+   =========================== */
+
 .favorites {
   padding: 40px 20px;
   background: #f9f9f9;
@@ -92,9 +95,11 @@
   object-fit: cover;
   border-radius: 8px;
 }
+
 .activity-card .btn.btn-sm:hover {
   color: #fff;
 }
+
 .delete-favorite-form {
   position: absolute;
   bottom: 10px;
@@ -109,14 +114,12 @@
 }
 
 .delete-favorite-form button i {
-    color:#a00 !important;
+  color:#a00 !important;
   font-size: 16px;
 }
 
 .tooltip-btn {
   position: relative;
-
-  
 }
 
 .tooltip-btn .tooltip-text {
@@ -139,6 +142,7 @@
 .tooltip-btn:hover .tooltip-text {
   opacity: 1;
 }
+
 /* =======================================
    PROFIL — MOBILE (≤768px)
    ======================================= */
@@ -167,10 +171,16 @@
     justify-content: center;
     gap: 10px;
   }
-  .profile-banner .btn{ padding: 8px 12px; font-size: 14px; border-radius: 8px; }
+  .profile-banner .btn{
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
 
   /* Section favoris */
-  .favorites{ padding: 28px 16px; }
+  .favorites{
+    padding: 28px 16px;
+  }
 
   /* >>> 1 SEULE COLONNE EN MOBILE <<< */
   .favorites-grid{
@@ -198,8 +208,14 @@
     display: block;
   }
 
-  .activity-card h4{ font-size: 16px; margin: 6px 0 4px; }
-  .activity-card p{ font-size: 14px; margin: 2px 0; }
+  .activity-card h4{
+    font-size: 16px;
+    margin: 6px 0 4px;
+  }
+  .activity-card p{
+    font-size: 14px;
+    margin: 2px 0;
+  }
 
   .btn.btn-sm{
     padding: 8px 12px;
@@ -208,7 +224,8 @@
 
   /* Icône supprimer (garde l’absolu) */
   .delete-favorite-form{
-    bottom: 10px; right: 10px;
+    bottom: 10px;
+    right: 10px;
   }
 
   /* Tooltip : un peu plus lisible en mobile */
@@ -216,4 +233,84 @@
     font-size: 12px;
     padding: 4px 6px;
   }
+}
+
+
+/* ===========================
+   MODAL SUPPRESSION FAVORI
+   =========================== */
+
+.favorite-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.favorite-modal-hidden {
+  display: none;
+}
+
+.favorite-modal {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.favorite-modal-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.favorite-modal-text {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.favorite-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.favorite-btn {
+  min-width: 120px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* bouton violet "Annuler" */
+.favorite-btn-secondary {
+  background: #ffffff;
+  border-color: #6c45e0;
+  color: #6c45e0;
+}
+
+.favorite-btn-secondary:hover {
+  background: #f4f0ff;
+}
+
+/* bouton rouge "Confirmer" */
+.favorite-btn-danger {
+  background: #e02424;
+  color: #ffffff;
+}
+
+.favorite-btn-danger:hover {
+  background: #c11c1c;
+}
+
+.favorite-btn:active {
+  transform: translateY(1px);
 }

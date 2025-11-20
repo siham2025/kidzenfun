@@ -27,6 +27,8 @@ import './../styles/user/login.css';
 import './../styles/user/profile.css';
 import './../styles/user/registration.css';
 import './../styles/user/contact.css';
+import './../styles/user/reset-password.css';
+
 
 //legal
 import './../styles/legal/legal.css';

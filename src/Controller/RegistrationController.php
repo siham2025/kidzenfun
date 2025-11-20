@@ -76,7 +76,7 @@ final class RegistrationController extends AbstractController
             $mailer->send($email);
 
             // 6) Message de confirmation + redirection vers la page de login (PAS de login auto)
-            $this->addFlash('success', 'Un e-mail de vérification vient de vous être envoyé. Merci de confirmer votre adresse avant de vous connecter.');
+            // $this->addFlash('success', 'Un e-mail de vérification vient de vous être envoyé. Merci de confirmer votre adresse avant de vous connecter.');
             return $this->redirectToRoute('app_login');
         }
 

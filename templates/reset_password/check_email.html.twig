@@ -1,25 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}E-mail envoyé{% endblock %}
+{% block title %}Email de réinitialisation envoyé - KidZen&Fun{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
 
 {% block body %}
-  <div class="container" style="max-width:720px;margin:32px auto;">
-    <h1>E-mail de réinitialisation envoyé</h1>
+<section class="reset-page">
+    <div class="reset-container">
 
-    <p>
-      S’il existe un compte pour cette adresse, nous venons d’envoyer un e-mail contenant un lien
-      pour réinitialiser votre mot de passe.
-      Ce lien expirera
-      {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
+        <h1 class="reset-title">Vérifiez votre messagerie</h1>
 
-    <p>
-      Si vous ne recevez pas l’e-mail, vérifiez vos spams ou
-      <a href="{{ path('app_forgot_password_request') }}">demandez un nouveau lien</a>.
-    </p>
+        <div class="reset-text-block">
+            <p>
+                Si un compte correspond à cet email, un message vient de vous être envoyé.
+                Il contient un lien pour réinitialiser votre mot de passe.
+            </p>
+            <p>
+                Ce lien expirera dans
+                <strong>{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}</strong>.
+            </p>
+            <p>
+                Vous n’avez rien reçu ? Vérifiez vos spams ou
+                <a href="{{ path('app_forgot_password_request') }}">réessayez</a>.
+            </p>
+        </div>
 
-    <div class="buttons" style="margin-top:12px;">
-      <a href="{{ path('app_login') }}" class="btn purple">Aller à la connexion</a>
     </div>
-  </div>
+</section>
 {% endblock %}
