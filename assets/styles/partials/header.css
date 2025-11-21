@@ -2,7 +2,7 @@
    HEADER PRINCIPAL : apparence & position
    ========================================== */
 .site-header{
-  position: sticky;
+  position: fixed !important;
   top: 0; left: 0; right: 0;
   z-index: 1000;
   background: #fff;
@@ -169,9 +169,9 @@
     position: relative;                    /* ancre pour la nav */
   }
 
- 
+
   .site-header {
-    position: fixed;      /* au lieu de sticky sur mobile */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -208,7 +208,7 @@
   .burger{
     order: 3; justify-self: end;
     display: inline-grid !important; place-items: center;
-    background: none; border: none; padding: 10px; cursor: pointer; color: #111; 
+    background: none; border: none; padding: 10px; cursor: pointer; color: #111;
     margin-right: 16px;
   }
 
