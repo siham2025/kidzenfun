@@ -10,8 +10,8 @@
 {% block body %}
 	<section class="profile-banner" style="--profile-banner:url('{{ asset('images/profile2.png') }}')">
 		<div class="container-profile">
-			<h2>Bienvenue,
-				{{ app.user.firstname|default('Nom de l’utilisateur') }}</h2>
+			<h1>Bienvenue,
+				{{ app.user.firstname|default('Nom de l’utilisateur') }}</h1>
 			<p>Découvrez vos activités favorites et gérez votre profil ici.</p>
 
 			<div class="profile-buttons">
@@ -32,7 +32,7 @@
 	{# </section> #}
 
 		<section class="favorites"> <div class="container-profile">
-			<h3>Mes activités favorites</h3>
+			<h2>Mes activités favorites</h2>
 			<div class="favorites-grid">
 				{% for activity in favorites %}
 					<div class="activity-card">

@@ -1,6 +1,7 @@
 /* ===========================
    PROFILE BANNER
    =========================== */
+
 .profile-banner{
   position: relative;
   min-height: 280px;               /* hauteur de la bannière */
@@ -8,6 +9,7 @@
   place-items: center;             /* centre le bloc interne */
   padding: 40px 16px;
   color: #fff;
+  margin-top: 130px;
 
   /* image de fond via variable CSS (posée en inline style dans Twig) */
   background-image: var(--profile-banner);
@@ -37,14 +39,14 @@
   text-align: left;                /* ou center si tu préfères */
 }
 
-.profile-banner h2{
-  font-size: 34px;
+.profile-banner h1{
+  font-size: 36px;
   font-weight: 800;
   margin: 0 0 8px;
 }
 
 .profile-banner p{
-  font-size: 16px;
+  font-size: 20px;
   margin: 0 0 18px;
   opacity: .95;
 }
@@ -59,7 +61,7 @@
 .profile-banner .btn{
   border-radius: 10px;
   color: #fff;
-  font-size: large;
+  font-size:larger;
 }
 
 
@@ -154,6 +156,7 @@
     padding: 28px 16px;
     place-items: center;
     text-align: center;
+    margin-top: 0;
   }
   .profile-banner .container-profile{
     max-width: 680px;

@@ -6,6 +6,7 @@
 .about {
   padding: 64px 0 48px;
   background: #fff;
+  margin-top: 100px;
 }
 
 .about-container {
@@ -152,6 +153,11 @@
 @media (max-width: 768px){
 
   /* Conteneur */
+
+  .about {
+  margin-top: 0px;
+}
+
   .about-container{
     padding: 0 16px;
   }
