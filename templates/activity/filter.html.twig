@@ -20,7 +20,7 @@
      SECTION : BANNIÈRE HERO
      ======================== #}
   <section class="hero-banner">
-    <img src="{{ asset('images/banner_activities.png') }}" alt="Enfants faisant des activités" class="hero-image">
+    <img src="{{ asset('images/banner_activities.png') }}" alt="Enfants faisant des activités" class="hero-image" loading="lazy">
     <div class="overlay"></div>
     <div class="hero-text">
       <h1>Explorez les Activités</h1>
@@ -74,7 +74,7 @@
       {% for activity in activities %}
         <div class="activity-card{% if loop.index0 >= 12 %} is-hidden{% endif %}">
           {% if activity.image %}
-            <img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
+            <img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}" loading="lazy">
           {% endif %}
 
           <h3>{{ activity.title }}</h3>

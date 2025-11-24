@@ -29,7 +29,7 @@
 
 			<div class="activity-image">
 				{% if activity.image %}
-					<img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
+					<img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}" loading="lazy">
 				{% endif %}
 			</div>
 
@@ -154,7 +154,7 @@
 					{% for related in items %}
 						{% if related.id != activity.id %}
 							<div class="related-item"> <a href="{{ path('activity_detail', { id: related.id }) }}">
-								<img src="{{ asset('images/activities/' ~ related.image) }}" alt="{{ related.title }}">
+								<img src="{{ asset('images/activities/' ~ related.image) }}" alt="{{ related.title }}" loading="lazy">
 								<h4>{{ related.title }}</h4>
 							</a>
 						</div>

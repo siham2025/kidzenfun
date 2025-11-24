@@ -25,7 +25,7 @@
 	{# =========================
 	     SECTION : BANNIÈRE HERO
 	     ========================= #}
-	<section class="hero" style="background-image: url('{{ asset('images/hero.jpeg') }}');">
+	<section class="hero" style="background-image: url('{{ asset('images/hero.jpeg') }}');" loading="lazy">
 		<div class="hero-content">
 			<h1 class="hero-tagline">
 				Découvrez un monde d’activités pour apprendre et s’amuser avec les enfants
@@ -50,32 +50,32 @@
 				class="theme-grid">
 				{# Liens directs vers le filtre par thème #}
 				<a href="{{ path('app_activity', { theme: 'Motricité' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/moticite.jpeg') }}" alt="Motricité">
+					<img src="{{ asset('images/themes/moticite.jpeg') }}" alt="Motricité" loading="lazy">
 					<span>MOTRICITÉ</span>
 				</a>
 
 				<a href="{{ path('app_activity', { theme: 'Nature' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/nature.png') }}" alt="Nature">
+					<img src="{{ asset('images/themes/nature.png') }}" alt="Nature" loading="lazy">
 					<span>NATURE</span>
 				</a>
 
 				<a href="{{ path('app_activity', { theme: 'Creatif' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/creatif.jpeg') }}" alt="Créatif">
+					<img src="{{ asset('images/themes/creatif.jpeg') }}" alt="Créatif" loading="lazy">
 					<span>CRÉATIF</span>
 				</a>
 
 				<a href="{{ path('app_activity', { theme: 'Cognitif' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/cognitif.png') }}" alt="Cognitif">
+					<img src="{{ asset('images/themes/cognitif.png') }}" alt="Cognitif" loading="lazy">
 					<span>COGNITIF</span>
 				</a>
 
 				<a href="{{ path('app_activity', { theme: 'Scientifique' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/scientifique.jpeg') }}" alt="Scientifique">
+					<img src="{{ asset('images/themes/scientifique.jpeg') }}" alt="Scientifique" loading="lazy">
 					<span>SCIENTIFIQUE</span>
 				</a>
 
 				<a href="{{ path('app_activity', { theme: 'Expression' }) }}" class="theme-card">
-					<img src="{{ asset('images/themes/expression.png') }}" alt="Expression">
+					<img src="{{ asset('images/themes/expression.png') }}" alt="Expression" loading="lazy">
 					<span>EXPRESSION</span>
 				</a>
 			</div>
@@ -104,7 +104,7 @@
 				</div>
 
 				<div class="activity-of-day-image">
-					<img src="{{ asset('images/activities/' ~ item.image) }}" alt="{{ item.title }}">
+					<img src="{{ asset('images/activities/' ~ item.image) }}" alt="{{ item.title }}" loading="lazy">
 				</div>
 			{% endfor %}
 		</div>
@@ -113,7 +113,7 @@
 	{# =============================
 	     SECTION : SLOGAN FINAL
 	     ============================= #}
-	<section class="slogon" style="background-image: url('{{ asset('images/slogon8.png') }}');">
+	<section class="slogon" style="background-image: url('{{ asset('images/slogon8.png') }}');" loading="lazy">
 		<div class="slogon-text">
 			<h2>Des activités amusantes pour chaque enfant, à portée de clic !</h2>
 			<P>Kidzen&fun vous offre une multitude d'activités adaptées à tous les âges. Explorez, jouez et apprenez en toute simplicité avec notre sélection variée.</P>

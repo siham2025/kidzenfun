@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %}
-	<section class="profile-banner" style="--profile-banner:url('{{ asset('images/profile2.png') }}')">
+	<section class="profile-banner" style="--profile-banner:url('{{ asset('images/profile2.png') }}')" loading="lazy">
 		<div class="container-profile">
 			<h1>Bienvenue,
 				{{ app.user.firstname|default('Nom de l’utilisateur') }}</h1>
@@ -36,7 +36,7 @@
 			<div class="favorites-grid">
 				{% for activity in favorites %}
 					<div class="activity-card">
-						<img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}">
+						<img src="{{ asset('images/activities/' ~ activity.image) }}" alt="{{ activity.title }}" loading="lazy">
 						<h4>{{ activity.title }}</h4>
 						<p>Âge :
 							{{ activity.ageGroup }}</p>
