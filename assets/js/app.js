@@ -37,7 +37,7 @@ import './../styles/legal/legal.css';
 
 import './../styles/pages/about.css';
 import './../styles/pages/faq.css';
-
+import './../styles/pages/error.css';
 
 //Admin
 import './../styles/admin/_admin.css';
