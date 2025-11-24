@@ -1,42 +1,48 @@
 /* ============ FAQ ============ */
-.faq { padding: 56px 0 64px; background:#fff; }
+.faq {
+  padding: 3.5rem 0 4rem;          /* 56px 0 64px */
+  background:#fff;
+}
 
 .faq-container {
-  max-width: 800px;
+  max-width: 50rem;                /* 800px */
   margin: 0 auto;
-  padding: 0 20px;
-  margin-top: 130px;
+  padding: 0 1.25rem;              /* 20px */
+  margin-top: 8.125rem;            /* 130px */
 }
 
 .faq-title {
   text-align: center;
-  font-size: 34px;
+  font-size: 2.125rem;             /* 34px */
   font-weight: 700;
-  margin: 0 0 12px;
+  margin: 0 0 0.75rem;             /* 12px */
 }
 
 .faq-intro {
   text-align: center;
   color: #374151;
-  margin: 0 0 28px;
+  margin: 0 0 1.75rem;             /* 28px */
 }
 
-.faq-list { display: grid; gap: 14px; }
+.faq-list {
+  display: grid;
+  gap: 0.875rem;                   /* 14px */
+}
 
 /* Accordéon */
 .faq-item {
   background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 0;          /* le padding est géré séparément */
+  border-radius: 12px;             /* px conservé */
+  padding: 0;
   overflow: hidden;
-  box-shadow: 0 5px 16px rgba(17,24,39,.06);
+  box-shadow: 0 5px 16px rgba(17,24,39,.06); /* px conservé */
 }
 
 .faq-question {
   list-style: none;
   cursor: pointer;
-  padding: 16px 18px;
+  padding: 1rem 1.125rem;          /* 16px 18px */
   font-weight: 600;
   position: relative;
 }
@@ -47,27 +53,39 @@
 .faq-question::after{
   content: "▾";
   position: absolute;
-  right: 16px; top: 50%;
+  right: 1rem;                     /* 16px */
+  top: 50%;
   transform: translateY(-50%) rotate(0deg);
   transition: transform .2s ease;
   color:#6b7280;
 }
-.faq-item[open] .faq-question::after { transform: translateY(-50%) rotate(180deg); }
+
+.faq-item[open] .faq-question::after {
+  transform: translateY(-50%) rotate(180deg);
+}
 
 .faq-answer {
-  padding: 0 18px 18px;
+  padding: 0 1.125rem 1.125rem;    /* 0 18px 18px */
   color:#374151;
   border-top: 1px dashed #e5e7eb;
 }
 
 /* liens */
-.faq a { color:#7C3AED; text-decoration: underline; }
-.faq a:hover { text-decoration-thickness: 2px; }
+.faq a {
+  color:#7C3AED;
+  text-decoration: underline;
+}
+
+.faq a:hover {
+  text-decoration-thickness: 2px;
+}
 
 /* responsive */
 @media (max-width: 480px){
   .faq-container {
-  margin-top:0px;
-}
-  .faq-title{ font-size:28px; }
+    margin-top: 0;
+  }
+  .faq-title{
+    font-size: 1.75rem;            /* 28px */
+  }
 }

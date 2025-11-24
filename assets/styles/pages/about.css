@@ -4,45 +4,45 @@
 
 /* Conteneur principal centré */
 .about {
-  padding: 64px 0 48px;
+  padding: 4rem 0 3rem;                  /* 64px 0 48px */
   background: #fff;
-  margin-top: 100px;
+  margin-top: 6.25rem;                   /* 100px */
 }
 
 .about-container {
-  max-width: 800px;          /* largeur lisible */
-  margin: 0 auto;            /* centre la page */
-  padding: 0 20px;           /* respiration latérale */
+  max-width: 50rem;                      /* 800px */
+  margin: 0 auto;
+  padding: 0 1.25rem;                    /* 20px */
 }
 
-/* Petit motif/eyebrow (… ) au-dessus du titre */
+/* Petit motif/eyebrow */
 .about-eyebrow {
-  font-size: 28px;
+  font-size: 1.75rem;                    /* 28px */
   line-height: 1;
-  margin: 0 0 12px;
-  color: #a78bfa;            /* violet doux */
+  margin: 0 0 0.75rem;                   /* 12px */
+  color: #a78bfa;
   text-align: center;
 }
 
-/* Titre principal de la page */
+/* Titre principal */
 .about-title {
-  font-size: 38px;
+  font-size: 2.375rem;                   /* 38px */
   font-weight: 700;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;               /* 50px */
 }
 
-/* Accroche sous le titre */
+/* Accroche */
 .about-lead {
   text-align: center;
-  font-size: 22px;
-  margin-bottom: 28px;
+  font-size: 1.375rem;                   /* 22px */
+  margin-bottom: 1.75rem;                /* 28px */
   color: #374151;
 }
 
 .about-lead strong {
-  color: #7C3AED; /* accent violet principal */
-  text-shadow: 0 0 8px rgba(124, 58, 237, 0.4); /* effet lumineux */
+  color: #7C3AED;
+  text-shadow: 0 0 0.5rem rgba(124, 58, 237, 0.4); /* 8px */
   font-weight: 700;
 }
 
@@ -52,7 +52,7 @@
   line-height: 2;
 }
 
-/* Liens éventuels */
+/* Liens */
 .about a {
   color: #7C3AED;
   text-decoration: underline;
@@ -64,60 +64,60 @@
    =========================== */
 
 .founder-note {
-  margin: 48px 0 0;
+  margin: 3rem 0 0;                      /* 48px */
 }
 
 .founder-card {
   background:
     linear-gradient(#ffffff, #ffffff) padding-box,
-    radial-gradient(1200px 200px at 50% -160px,
+    radial-gradient(75rem 12.5rem at 50% -10rem,    /* 1200px 200px, -160px */
       rgba(124,58,237,.08), transparent) border-box;
   border: 1px solid #e5e7eb;
-  border-radius: 16px;
+  border-radius: 16px;                   /* px */
   box-shadow:
-    0 10px 25px rgba(17, 24, 39, .06),
-    0 1px 2px rgba(17, 24, 39, .05);
-  padding: 28px;
-  margin-top: 80px;
-  margin-bottom: 80px;
+    0 0.625rem 1.5625rem rgba(17, 24, 39, .06),     /* 10px 25px */
+    0 0.0625rem 0.125rem rgba(17, 24, 39, .05);     /* 1px 2px */
+  padding: 1.75rem;                      /* 28px */
+  margin-top: 5rem;                      /* 80px */
+  margin-bottom: 5rem;                   /* 80px */
   position: relative;
   overflow: hidden;
 }
 
-/* Aspect "papier ligné" */
+/* Papier ligné */
 .founder-card::after {
   content: "";
   position: absolute; inset: 0;
   background:
     repeating-linear-gradient(
       to bottom,
-      transparent 0px,
-      transparent 31px,
-      rgba(17, 24, 39, .04) 32px
+      transparent 0,
+      transparent 1.9375rem,             /* 31px */
+      rgba(17, 24, 39, .04) 2rem         /* 32px */
     );
   pointer-events: none;
 }
 
 /* Titre de la note */
 .founder-title {
-  margin: 0 0 16px;
-  font-size: 22px;
+  margin: 0 0 1rem;                      /* 16px */
+  font-size: 1.375rem;                   /* 22px */
   font-weight: 700;
   color: #111827;
 }
 
-/* -------- Note de la fondatrice : habillage sans grid -------- */
+/* Bloc flottant */
 .founder-wrap {
   position: relative;
 }
 
-/* Image flottée à droite + habillage circulaire */
+/* Image flottée */
 .founder-figure {
-  float: right;                    
-  width: 200px;
-  height: 200px;
+  float: right;
+  width: 12.5rem;                        /* 200px */
+  height: 12.5rem;                       /* 200px */
   shape-outside: circle(50%);
-  margin-bottom: 30px;
+  margin-bottom: 1.875rem;               /* 30px */
 }
 
 .founder-figure img {
@@ -126,70 +126,66 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 8px solid #ede9fe;
-  box-shadow: 0 6px 16px rgba(17,24,39,.12),
-              0 0 0 6px rgba(167,139,250,.25);
+
+  border: 0.5rem solid #ede9fe;          /* 8px */
+  box-shadow:
+    0 0.375rem 1rem rgba(17,24,39,.12),  /* 6px 16px */
+    0 0 0 0.375rem rgba(167,139,250,.25);/* 6px */
 }
 
-/* Contenir le float */
+/* Clear float */
 .founder-wrap::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Texte */
-.founder-text p { margin: 0 0 14px; color: #374151; line-height: 2;}
-.founder-text em { font-style: italic; }
+.founder-text p {
+  margin: 0 0 0.875rem;                  /* 14px */
+  color: #374151;
+  line-height: 2;
+}
+
 .founder-sign {
-  margin-top: 12px;
+  margin-top: 0.75rem;                   /* 12px */
   font-weight: 600;
   color: #111827;
 }
 
-/* =======================================
-   ABOUT — Mobile (≤768px) :
-   ======================================= */
+/* ===========================
+   MOBILE (≤768px)
+   =========================== */
 @media (max-width: 768px){
 
-  /* Conteneur */
-
   .about {
-  margin-top: 0px;
-}
-
-  .about-container{
-    padding: 0 16px;
+    margin-top: 0;
   }
 
-  /* Titres & lead */
-  .about-title{
-    font-size: 30px;
+  .about-container {
+    padding: 0 1rem;                     /* 16px */
+  }
+
+  .about-title {
+    font-size: 1.875rem;                 /* 30px */
     line-height: 1.2;
-    margin: 0 0 12px;
-  }
-  .about-lead{
-    font-size: 16px;
+    margin: 0 0 0.75rem;                 /* 12px */
   }
 
-  /* Photo/figure du fondateur : plus de float, centrée, taille fixe */
-  .founder-figure{
+  .about-lead {
+    font-size: 1rem;                     /* 16px */
+  }
+
+  .founder-figure {
     float: none;
     shape-outside: none;
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 12px;
+    width: 11.25rem;                     /* 180px */
+    height: 11.25rem;
+    margin: 0 auto 0.75rem;
     display: block;
   }
 
-  /* Carte / encart fondateur */
-  .founder-card{
-    padding: 20px;
+  .founder-card {
+    padding: 1.25rem;                    /* 20px */
     border-radius: 12px;
   }
-
-  /* (Optionnel) Si tu as une grille à 2 colonnes, on empile en mobile */
-  /* .about-grid{ display: block; } */
-  /* ou si c’est une grille CSS :
-     .about-grid{ display:grid; grid-template-columns: 1fr; gap:16px; } */
 }

@@ -10,13 +10,13 @@
    📦 CONTAINER CENTRAL DU FORMULAIRE
 ======================================== */
 .contact-container {
-  max-width: 900px;
+  max-width: 56.25rem;            /* 900px */
   margin: auto;
   margin-top: 8rem;
   background: white;
   padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;            /* conserve px */
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.05); /* 4px 10px */
 }
 
 /* ========================================
@@ -28,15 +28,17 @@
   color: #444;
   background-color: #f9f4ff;
   padding: 1rem 1.5rem;
-  border-left: 4px solid #6c45e0;
-  border-radius: 8px;
+  border-left: 4px solid #6c45e0;  /* precise → px */
+  border-radius: 8px;              /* px */
   margin-bottom: 2rem;
 }
+
 .breadcrumb {
   font-size: 0.9rem;
   color: #666;
   margin-bottom: 1rem;
 }
+
 /* ========================================
    🟣 TITRE DU FORMULAIRE
 ======================================== */
@@ -56,7 +58,6 @@
   gap: 3rem !important;
 }
 
-/* ✅ Pour occuper toute la largeur */
 .full-width {
   grid-column: 1 / -1;
 }
@@ -77,8 +78,8 @@
 .form-group input,
 .form-group textarea {
   padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid #ccc;    /* px conservé */
+  border-radius: 6px;        /* px conservé */
   font-size: 1rem;
 }
 
@@ -96,7 +97,7 @@
   border: none;
   padding: 1rem 2rem !important;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 6px;         /* px */
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -106,7 +107,7 @@
 }
 
 /* ========================================
-   ✅ MESSAGE DE SUCCÈS (Flash message)
+   ✅ MESSAGE DE SUCCÈS
 ======================================== */
 .flash-success {
   background-color: #e8fce8;
@@ -114,74 +115,67 @@
   border: 1px solid #a5d6a7;
   padding: 1rem;
   margin-bottom: 1rem;
-  border-radius: 6px;
+  border-radius: 6px;       /* px */
   text-align: center;
 }
+
 /* ========================================
-   CONTACT — MOBILE (≤768px)
-   ======================================== */
+   📱 CONTACT — MOBILE (≤768px)
+======================================== */
 @media (max-width: 768px){
 
-  /* Section */
   .contact-section{
     padding: 2rem 1rem;
   }
 
-  /* Container */
   .contact-container{
     margin-top: 2.5rem;
     padding: 1.25rem;
     border-radius: 12px;
   }
 
-  /* Fil d’Ariane */
   .breadcrumb{
-    font-size: .95rem;
-    margin-bottom: .75rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
   }
 
-  /* Titre */
   .contact-title{
     font-size: 1.6rem;
     margin-bottom: 1.25rem;
     text-align: center;
   }
 
-  /* Intro */
   .contact-intro{
     font-size: 1rem;
-    padding: .75rem 1rem;
+    padding: 0.75rem 1rem;
     margin-bottom: 1.25rem;
   }
 
-  /* Grille → 1 colonne */
   .form-grid{
-    display: grid;
-    grid-template-columns: 1fr !important; /* une seule colonne */
+    grid-template-columns: 1fr !important;
     gap: 1rem !important;
   }
 
-  .full-width{ grid-column: 1 / -1; }
+  .form-group label{ margin-bottom: 0.4rem; }
 
-  /* Champs */
-  .form-group label{ margin-bottom: .4rem; }
   .form-group input,
   .form-group textarea{
     font-size: 1rem;
-    padding: .7rem .9rem;
-  }
-  .form-group textarea{
-    min-height: 160px; /* confort d’écriture */
+    padding: 0.7rem 0.9rem;
   }
 
-  /* Bouton envoyer */
+  .form-group textarea{
+    min-height: 10rem;   /* 160px => 10rem */
+  }
+
   .form-buttons{
     margin-top: 1.25rem;
-    text-align: center;            /* centré en mobile */
+    text-align: center;
   }
+
   .btn-primary{
-    width: 100%;                   /* plein-ligne */
-    padding: .9rem 1rem !important;
+    width: 100%;
+    padding: 0.9rem 1rem !important;
     font-size: 1rem;
     border-radius: 8px;
   }

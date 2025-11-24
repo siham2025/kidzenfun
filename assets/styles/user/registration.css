@@ -1,6 +1,7 @@
 .registration-section {
-    max-width: 900px;
+    max-width: 56.25rem;                /* 900px */
     margin: 3rem auto;
+    margin-top: 10rem;
     padding: 2rem;
     font-family: 'Segoe UI', sans-serif;
     background: #fdfdfd;
@@ -27,6 +28,15 @@
     margin-top: 2rem;
 }
 
+.form-check {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.form-check label {
+    cursor: pointer;
+}
+
 .form-actions {
     margin-top: 2rem;
     text-align: center;
@@ -37,7 +47,7 @@
     background-color: #7647ec;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 4px;                 /* px conservé */
     font-size: 1rem;
     cursor: pointer;
 }
@@ -58,15 +68,17 @@
     max-width: 100%;
     padding: 0.6rem;
     box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #ccc;             /* px */
+    border-radius: 4px;                 /* px */
 }
+
 /* ======================================
    INSCRIPTION — MOBILE (≤768px)
 ====================================== */
 @media (max-width: 768px){
 
   .registration-section{
+    margin-top: 0rem;
     padding: 1.5rem 1rem;
   }
 
@@ -89,10 +101,9 @@
     font-size: 0.95rem;
   }
 
-  /* ---- FORMULAIRE ---- */
   .form-grid{
     display: grid;
-    grid-template-columns: 1fr;     /* 1 seule colonne */
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
@@ -111,9 +122,9 @@
   }
 
   .btn-submit{
-    width: 100%;                    /* plein-ligne */
+    width: 100%;
     padding: 0.9rem 1rem;
     font-size: 1rem;
-    border-radius: 6px;
+    border-radius: 6px;                /* px conservé */
   }
 }

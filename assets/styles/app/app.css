@@ -2,7 +2,7 @@
 /* body {
     background-color: lightgray;
 } */
- /* ===================== */
+/* ===================== */
 /* STYLE GLOBAL DU SITE  */
 /* ===================== */
 
@@ -21,27 +21,27 @@ html, body {
 
 /* Hiérarchie des titres */
 h1 {
-  font-size: 40px;
+  font-size: 2.5rem;      /* 40px */
   font-weight: 700;
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 1.5625rem;   /* 25px */
   font-weight: 500;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 1.25rem;     /* 20px */
   font-weight: 600;
 }
 
 h4 {
-  font-size: 18px;
+  font-size: 1.125rem;    /* 18px */
   font-weight: 500;
 }
 
 p {
-  font-size: 16px;
+  font-size: 1rem;        /* 16px */
   font-weight: 400;
 }
 
@@ -57,20 +57,20 @@ a {
 
 /* Conteneur global */
 .container {
-  max-width: 1200px;
+  max-width: 75rem;       /* 1200px */
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 1rem;        /* 16px */
 }
 
 .flash {
-  max-width: 960px;
-  margin: 12px auto;
-  padding: 12px 14px;
+  max-width: 60rem;       /* 960px */
+  margin: 0.75rem auto;   /* 12px auto */
+  padding: 0.75rem 0.875rem; /* 12px 14px */
   border-radius: 8px;
   font-weight: 600;
 }
+
 .flash.success { background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0; }
 .flash.warning { background:#fffbeb; color:#92400e; border:1px solid #fde68a; }
 .flash.error   { background:#fef2f2; color:#991b1b; border:1px solid #fecaca; }
 .flash.info    { background:#eef2ff; color:#3730a3; border:1px solid #c7d2fe; }
-

@@ -1,33 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('app') }}
+	{{ parent() }}
+	{{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block body %}
-<section class="registration-section">
-    <div class="container">
-        <a href="{{ path('home') }}" class="back-link">← retour</a>
-        <h1>Créer un compte</h1>
-        <p>Remplissez le formulaire pour créer votre compte.</p>
+	<section class="registration-section">
+		<div class="container">
+			<a href="{{ path('home') }}" class="back-link">← retour</a>
+			<h1>Créer un compte</h1>
+			<p>Remplissez le formulaire pour créer votre compte.</p>
 
-{{ form_start(registration, { attr: { class: 'registration-form' } }) }}
-    <div class="form-grid">
-        {{ form_row(registration.firstName) }}
-        {{ form_row(registration.lastName) }}
-        {{ form_row(registration.email) }}
-        {{ form_row(registration.phone) }}
-        {{ form_row(registration.plainPassword.first) }}
-        {{ form_row(registration.plainPassword.second) }}
-    </div>
+			{{ form_start(registration, { attr: { class: 'registration-form' } }) }}
+			<div class="form-grid">
+				{{ form_row(registration.firstName) }}
+				{{ form_row(registration.lastName) }}
+				{{ form_row(registration.email) }}
+				{{ form_row(registration.phone) }}
+				{{ form_row(registration.plainPassword.first) }}
+				{{ form_row(registration.plainPassword.second) }}
+			</div>
 
-    <div class="form-actions">
-        <button type="submit" class="btn-submit">Créer</button>
-    </div>
-{{ form_end(registration) }}
-    </div>
-</section>
+			<div class="form-check">
+				{{ form_row(registration.agreeTerms, {
+        label: "J'accepte les <a href='" ~ path('app_terms') ~ "' target='_blank'>conditions générales d'utilisation</a>",
+        label_html: true
+    }) }}
+			</div>
+
+			<div class="form-actions">
+				<button type="submit" class="btn-submit">Créer</button>
+			</div>
+			{{ form_end(registration) }}
+		</div>
+	</section>
 {% endblock %}

@@ -4,11 +4,11 @@
 
 .hero {
   background-size: cover;
-  height: 300px;
-  padding: 120px 20px;
+  height: 18.75rem;          /* 300px */
+  padding: 7.5rem 1.25rem;   /* 120px 20px */
   color: white;
   position: relative;
-  margin-top: 120px;
+  margin-top: 7.5rem;        /* 120px */
 }
 
 .hero::after {
@@ -20,15 +20,15 @@
 
 .hero-content {
   position: relative;
-  max-width: 600px;
+  max-width: 37.5rem;        /* 600px */
   z-index: 1;
-  text-align: left;   /* avant c’était justify, pas top pour un titre */
-  margin-left: 30px;
+  text-align: left;
+  margin-left: 1.875rem;     /* 30px */
 }
 
 /* Titre principal */
 .hero-tagline {
-  font-size: 36px;
+  font-size: 2.25rem;        /* 36px */
   line-height: 1.4;
   font-weight: bold;
   margin: 0;
@@ -36,21 +36,21 @@
 
 /* Texte secondaire */
 .hero-subtext {
-  font-size: 22px;
+  font-size: 1.375rem;       /* 22px */
   font-weight: 400;
-  margin: 16px 0 24px;
+  margin: 1rem 0 1.5rem;     /* 16px 0 24px */
   color: #f0f0f0;
 }
 
 /* Bouton principal */
 .btn-primary {
-  margin-top: 24px;
+  margin-top: 1.5rem;        /* 24px */
   background-color: white;
-  /* box-shadow: 0 0 12px 4px rgba(124, 77, 255, 0.459); */
   color: black;
-  padding: 12px 40px;
-  border-radius: 8px;
+  padding: 1rem 3.125rem;    /* 16px 50px */
+  border-radius: 0.5rem;     /* 8px */
   text-decoration: none;
+  font-size: 1.25rem;        /* 20px */
   font-weight: 500;
   display: inline-block;
   box-sizing: border-box;
@@ -60,54 +60,52 @@
    SECTION : THEMES (6 cartes)
    ======================================= */
 .themes {
-  padding: 60px 20px;
+  padding: 3.75rem 1.25rem;  /* 60px 20px */
   text-align: center;
 }
 
 .themes .container {
-  max-width: 1300px;
+  max-width: 81.25rem;       /* 1300px */
   margin: 0 auto;
 }
 
 .themes .container h2 {
-font-size: 30px;
+  font-size: 1.875rem;       /* 30px */
 }
 
 .themes .container p {
-font-size: 20px;
-margin-bottom: 60px;
+  font-size: 1.25rem;        /* 20px */
+  margin-bottom: 3.75rem;    /* 60px */
 }
 
 .theme-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cartes par ligne */
-  gap: 80px;  
-
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5rem;                 /* 80px */
 }
 
 .theme-card {
   background: #f7f3ff;
-  border-radius: 12px;
+  border-radius: 0.75rem;     /* 12px */
   overflow: hidden;
   text-align: center;
   transition: transform 0.2s ease;
   display: block;
-  
 }
 
 .theme-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-0.25rem);  /* -4px */
 }
 
 .theme-card img {
   width: 100%;
-  height: 400px; 
+  height: 25rem;             /* 400px */
   object-fit: cover;
 }
 
 .theme-card span {
   display: block;
-  padding: 12px;
+  padding: 0.75rem;          /* 12px */
   font-weight: 600;
   color: #333;
 }
@@ -117,51 +115,51 @@ margin-bottom: 60px;
    ======================================= */
 .activity-of-day {
   background-color: white;
-  padding: 60px 20px;
+  padding: 3.75rem 1.25rem;  /* 60px 20px */
 }
 
 .activity-of-day-container {
   background-color: #f4efff;
-  max-width: 1300px;
+  max-width: 81.25rem;       /* 1300px */
   margin: 0 auto;
   display: flex;
-  align-items: center; /* centre texte & image verticalement */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  align-items: center;
+  box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.08); /* 20px */
 }
 
 .activity-text {
   flex: 1;
-  padding: 20px 30px; /* marges internes plus homogènes */
+  padding: 1.25rem 1.875rem; /* 20px 30px */
 }
 
 .activity-text h2 {
-  font-size: 40px;
+  font-size: 2.5rem;         /* 40px */
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;   /* 10px */
 }
 
 .activity-text h3 {
-  font-size: 30px;
+  font-size: 1.875rem;       /* 30px */
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .activity-text p {
-  font-size: 20px;
+  font-size: 1.25rem;        /* 20px */
   color: #444;
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;  /* 15px */
 }
 
 .btn-secondary {
   text-decoration: none;
   align-self: start;
-  padding: 14px 30px;
+  padding: 0.875rem 1.875rem; /* 14px 30px */
   background-color: #7c4dff;
   color: white;
-  border-radius: 6px;
-  font-size: 18px;
-  box-shadow: 0 0 8px rgba(124, 77, 255, 0.4);
-  margin-top: 15px;
+  border-radius: 0.375rem;   /* 6px */
+  font-size: 1.125rem;       /* 18px */
+  box-shadow: 0 0 0.5rem rgba(124, 77, 255, 0.4); /* 8px */
+  margin-top: 0.9375rem;     /* 15px */
   display: inline-block;
 }
 
@@ -173,23 +171,23 @@ margin-bottom: 60px;
 }
 
 .activity-of-day-image img {
-  width: 400px;
-  height: 400px;
+  width: 25rem;             /* 400px */
+  height: 25rem;            /* 400px */
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 0.75rem;   /* 12px */
 }
 
 /* =======================================
    SECTION : SLOGAN FINAL
    ======================================= */
 .slogon {
-  background-size: cover;       /* l’image couvre toute la zone */
-  background-position: center;  /* centrée */
-  background-repeat: no-repeat; /* pas de répétition */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  min-height: 350px;            /* hauteur minimale adaptable */
-  padding: 100px 20px;          /* espace interne */
-  margin: 100px auto;           /* espace extérieur */
+  min-height: 21.875rem;     /* 350px */
+  padding: 6.25rem 1.25rem;  /* 100px 20px */
+  margin: 6.25rem auto;      /* 100px */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -197,88 +195,90 @@ margin-bottom: 60px;
 }
 
 .slogon-text {
-  max-width: 800px; /* limite la largeur du bloc pour que le texte ne soit pas trop étalé */
+  max-width: 50rem;          /* 800px */
 }
 
 .slogon-text h2 {
-  font-size: 42px;       /* un peu moins grand pour l’équilibre */
+  font-size: 2.625rem;       /* 42px */
   font-weight: 700;
   color: white;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-  margin-bottom: 20px;   /* espace avec le paragraphe */
+  text-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.25rem;    /* 20px */
 }
 
 .slogon-text p {
-  font-size: 22px;       /* taille lisible */
-  line-height: 1.6;      /* meilleure lisibilité */
-  color: #f0f0f0;        /* blanc un peu adouci */
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-  margin: 0 auto;        /* centré */
+  font-size: 1.375rem;       /* 22px */
+  line-height: 1.6;
+  color: #f0f0f0;
+  text-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.4);
+  margin: 0 auto;
 }
+
 /* =======================================
-   MOBILE (≤768px) — Home
+   MOBILE (≤768px)
    ======================================= */
+
 @media (max-width: 768px){
 
-  /* HERO */
   .hero{
-    padding: 64px 16px;
-    min-height: 280px;
+    padding: 4rem 1rem;        /* 64px 16px */
+    min-height: 17.5rem;       /* 280px */
     background-position: center;
-    margin-top: 0px;
+    margin-top: 0;
   }
-  .hero-content{ max-width: 680px; margin-left: 0; }
-  .hero-tagline{ font-size: 28px; line-height: 1.3; margin-bottom: 8px; }
-  .hero-subtext{ font-size: 16px; margin: 8px 0 20px; }
-  .btn-primary{ box-sizing: border-box; max-width: 250px; margin-top: 25px;}
+  .hero-content{ max-width: 42.5rem; margin-left: 0; } /* 680px */
+  .hero-tagline{ font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .hero-subtext{ font-size: 1rem; margin: 0.5rem 0 1.25rem; }
+  .btn-primary{ max-width: 15.625rem; margin-top: 1.5625rem; }
 
-  
-  /* Bouton "Trouver une activité" plus large + plus bas */
+  .themes{ padding: 2.25rem 1rem; }
+  .themes .container{ max-width: 68.75rem; } /* 1100px */
 
-
-  /* THEMES */
-  .themes{ padding: 36px 16px; }
-  .themes .container{ max-width: 1100px; }
   .theme-grid{
-    gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(8.75rem, 1fr));
   }
-  .theme-card img{ height: 160px; }
-  .theme-card span{ font-size: 14px; padding: 10px; }
+  .theme-card img{ height: 10rem; }
+  .theme-card span{ font-size: 0.875rem; padding: 0.625rem; }
 
-  /* ACTIVITÉ DU JOUR */
-  .activity-of-day{ padding: 36px 16px; }
+  .activity-of-day{ padding: 2.25rem 1rem; }
   .activity-of-day-container{
-    max-width: 1100px;
+    max-width: 68.75rem;
     flex-direction: column;
-    gap: 12px;
+    gap: 0.75rem;
   }
+
   .activity-of-day-image{
-    order: -1;            /* image au-dessus du texte */
-    padding: 8px 8px 16px;
+    order: -1;
+    padding: 0.5rem 0.5rem 1rem;
     justify-content: center;
   }
+
   .activity-of-day-image img{
     width: 100%;
-    max-width: 520px;
-    height: 220px;
+    max-width: 32.5rem;
+    height: 13.75rem;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 0.75rem;
   }
-  .activity-text{ padding: 16px; }
-  .activity-text h2{ font-size: 28px; margin-bottom: 8px; }
-  .activity-text h3{ font-size: 22px; margin-bottom: 8px; }
-  .activity-text p { font-size: 16px; margin-bottom: 12px; }
-  .btn-secondary{ padding: 10px 18px; font-size: 15px; }
 
-  /* SLOGAN */
-  .slogon{
-    min-height: 280px;
-    margin: 64px auto;
-    padding: 56px 16px;
-    text-align: center;
+  .activity-text{ padding: 1rem; }
+  .activity-text h2{ font-size: 1.75rem; }
+  .activity-text h3{ font-size: 1.375rem; }
+  .activity-text p{ font-size: 1rem; }
+
+  .btn-secondary{
+    padding: 0.625rem 1.125rem;
+    font-size: 0.9375rem;
   }
-  .slogon-text{ max-width: 760px; }
-  .slogon-text h2{ font-size: 28px; margin-bottom: 10px; }
-  .slogon-text p { font-size: 16px; }
+
+  .slogon{
+    min-height: 17.5rem;
+    margin: 4rem auto;
+    padding: 3.5rem 1rem;
+  }
+
+  .slogon-text{ max-width: 47.5rem; }
+  .slogon-text h2{ font-size: 1.75rem; margin-bottom: 0.625rem; }
+  .slogon-text p{ font-size: 1rem; }
 }

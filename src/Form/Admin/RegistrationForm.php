@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Validator\Constraints\IsTrue;       
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class RegistrationForm extends AbstractType
@@ -36,6 +38,15 @@ class RegistrationForm extends AbstractType
                 'first_options' => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Répéter le mot de passe']
 
+            ])
+             ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false, // ne sera pas stocké en base
+                'label' => "J'accepte les conditions générales d'utilisation",
+                'constraints' => [
+                    new IsTrue([
+                        'message' => "Vous devez accepter les conditions générales d'utilisation.",
+                    ]),
+                       ],
             ])
             // ->add('isVerified')
             // ->add('submit', SubmitType::class);

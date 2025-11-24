@@ -2,11 +2,10 @@
 /* FOOTER - STYLES GÉNÉRAUX      */
 /* ============================= */
 .footer {
-  background: rgb(255, 255, 255);
+  background: #ffffff;
   color: #111827;
-  /* texte gris très foncé */
-  padding-top: 60px;
-  padding-bottom: 2px;
+  padding-top: 3.75rem;          /* 60px */
+  padding-bottom: 0.125rem;      /* 2px */
   font-family: Arial, sans-serif;
 }
 
@@ -15,29 +14,23 @@
 /* ============================= */
 .footer-top {
   width: 100%;
-  /* occupe toute la largeur */
   margin: 0;
-  /* plus de centrage */
   display: grid;
-  gap: 60px;
+  gap: 3.75rem;                  /* 60px */
   grid-template-columns: 0.5fr 1fr 1.4fr 1fr;
   align-items: flex-start;
   justify-items: center;
-  /* centre horizontalement chaque cellule */
-
 }
 
 /* ============================= */
 /* LOGO ET NOM DE MARQUE         */
 /* ============================= */
-
-
 .logo {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  margin-right: 8px;
-  margin-left: 20px;
+  margin-right: 0.5rem;          /* 8px */
+  margin-left: 1.25rem;          /* 20px */
 }
 
 .logo_img {
@@ -46,9 +39,7 @@
   display: block;
   object-fit: contain;
   border-radius: 6px;
-  /* optionnel si ton jpeg a des coins carrés */
 }
-
 
 /* ============================= */
 /* TITRES DE COLONNES            */
@@ -56,9 +47,9 @@
 .links .footer-title,
 .news .footer-title,
 .socials .footer-title {
-  font-size: 18px;
+  font-size: 1.125rem;           /* 18px */
   font-weight: bold;
-  margin: 4px 0 12px;
+  margin: 0.25rem 0 0.75rem;     /* 4px 0 12px */
 }
 
 /* ============================= */
@@ -66,11 +57,10 @@
 /* ============================= */
 .links ul {
   list-style: none;
-  /* supprime les puces */
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 14px;
+  gap: 0.875rem;                 /* 14px */
 }
 
 .links a {
@@ -80,50 +70,43 @@
 
 .links a:hover {
   color: #7C3AED;
-  /* violet au survol */
 }
 
 /* ============================= */
 /* BLOC NEWSLETTER               */
 /* ============================= */
-
 .footer .news {
   text-align: center;
-  /* centre tout le texte */
 }
 
 .footer .news form {
   display: inline-flex;
-  /* formulaire centré horizontalement */
-  gap: 8px;
-  /* petit espace entre input et bouton */
+  gap: 0.5rem;                   /* 8px */
 }
 
 .news p {
   color: #6B7280;
-  /* texte gris moyen */
-  margin: 0 0 12px;
+  margin: 0 0 0.75rem;           /* 12px */
 }
 
 .news-form {
   display: flex;
-  gap: 10px;
-  margin-bottom: 6px;
+  gap: 0.625rem;                 /* 10px */
+  margin-bottom: 0.375rem;       /* 6px */
 }
 
 .news-form input {
   flex: 1;
-  height: 40px;
-  padding: 0 60px;
+  height: 2.5rem;                /* 40px */
+  padding: 0 3.75rem;            /* 0 60px */
   border: 1px solid #7C3AED;
-  /* contour violet */
   border-radius: 6px;
   outline: none;
 }
 
 .news-form button {
-  height: 40px;
-  padding: 0 14px;
+  height: 2.5rem;                /* 40px */
+  padding: 0 0.875rem;           /* 0 14px */
   border: 1px solid #7C3AED;
   background: #fff;
   border-radius: 6px;
@@ -133,7 +116,7 @@
 .news small {
   color: #6B7280;
   display: block;
-  margin-top: 4px;
+  margin-top: 0.25rem;           /* 4px */
 }
 
 /* ============================= */
@@ -141,10 +124,9 @@
 /* ============================= */
 .icons {
   display: flex;
-  gap: 16px;
-  margin-top: 6px;
-  font-size: 20px;
-  /* taille emoji ou icônes */
+  gap: 1rem;                     /* 16px */
+  margin-top: 0.375rem;          /* 6px */
+  font-size: 1.25rem;            /* 20px */
 }
 
 /* ============================= */
@@ -153,8 +135,7 @@
 .divider {
   border: none;
   border-top: 1px solid #E5E7EB;
-  /* gris clair */
-  margin: 28px auto 12px;
+  margin: 1.75rem auto 0.75rem;  /* 28px auto 12px */
   width: 100%;
 }
 
@@ -162,28 +143,20 @@
 /* SECTION DU BAS DU FOOTER      */
 /* ============================= */
 .footer-bottom {
-  max-width: 1100px;
-  /* limite la largeur */
+  max-width: 68.75rem;           /* 1100px */
   margin: 0 auto;
-  /* centre le bloc */
   display: flex;
-  /* alignement en ligne */
   align-items: center;
-  /* aligne verticalement */
   justify-content: center;
-  /* centre horizontalement */
-  gap: 40px;
-  /* espace entre le texte et les liens */
+  gap: 2.5rem;                   /* 40px */
   color: #6B7280;
-  /* texte gris */
-  font-size: 14px;
+  font-size: 0.875rem;           /* 14px */
 }
 
 .footer-bottom ul {
   list-style: none;
   display: flex;
-  gap: 24px;
-  /* espace entre les liens */
+  gap: 1.5rem;                   /* 24px */
   padding: 0;
   margin: 0;
 }
@@ -191,12 +164,10 @@
 .footer-bottom a {
   color: #111827;
   text-decoration: underline;
-  /* liens soulignés */
 }
 
 .footer-bottom a:hover {
   color: #7C3AED;
-  /* violet au hover */
 }
 
 /* ============================= */
@@ -218,51 +189,43 @@
 /* RESPONSIVE                    */
 /* ============================= */
 @media (max-width: 768px) {
+
   .footer-top {
     grid-template-columns: 1fr;
-    /* 1 colonne sur mobile */
   }
 
-  /* NEWSLETTER : input + bouton l’un sous l’autre, centrés */
   .footer .news {
     text-align: center;
   }
 
   .footer .news form {
     display: block;
-    /* plus d'inline-flex */
   }
 
   .news-form {
     display: flex;
     flex-direction: column;
-    /* empile input + bouton */
     align-items: center;
-    /* centre horizontalement */
   }
 
   .news-form input,
   .news-form button {
     width: 100%;
-    max-width: 200px;
+    max-width: 12.5rem;           /* 200px */
   }
 
-  /* FOOTER-BOTTOM : tout centré */
   .footer-bottom {
     flex-direction: column;
     align-items: center;
-    /* au lieu de flex-start */
     text-align: center;
   }
 
   .news-form button {
-    margin-top: 8px;
-    /* espace supplémentaire au-dessus du bouton */
+    margin-top: 0.5rem;           /* 8px */
   }
 
   .footer-bottom ul {
     justify-content: center;
-    /* centre les liens horizontaux */
     flex-wrap: wrap;
   }
 }

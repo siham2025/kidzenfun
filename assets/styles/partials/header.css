@@ -1,4 +1,3 @@
-
 /* ==========================================
    HEADER PRINCIPAL : apparence & position
    ========================================== */
@@ -12,11 +11,10 @@
 }
 
 .site-header .container-header{
-
   display: flex;
   align-items: center;
-  gap: 32px;
-  padding: 30px 40px;
+  gap: 2rem;                       /* 32px */
+  padding: 1.875rem 2.5rem;        /* 30px 40px */
 }
 
 /* ==========================================
@@ -26,7 +24,7 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  margin-right: 6px;
+  margin-right: .375rem;           /* 6px */
 }
 .site-header .logo_img{
   height: 70px;
@@ -44,29 +42,28 @@
 .search-bar{
   display: flex;
   align-items: center;
-  height: 40px;
-  width: 300px;
+  height: 2.5rem;                  /* 40px */
+  width: 18.75rem;                 /* 300px */
   border: 1px solid #b6aaff;
   border-radius: 8px;
   background: #fff;
   overflow: hidden;
 
-  /* placement par rapport au logo / nav */
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 6.25rem;            /* 100px */
+  margin-right: 6.25rem;           /* 100px */
 }
 .search-bar input{
   flex: 1;
   border: none;
   outline: none;
-  padding: 10px 12px;
-  font-size: 14px;
+  padding: .625rem .75rem;         /* 10px 12px */
+  font-size: .875rem;              /* 14px */
   color: #333;
 }
 .search-bar button{
   border: none;
   background: none;
-  padding: 0 12px;
+  padding: 0 .75rem;               /* 0 12px */
   height: 100%;
   display: grid;
   place-items: center;
@@ -83,12 +80,12 @@
    ========================================== */
 .main-nav{
   display: flex;
-  gap: 50px;
+  gap: 3.125rem;                   /* 50px */
 }
 .main-nav a{
   text-decoration: none;
   color: #111;
-  font-size: 17px;
+  font-size: 1.0625rem;            /* 17px */
   font-weight: 500;
 }
 .main-nav a:hover{ color: #5f2eea; }
@@ -101,7 +98,7 @@
    ========================================== */
 .account-buttons{
   display: flex;
-  gap: 16px;
+  gap: 1rem;                       /* 16px */
   margin-left: auto;
 }
 
@@ -111,9 +108,9 @@
   background: #704FE6;
   color: #fff;
   border: 1px solid #704FE6;
-  padding: 10px 30px;
+  padding: .625rem 1.875rem;       /* 10px 30px */
   border-radius: 6px;
-  font-size: 15px;
+  font-size: .9375rem;             /* 15px */
   font-weight: 500;
   text-decoration: none;
   display: inline-block;
@@ -123,28 +120,43 @@
 }
 .btn-login:hover,
 .btn-logout:hover{
-  background: #fff;color: #704FE6;
+  background: #fff;
+  color: #704FE6;
   border-color: #704FE6;
 }
 
 /* Bouton outline (Inscription) */
 .btn-register{
-  background: #fff; color: #704FE6;
-  border: 1px solid #704FE6; padding: 10px 30px;
-  border-radius: 6px; font-size: 15px; font-weight: 500;
-  text-decoration: none; display: inline-block;
+  background: #fff;
+  color: #704FE6;
+  border: 1px solid #704FE6;
+  padding: .625rem 1.875rem;       /* 10px 30px */
+  border-radius: 6px;
+  font-size: .9375rem;             /* 15px */
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
 }
 .btn-register:hover{ background: #704FE6; color: #fff; }
 
 /* Lien "Mon profil" */
 .profile-link{
-  display: inline-flex; align-items: center; gap: 8px;
-  text-decoration: none; color: #111;
-  border: 1px solid #b6aaff; background: #fff;
-  padding: 8px 14px; border-radius: 6px;
-  font-size: 16px; font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;                      /* 8px */
+  text-decoration: none;
+  color: #111;
+  border: 1px solid #b6aaff;
+  background: #fff;
+  padding: .5rem .875rem;          /* 8px 14px */
+  border-radius: 6px;
+  font-size: 1rem;                 /* 16px */
+  font-weight: 500;
 }
-.profile-link i{ font-size: 24px; color: #7c4dff; }
+.profile-link i{
+  font-size: 1.5rem;               /* 24px */
+  color: #7c4dff;
+}
 .profile-link:hover{ background: #f7f5ff; }
 
 /* Form déconnexion inline (pour rester à côté du profil) */
@@ -164,16 +176,15 @@
   .site-header .container-header{
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: auto auto;        /* 2e rangée = menu */
+    grid-template-rows: auto auto;
     align-items: center;
-    gap: 8px;
-    padding: 10px 10px 10px 4px;
-    position: relative;                    /* ancre pour la nav */
+    gap: .5rem;                     /* 8px */
+    padding: .625rem .625rem .625rem .25rem; /* 10px 10px 10px 4px */
+    position: relative;
   }
 
- 
   .site-header {
-    position: fixed;     
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -182,70 +193,98 @@
 
   /* tu peux ajuster la valeur selon la hauteur réelle du header */
   body {
-    padding-top: 72px;
+    padding-top: 4.5rem;           /* 72px */
   }
 
-
   /* Logo → favicon */
-  .logo{ order: 1; justify-self: start; display: inline-flex; align-items: center;  }
+  .logo{
+    order: 1;
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+  }
   .logo_img{ display: none !important; }
-  .logo_favicon{ display: block !important; height: 50px; width: 50px; }
+  .logo_favicon{
+    display: block !important;
+    height: 50px;
+    width: 50px;
+  }
 
   /* Profil au centre — icône seule */
   .account-buttons{
-    order: 2; justify-self: center; display: flex; align-items: center;
+    order: 2;
+    justify-self: center;
+    display: flex;
+    align-items: center;
   }
-  .btn-login, .btn-register, .btn-logout{ display: none !important; } /* icône seule */
+  .btn-login, .btn-register, .btn-logout{
+    display: none !important;
+  }
   .profile-link{
-    padding: 6px;
+    padding: .375rem;              /* 6px */
     border: 1px solid #b6aaff;
     border-radius: 8px;
     background:#fff;
-    display: inline-flex; align-items:center; justify-content:center;
+    display: inline-flex;
+    align-items:center;
+    justify-content:center;
   }
-  .profile-link i{ font-size: 20px; }
+  .profile-link i{ font-size: 1.25rem; }   /* 20px */
   .profile-link span{ display: none; }
 
   /* Burger à droite */
   .burger{
-    order: 3; justify-self: end;
-    display: inline-grid !important; place-items: center;
-    background: none; border: none; padding: 10px; cursor: pointer; color: #111; 
-    margin-right: 16px;
+    order: 3;
+    justify-self: end;
+    display: inline-grid !important;
+    place-items: center;
+    background: none;
+    border: none;
+    padding: .625rem;              /* 10px */
+    cursor: pointer;
+    color: #111;
+    margin-right: 1rem;            /* 16px */
   }
 
   .burger:hover {
-  color: #704FE6; /* ça change le stroke du SVG car il utilise currentColor */
-}
+    color: #704FE6; /* ça change le stroke du SVG car il utilise currentColor */
+  }
 
-   .burger svg{
+  .burger svg{
     width: 30px;
     height: 30px;
   }
 
   .burger:hover svg {
-  stroke-width: 2.5;
-}
-
-
+    stroke-width: 2.5;
+  }
 
   /* Recherche masquée */
   .search-bar{ display: none !important; }
 
   /* Menu vertical (sous la barre) */
   .main-nav{
-    grid-column: 1 / -1; grid-row: 2;
-    position: absolute; top: 100%; left: 0; right: 0;
-    display: none; flex-direction: column;
-    background: #fff; border-top: 1px solid #eee;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    border-top: 1px solid #eee;
     box-shadow: 0 10px 20px rgba(0,0,0,.06);
-    max-height: calc(100dvh - 56px);       /* scroll interne si trop long */
-    overflow-y: auto; -webkit-overflow-scrolling: touch;
-    padding: 8px 0 24px;
+    max-height: calc(100dvh - 56px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: .5rem 0 1.5rem;       /* 8px 0 24px */
     z-index: 1001;
   }
   .main-nav a{
-    padding: 12px 16px; font-size: 16px; color: #111;
+    padding: .75rem 1rem;          /* 12px 16px */
+    font-size: 1rem;               /* 16px */
+    color: #111;
     border-bottom: 1px solid #f2f2f7;
   }
   .main-nav a:last-child{ border-bottom: 0; }
@@ -253,27 +292,48 @@
   /* Bloc compte dans le menu */
   .main-nav .nav-account{
     display: block;
-    padding: 10px 12px;
+    padding: .625rem .75rem;       /* 10px 12px */
     border-top: 1px solid #eee;
-    margin-top: 4px;
+    margin-top: .25rem;            /* 4px */
   }
   .main-nav .nav-profile{
-    display: flex; align-items: center; gap: 8px;
-    padding: 10px 12px; margin-bottom: 6px;
-    text-decoration: none; color: #111;
+    display: flex;
+    align-items: center;
+    gap: .5rem;                    /* 8px */
+    padding: .625rem .75rem;       /* 10px 12px */
+    margin-bottom: .375rem;        /* 6px */
+    text-decoration: none;
+    color: #111;
   }
-  .main-nav .nav-profile i{ font-size: 18px; color: #7c4dff; }
+  .main-nav .nav-profile i{ font-size: 1.125rem; color: #7c4dff; } /* 18px */
 
   .main-nav .nav-btn{
-    display: block; width: 100%; box-sizing: border-box;
-    padding: 9px 12px; font-size: 15px; font-weight: 600;
-    border-radius: 8px; margin-top: 8px;
-    text-decoration: none; border: 1px solid transparent;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: .5625rem .75rem;      /* 9px 12px */
+    font-size: .9375rem;           /* 15px */
+    font-weight: 600;
+    border-radius: 8px;
+    margin-top: .5rem;             /* 8px */
+    text-decoration: none;
+    border: 1px solid transparent;
   }
-  .main-nav .nav-btn-primary{ background:#7c4dff; color:#fff; border-color:#7c4dff; }
-  .main-nav .nav-btn-outline{ background:#fff; color:#7c4dff; border-color:#7c4dff; }
+  .main-nav .nav-btn-primary{
+    background:#7c4dff;
+    color:#fff;
+    border-color:#7c4dff;
+  }
+  .main-nav .nav-btn-outline{
+    background:#fff;
+    color:#7c4dff;
+    border-color:#7c4dff;
+  }
   .main-nav .nav-logout{ margin: 0; }
-  .main-nav .nav-logout .nav-btn{ width: 100%; cursor: pointer; }
+  .main-nav .nav-logout .nav-btn{
+    width: 100%;
+    cursor: pointer;
+  }
 
   /* Ouverture via JS (toggle .is-open sur .site-header) */
   .site-header.is-open .main-nav{ display: flex; }
@@ -282,7 +342,9 @@
   .burger:focus-visible,
   .profile-link:focus-visible,
   .main-nav a:focus-visible{
-    outline: 2px solid #7c4dff; outline-offset: 2px; border-radius: 6px;
+    outline: 2px solid #7c4dff;
+    outline-offset: 2px;
+    border-radius: 6px;
   }
 }
 
@@ -290,6 +352,5 @@
    DESKTOP (≥769px)
    =========================== */
 @media (min-width: 769px){
-  /* Le bloc compte du menu mobile n’existe pas en desktop */
   .main-nav .nav-account{ display: none !important; }
 }
